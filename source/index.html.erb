@@ -1,0 +1,103 @@
+---
+page_title: TRUG — Trójmiejska Grupa Użytkowników Ruby
+---
+
+<div class="landing-hero text-center">
+  <h2 class="landing-lead">
+    Trójmiejska Grupa
+    <br />
+    Użytkowników Ruby
+  </h2>
+  <a class="btn btn-brand" href="#next-meetup">Najbliższe spotkanie
+    <i class="icon-down-open-big"></i>
+  </a>
+</div>
+<div class="container text-center padding-3/1-bottom">
+  <div class="grid grid-center">
+    <div class="grid-item 3/5 compact-1/1">
+      <h2 class="no-margin padding-2/1-top">Spotkania</h2>
+      <p>Przeważnie odbywają się w przedostanią środę każdego miesiąca. Zapraszamy wszystkich zainteresowanych językiem programowania Ruby oraz technologiami pokrewnymi. Po prezentacjach rozmawiamy oraz gramy w gry planszowe.</p>
+    </div>
+  </div>
+</div>
+<div class="landing-community"></div>
+<div class="container padding-3/1-vertical">
+  <div class="grid js-landing-schedule">
+    <div class="grid-item 1/2 compact-1/1 text-left">
+      <h2 id="next-meetup">Najbliższe spotkanie</h2>
+      <table class="landing-schedule">
+        <tr>
+          <td class="nowrap">
+            <p class="text-bold no-margin">
+              <i class="icon-calendar landing-schedule-icon"></i>Data
+            </p>
+          </td>
+          <td>
+            <%= data.meetups.events[0].date.to_s + " (czwartek)" %>
+          </td>
+        </tr>
+        <tr>
+          <td class="nowrap">
+            <p class="text-bold no-margin">
+              <i class="icon-clock landing-schedule-icon"></i>Godzina
+            </p>
+          </td>
+          <td>18:00</td>
+        </tr>
+        <tr>
+          <td class="nowrap">
+            <p class="text-bold no-margin">
+              <i class="icon-place landing-schedule-icon"></i>Miejsce
+            </p>
+          </td>
+          <td>Hackerspace, al. Wojska Polskiego 41, Gdańsk</td>
+        </tr>
+        <tr>
+          <td class="nowrap">
+            <p class="text-bold no-margin">
+              <i class="icon-file landing-schedule-icon"></i>Agenda
+            </p>
+          </td>
+          <td>
+            <% data.meetups.events[0].talks.each do |talk| %>
+              <p class="margin-1/2-bottom">
+                <%= talk.title %>
+                <span class="block">
+                  &nbsp;-&nbsp;
+                  <%= talk.fullname %>
+                </span>
+              </p>
+            <% end %>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="grid-item 1/2 compact-1/1">
+      <h2>Lokalizacja</h2>
+      <div class="landing-map-canvas">
+        <a href="https://www.google.com/maps/place/Hackerspace+Tr%C3%B3jmiasto/@54.3896224,18.5792051,17z/data=!3m1!4b1!4m6!3m5!1s0x46fd754a50efe4c1:0xdbe977101a1abc1e!8m2!3d54.3896193!4d18.58178!16s%2Fg%2F11mv_2z54_?entry=ttu" target="_blank">
+          <%= image_tag "mapa.png" %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container padding-3/1-bottom">
+  <div class="grid">
+    <div class="grid-item 1/2 compact-1/1">
+      <h2>Poznajmy się!</h2>
+      <p>Tworzymy społeczność, która nie tylko dzieli się  wiedzą,
+        ale jest też otwarta na zawieranie nowych znajomości.
+        Spotykamy się  podczas integracji w pubach, kawiarniach, kinie, itp.
+        Jeśli chcesz wspólnie z nami tworzyć społeczność TRUG
+        dołącz do naszej grupy na Slack -
+        <a class="link-brand" href="https://3cityIT.slack.com/messages/trug/">3CityIT</a>. Czekamy na Ciebie!
+      </p>
+      <a class="link-brand landing-link" href="mailto:oskarszrajer@gmail.com?subject=TRUG">Dołącz do grupy
+        <i class="icon-right-open-big"></i>
+      </a>
+    </div>
+    <div class="grid-item 1/2 compact-1/1 landing-bg-rubies"></div>
+  </div>
+</div>

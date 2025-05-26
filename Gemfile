@@ -1,26 +1,15 @@
 source "https://rubygems.org"
 
-gem "builder"
-gem "dry-container", "~> 0.6.0"
-gem "dry-configurable", "~> 0.7.0"
-gem "dry-core", "~> 0.4.7"
-gem "dry-inflector"
-gem "dry-monads"
-gem "dry-system", "~> 0.9.2"
-gem "dry-types", "~> 0.12.3"
-gem "dry-view", "~> 0.5.3"
-gem "dry-logic", "~> 0.4.2"
-gem "dry-struct", "~> 0.4.0"
-gem "pry"
-gem "rom"
-gem "rom-yaml"
-gem "slim"
-gem "transproc"
-gem "dotenv"
+gem "middleman"
+gem "middleman-autoprefixer"
+gem "middleman-gh-pages"
+gem "middleman-minify-html"
+gem "tzinfo-data", platforms: [:mswin, :mingw, :jruby, :x64_mingw]
+gem "wdm", "~> 0.1", platforms: [:mswin, :mingw, :x64_mingw]
 
-group :development, :test do
-  gem "byebug"
-  gem "foreman"
-  gem "guard"
-  gem "guard-shell"
-end
+# Temporary fix for https://github.com/middleman/middleman/issues/2569
+gem "haml", "~> 5.0"
+
+gem "rake"
+
+gem "webrick"

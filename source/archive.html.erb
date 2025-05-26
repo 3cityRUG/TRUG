@@ -1,0 +1,35 @@
+---
+page_title: Archiwum | TRUG — Trójmiejska Grupa Użytkowników Ruby
+---
+
+<div class="container">
+  <h2>Archiwum</h2>
+
+  <% data.meetups.events.each do |meetup| %>
+    <div class="meetup">
+      <h3><%= meetup_header(meetup) %></h3>
+
+      <% (meetup.talks || []).each do |talk| %>
+        <% if talk.video_thumb %>
+          <div class="video" data-video_id="<%= talk.video_id %>" data-provider="<%= talk.video_provider %>">
+            <img class="compact-1/1 margin-1/2-bottom" src="<%= talk.video_thumb %>">
+          </div>
+        <% end %>
+
+        <p>
+          <%= talk_title(talk) %>
+          &nbsp;-&nbsp;
+          <%= talk_speaker(talk) %>
+        </p>
+
+        <p>
+          <%= talk_source_code(talk) %>
+        </p>
+      <% end %>
+    </div>
+
+    <hr>
+  <% end %>
+</div>
+
+<%= javascript_include_tag "archive" %>

@@ -1,0 +1,95 @@
+@mixin btn($name, $color, $color-text: $color-white) {
+  .btn-#{$name} {
+    color: $color-text;
+    background-color: $color;
+    border-bottom-color: darken($color, 25%);
+
+    &:hover {
+      background-color: lighten($color, 5%);
+    }
+
+    &.btn-outline {
+      color: $color;
+      background-color: transparent;
+      border-color: $color;
+    }
+  }
+}
+
+input[type="button"],
+input[type="submit"],
+button,
+.btn {
+  display: inline-block;
+  padding: ($spacing-unit / 4) ($spacing-unit / 2);
+  margin: 0;
+  font-size: $font-size-btn;
+  color: $color-white;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: $color-btn;
+  border: 0;
+  border-bottom-color: darken($color-btn, 25%);
+  border-bottom-style: solid;
+  border-radius: $ui-border-radius;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  @if not $btn-flat {
+    vertical-align: 1px;
+    border-bottom-width: 2px;
+  }
+
+  &:hover {
+    background-color: lighten($color-btn, 5%);
+  }
+}
+
+button[disabled],
+.btn-disabled {
+  color: darken($color-disabled, 25%);
+  cursor: not-allowed;
+  background-color: $color-disabled;
+  border-bottom-color: darken($color-disabled, 20%);
+
+  &:hover {
+    background-color: $color-disabled;
+  }
+
+  @if $link-active {
+    &:active {
+      top: 0;
+    }
+  }
+}
+
+.btn-outline {
+  color: $color-btn;
+  vertical-align: 0;
+  background-color: transparent;
+  border: 1px solid $color-btn;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.btn-flat {
+  border-bottom-width: 0;
+}
+
+.btn-shadow {
+  border-bottom-width: 2px;
+}
+
+.btn-block {
+  display: block;
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center;
+}
+
+@include btn('brand', $color-brand);
+@include btn('positive', $color-positive);
+@include btn('negative', $color-negative);

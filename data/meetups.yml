@@ -1,0 +1,1241 @@
+events:
+  - number: 112
+    date: "2025-05-22"
+    talks:
+      - full_name: Krzysztof (Chris) Wawer
+        title: "Ruby Meetups Integration"
+  - number: 111
+    date: "2025-04-24"
+    talks:
+      - full_name: Adam Okoń
+        title: "Beyond the Hype: Fact-Checking Phlex Promises from Wroclove.rb 2025"
+      - full_name: Panel dyskusyjny
+        title: "Co z DDD można wyciągnąć"
+  - number: 110
+    date: "2025-03-27"
+    talks:
+      - full_name: Adam Okoń
+        title: "LLM Apps: Building Beyond the Hype"
+      - full_name: All are welcome
+        title: Lighting talks
+  - number: 109
+    date: "2025-02-20"
+    talks:
+      - full_name: Paweł Strzałkowski
+        title: My LLM is smarter than yours - czyli LLMy, Vector Search i RAG w Ruby
+      - full_name: Krzysztof Hasiński
+        title: Fantastic Databases and Where to Find Them
+  - number: 108
+    date: "2024-11-28"
+    talks:
+      - full_name: Adam Okoń
+        title: Golang - z pamiętników wdrożeniowca, część 2
+  - number: 107
+    date: "2024-10-24"
+    talks:
+      - full_name: Adam Okoń
+        title: Golang - z pamiętników wdrożeniowca
+      - full_name: Maciej Małecki
+        title: Ash Framework w praktyce
+  - number: 106
+    date: "2024-09-26"
+    talks:
+      - full_name: Adam Okoń
+        title: Solid Queue + Mission Controll
+      - full_name: Oskar Szrajer
+        title: UNION, INTERSECT, EXCEPT in SQL and how to use them
+  - number: 105
+    date: "2024-08-29"
+    talks:
+      - full_name: Tomasz Stachewicz
+        title: Jak hostować z homelabu
+      - full_name: Adam Okoń
+        title: Co nowego w świecie Railsowym?
+  - number: 104
+    date: "2024-06-27"
+    talks:
+      - full_name: Oskar Szrajer
+        title: NixOS
+      - full_name: Adam Okoń
+        title: kolejne warsztaty z Rails Turbo
+  - number: 103
+    date: "2024-05-23"
+    talks:
+      - full_name: Michał Poczwardowski
+        title: On Building Newsletter
+        slides: https://trug.pl/assets/archive/20240523/on_building_newsletter_trug_2024_05_23.pdf
+  - number: 102
+    date: "2024-04-25"
+    talks:
+      - full_name: Adam Okoń
+        title: Turbo, ciąg dalszy
+  - number: 101
+    date: "2024-03-28"
+    talks:
+      - full_name: Adam Okoń
+        title: kontynuacja eksploracji wzorców dla turbo-rails
+  - number: 100
+    date: "2024-02-27"
+    talks:
+      - full_name: Adam Okoń
+        title: turbo_frame vs trubo_stream
+  - number: 99
+    date: "2024-01-25"
+    talks:
+
+  - number: 98
+    date: "2023-12-28"
+    talks:
+      - full_name: Ogladamy film
+        title: Turbo Native in 15 minutes, Joe Masilotti
+  - number: 97
+    date: "2023-11-30"
+    talks:
+      - full_name: Ogladamy film
+        title: Ruby on Rails - The Documentary
+  - number: 96
+    date: "2023-10-26"
+    talks:
+      - full_name: Adam Okoń
+        title: Ruby on Serveless
+      - full_name: Krzysztof Wawer
+        title: Doctrine of Useful Objects - Get rid of mocking
+        slides: https://wafcio.github.io/presentations/douo-mocking/
+  - number: 95
+    date: "2020-02-19"
+    talks:
+      - full_name: Oskar Szrajer
+        title: dry-* gems
+        slides: https://trug.pl/assets/archive/20200219/admeet.pdf
+  - number: 94
+    date: "2020-01-22"
+    talks:
+      - full_name: Adam Okoń
+        title: Jak nie robić microfrontendów
+  - number: 93
+    date: "2019-12-18"
+    talks:
+      - full_name: Michał Matyas
+        title: Testing React components
+  - number: 92
+    date: "2019-11-20"
+    talks:
+      - full_name: Krzysztof Wawer
+        title: The Good Architecture
+        slides: https://speakerdeck.com/wafcio/the-good-architecture
+  - number: 91
+    date: "2019-10-23"
+    talks:
+      - full_name: Bartek Kozal
+        title: Czego się nauczyłem, ile zarobiłem i dlaczego rzuciłem programowanie po zbudowaniu sześciu side projektów
+  - number: 90
+    date: "2019-09-18"
+    talks:
+      - full_name: Artur Okoński
+        title: O GraphQL i używaniu go z Ruby on Rails
+  - number: 89
+    date: "2019-08-21"
+    talks:
+      - full_name: ???
+        title: ???
+  - number: 88
+    date: "2019-07-17"
+    talks:
+      - full_name: Piotr Macuk
+        title: Migrating from Paperclip to ActiveStorage
+        slides: https://trug.pl/assets/archive/20190717/active_storage.pdf
+      - full_name: Piotr Macuk
+        title: Selecting SMTP for SaaS business
+        slides: https://trug.pl/assets/archive/20190717/smtp.pdf
+      - full_name: Maciej Małecki
+        title: AppSignal
+  - number: 87
+    date: "2019-06-19"
+    talks:
+      - full_name: Adam Okoń
+        title: '"Then in the action"'
+      - full_name: Michał Matyas
+        title: "FFmpeg in Ruby"
+  - number: 86
+    date: "2019-05-22"
+    talks:
+      - full_name: Piotr Macuk
+        title: VPS vs Heroku for small team
+        slides: https://trug.pl/assets/archive/20190522/vps_heroku.pdf
+      - full_name: Oskar Szrajer
+        title: Podstawy programowania (część kolejna)
+      - full_name: Tomasz Stachewicz
+        title: Programowanie mikrokontrolerów (mruby)
+  - number: 85
+    date: "2019-04-17"
+    talks:
+      - full_name: Maciej Kubiak
+        home_page: https://github.com/buffot
+        title: Wprowadzenie do Frontend web developmentu
+        video_id: GHIKtdl86H4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/GHIKtdl86H4/sddefault.jpg
+      - full_name: Paweł Gościcki
+        title: '"Wymyślam algorytm"'
+  - number: 84
+    date: "2019-03-20"
+    talks:
+      - full_name: Oskar Szrajer
+        title: Dry-view (live coding, refactor)
+  - number: 83
+    date: "2019-02-27"
+    talks:
+      - full_name: Paweł Pokrywka
+        title: Podsumowanie 12 lat eksperymentu dot. wycieków danych
+      - full_name: Oskar Szrajer
+        title: Dry-view (better way to write views)
+        slides: https://www.slideshare.net/secret/v1KMJE7D7aynTp
+        video_id: CXt2kZvbV7c
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/CXt2kZvbV7c/sddefault.jpg
+  - number: 82
+    date: "2019-01-23"
+    talks:
+      - full_name: Adam Okoń
+        title: JWT
+  - number: 81
+    date: "2018-12-12"
+    talks:
+      - full_name: Jacek Marmuszewski
+        title: Why do we need security headers?
+        slides: https://docs.google.com/presentation/d/1uZhbe-opQQ-90iQvnryoobZt3qa0GXfdgwiDbOcPMfk/edit#slide=id.g45e057549f_0_56
+      - full_name: Oskar Szrajer
+        title: GraphQL - część I -  wstęp (Setup, Query and Types)
+        slides: https://github.com/gotar/GraphQL_playground
+      - full_name: Adam Okoń
+        title: Lighting talk - Mermaidjs
+        slides: https://mermaidjs.github.io/
+  - number: 80
+    date: "2018-11-21"
+    talks:
+  - number: 79
+    date: "2018-10-24"
+    talks:
+      - full_name: Agata Kubiak
+        title: Rola badań w procesie projektowania
+        slides: https://www.dropbox.com/s/42ne74dbdrw3xcj/TRUG%20Rola%20bada%C5%84%20w%20procesie%20projektowania.pdf?dl=0
+      - full_name: Anton Koval
+        title: Jak się żyje programistom na wschód od Polski
+        slides: https://www.dropbox.com/s/9t8qvewocya3sn7/Programisci%20na%20Wch%C3%B3d%20od%20Europy.pdf?dl=0
+  - number: 78
+    date: "2018-09-26"
+    talks:
+      - full_name: Dejan Aćimović
+        title: Moja Ruby historia - Jak zostałem programistą grubo po 30-stce.
+        video_id: FP3gvcRPD_c
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/FP3gvcRPD_c/sddefault.jpg
+      - full_name: Łukasz Skotarek
+        title: Wprowadzenie do Property Based Testing
+        video_id: 1aJ-rA5_9QU
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/1aJ-rA5_9QU/sddefault.jpg
+  - number: 73
+    date: "2018-04-18"
+    talks:
+      - full_name: Jan Dudek
+        home_page: https://github.com/jdudek
+        title: Front-end Deployment with Lambda@Edge
+  - number: 72
+    date: "2018-03-21"
+    talks:
+      - full_name: Michał Poczwardowski
+        home_page: https://github.com/dmp0x7c5
+        title: Delivering backend - case study.
+        slides: https://speakerdeck.com/dmp0x7c5/delivering-backend-case-study/
+      - full_name: Oskar Szrajer
+        home_page: https://gotar.info
+        title: Another Live code session (discovering ruby through TDD)
+  - number: 71
+    date: "2018-02-28"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://gotar.info
+        title: Live code session (discovering ruby through TDD)
+  - number: 70
+    date: "2018-01-24"
+    talks:
+      - full_name: Piotr Macuk
+        home_page: https://github.com/macuk
+        title: Hourly billing is nuts
+        slides: https://www.slideshare.net/piotrmacuk/hourly-billing-is-nuts
+  - number: 69
+    date: "2017-12-20"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Make frontend development great again in Rails
+        video_id: rgmW_VIzPc4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/rgmW_VIzPc4/sddefault.jpg
+        slides: https://speakerdeck.com/aokon/trug-number-69-make-frontend-development-great-again-in-rails
+  - number: 68
+    date: "2017-11-22"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: DDD & Hexagonal Architecture
+        video_id: zYF2XdGeQHs
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/zYF2XdGeQHs/sddefault.jpg
+  - number: 67
+    date: "2017-10-25"
+    talks:
+      - full_name: Sebastian Nowak
+        title: AWS deploy pipeline for Jekyll blog
+        home_page: https://github.com/seban
+        video_id: ojvRSb4qQG4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/ojvRSb4qQG4/sddefault.jpg
+      - full_name: Anna Mikulińska
+        title: Jak to się robi w wielkim świecie - berlińska scena softwareowa
+      - full_name: Andrzej Krzywda
+        home_page: https://twitter.com/andrzejkrzywda
+        title: "Event-Driven Rails from scratch - Part 1: Motivation"
+  - number: 66
+    date: "2017-09-20"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Git Good Practices
+      - full_name: Agata Kubiak
+        home_page: https://www.behance.net/AgataKubiak
+        title: Logo - proces twórczy, ukryte znaczenie
+  - number: 65
+    date: "2017-08-30"
+    talks:
+      - full_name: Robert Kostrzewski
+        title: Integracja mikroserwisu Machine Learning w Python z aplikacją webową Ruby on Rails
+      - full_name: Oskar Szrajer
+        home_page: https://gotar.info
+        title: CSS Grid
+        video_id: 5CmeDZmd-_I
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/5CmeDZmd-_I/sddefault.jpg
+  - number: 64
+    date: "2017-07-19"
+    talks:
+
+  - number: 63
+    date: "2017-06-21"
+    talks:
+      - full_name: Marcin Siepetowski
+        home_page: https://github.com/siepet
+        title: Docker
+        video_id: oZNMzAx57nY
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/oZNMzAx57nY/sddefault.jpg
+        slides: https://docs.google.com/presentation/d/1p6uGENUkJKV4OrFMoafJVvMGdaE7ew-7mP3kP9S3aSo
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: "Slim Ruby on Rails: Controllers & Middlewares"
+        slides: https://speakerdeck.com/wafcio/slim-ruby-on-rails-controllers-and-middlewares
+
+  - number: 62
+    date: "2017-05-24"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Monady
+        video_id: aQzmsXu3P7A
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/aQzmsXu3P7A/sddefault.jpg
+
+  - number: 61
+    date: "2017-04-26"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Designing a developer friendly API client
+      - full_name: Piotr Macuk
+        home_page: https://github.com/macuk
+        title: ActiveModel::Validations vs dry-validation vs custom solution - my form objects story.
+
+  - number: 60
+    date: "2017-03-22"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Webpack 2 dla opornych
+        video_id: HO-gFdVni1k
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/HO-gFdVni1k/sddefault.jpg
+        slides: https://speakerdeck.com/aokon/trug-number-60-webpack-2
+
+  - number: 59
+    date: "2017-02-15"
+    talks:
+      - full_name: Paweł Niewiadomski
+        home_page: https://github.com/pawelniewie
+        title: GraphQL - zaawansowane API (mutacje, autoryzacja, itp.)
+        video_id: HGa8dr2OYIk
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/HGa8dr2OYIk/sddefault.jpg
+      - full_name: Michał Poczwardowski
+        home_page: https://github.com/dmp0x7c5
+        title: ML in Ruby
+        video_id: zSfXh-Qul1s
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/zSfXh-Qul1s/sddefault.jpg
+      - full_name: Szymon Szypulski
+        home_page: https://github.com/szymonpk
+        title: InSpec - Inspect Your Infrastructure
+        slides:
+
+  - number: 58
+    date: "2017-01-18"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: PostgreSQL - Dlaczego moje zapytania są takie wolne?
+        video_id: _zS4KjUE24w
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/_zS4KjUE24w/sddefault.jpg
+        slides: https://speakerdeck.com/aokon/postgresql-dlaczego-moje-zapytania-sa-takie-wolne
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: Haskell na produkcji
+      - full_name: Agata Kubiak
+        home_page: https://www.behance.net/AgataKubiak
+        title: Logo - proces twórczy, ukryte znaczenie
+
+  - number: 57
+    date: "2016-12-14"
+    talks:
+      - full_name: Jakub Naliwajek
+        home_page: https://github.com/naliwajek
+        title: Jupyter, interactive notebooks
+      - full_name: Stanisław Tuszyński
+        home_page: https://github.com/stuszynski
+        title: Dokku - part 2
+
+  - number: 56
+    date: "2016-11-19"
+    talks:
+      - full_name: Jakub Naliwajek
+        home_page: https://github.com/naliwajek
+        title: GraphQL
+      - full_name: Ignacy Kasperowicz
+        home_page: https://github.com/ignacykasperowicz
+        title: OSINT - Why Internet is a scary place
+
+  - number: 55
+    date: "2016-10-19"
+    talks:
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: "Ruby contracts"
+      - full_name: Maciej Małecki
+        title: "Git"
+        home_page: https://github.com/smt116
+        slides: https://www.icloud.com/keynote/0LiFcstnYD8VV3pNltHqBGG_w#Git
+      - full_name: Adrian Gruntkowski
+        home_page: https://github.com/zoldar
+        title: "Wprowadzenie do Ecto"
+
+  - number: 54
+    date: "2016-09-21"
+    talks:
+      - full_name: Maciej Małecki
+        title: "Dreyfus Model"
+        home_page: https://github.com/smt116
+        video_id: T3Wlogn6HzQ
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/T3Wlogn6HzQ/sddefault.jpg
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: "Konfiguracja aplikacji Ruby - Rób to mądrze"
+        video_id: aM-ioLCZ3fA
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/aM-ioLCZ3fA/sddefault.jpg
+
+  - number: 53
+    date: "2016-08-24"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Z czym się je Vue.JS
+        video_id: G3bzinki1AE
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/G3bzinki1AE/sddefault.jpg
+        slides: https://speakerdeck.com/aokon/trug-number-54-z-czym-sie-je-vuejs
+
+  - number: 52
+    date: "2016-07-20"
+    talks:
+      - full_name: Szymon Jeż
+        home_page: https://szymon.jez.net.pl
+        title: "ETL systems in Elixir; Extract |> Transform |> Load; Case study of an ETL system written in Elixir"
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 51
+    date: "2016-06-22"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: "Dry-web workshops"
+        video_id: 2FGRXzysd2M
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/2FGRXzysd2M/sddefault.jpg
+
+  - number: 50
+    date: "2016-05-25"
+    talks:
+
+  - number: 49
+    date: "2016-04-27"
+    talks:
+      - full_name: Robert Pankowecki
+        home_page: https://github.com/paneq
+        title: "Fuckin' startups..."
+        video_id: 4uYmy3hDC4Q
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/4uYmy3hDC4Q/sddefault.jpg
+      - full_name: Robert Pankowecki
+        home_page: https://github.com/paneq
+        title: "Jak zarobić $80 000 na blogu"
+
+  - number: 48
+    date: "2016-04-20"
+    talks:
+      - full_name: Bartłomiej Kozal
+        home_page: https://github.com/bkzl
+        title: "Kiedy zamykasz dochodowy biznes z 6 letnią historią czyli czego nauczyłem się jako CEO"
+        slides: https://speakerdeck.com/bkzl/what-have-i-learned-as-a-ceo-pl
+        video_id: Ik4gMxTKYrI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/Ik4gMxTKYrI/sddefault.jpg
+
+  - number: 47
+    date: "2016-03-23"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: "Validations in Ruby"
+        video_id: WIzh6FU9UdI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/WIzh6FU9UdI/sddefault.jpg
+      - full_name: Stanisław Tuszyński
+        home_page: https://github.com/stuszynski
+        title: "Deis. Your PaaS. Your Rules."
+        video_id: ZxcQ5dWUAKI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/ZxcQ5dWUAKI/sddefault.jpg
+
+  - number: 46
+    date: "2016-02-17"
+    talks:
+      - title: "Panel dyskusyjny - SPA hot or not?"
+
+  - number: 45
+    date: "2016-01-27"
+    talks:
+      - full_name: Maciej Małecki
+        home_page: https://github.com/smt116
+        title: "Interactors and Organizers"
+      - full_name: Przemysław Kędzierski
+        title: "Action Cable"
+
+  - number: 44
+    date: "2015-12-16"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Derailed Benchmarks - nowe podejście do testowania wydajności aplikacji railsowej
+
+  - number: 43
+    date: "2015-11-18"
+    talks:
+      - full_name: Paweł Okoń
+        title: "Appium - test automation framework for use with native, hybrid and mobile web apps."
+
+  - number: 42
+    date: "2015-10-21"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: "Moving API from Sinatra to Roda (live coding)"
+        :source_code: https://github.com/wafcio/roda-rom
+
+  - number: 41
+    date: "2015-09-09"
+    talks:
+      - full_name: Damian Nowak
+        title: "Zebrałem milion dolarów od inwestorów na rozwój mojej firmy. Oto jak."
+
+  - number: 40
+    date: "2015-08-12"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: "Mapping data structures"
+        slides: https://gist.github.com/gotar/4f1d2dfcf8fb2750bc25
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Roda
+        slides: https://speakerdeck.com/aokon/trug-number-40-roda
+
+  - number: 39
+    date: "2015-07-22"
+    talks:
+      - full_name: Stanisław Tuszyński
+        home_page: https://github.com/stuszynski
+        title: "Cooking with Chef"
+        video_id: ctkSVZsiaF4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/ctkSVZsiaF4/sddefault.jpg
+
+  - number: 38
+    date: "2015-06-17"
+    talks:
+      - full_name: Michał Poczwardowski
+        home_page: https://github.com/dmp0x7c5
+        title: "Defining DSL in Ruby"
+        slides: https://speakerdeck.com/dmp0x7c5/defining-dsl-in-ruby/
+        video_id: CTKrvzkEbKs
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/CTKrvzkEbKs/sddefault.jpg
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: "Generating a CSV file with ROM"
+        slides: https://speakerdeck.com/wafcio/generating-a-csv-file-with-rom
+        video_id: kdml2xdwmxo
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/kdml2xdwmxo/sddefault.jpg
+
+  - number: 37
+    date: "2015-05-20"
+    talks:
+      - full_name: Marta Buda
+        home_page: https://github.com/mbuda
+        title: "Małe co nieco Sequela"
+        slides: https://speakerdeck.com/mbuda/male-co-nieco-sequela
+        video_id: x505tjKQMfY
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/x505tjKQMfY/sddefault.jpg
+      - full_name: Szymon Jeż
+        home_page: https://szymon.jez.net.pl
+        title: "ElixirConfEU 2015 - summary, report"
+        slides: https://www.elixirconf.eu/
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Szymon Jeż
+        home_page: https://szymon.jez.net.pl
+        title: "3Alchemy session 1 - Freestyle improvised interactive live mob programming Elixir session"
+        slides: https://github.com/jeznet/3alchemy#session-1-2015-05-20
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 36
+    date: "2015-04-15"
+    talks:
+      - full_name: Szymon Jeż
+        home_page: https://szymon.jez.net.pl
+        title: "Why and how to try Elixir and Erlang/OTP?"
+        slides: https://szymon.jez.net.pl/2015-04-15-trug-presentation-why-and-how-to-try-elixir-and-erlang-otp.html
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Szymon Jeż
+        home_page: https://szymon.jez.net.pl
+        title: "3Alchemy session 0 - Freestyle improvised interactive live mob programming Elixir session"
+        slides: https://github.com/jeznet/3alchemy#session-0-2015-04-15
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 35
+    date: "2015-03-18"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Trailblazer bez trailblazera
+        slides: https://speakerdeck.com/wafcio/trailblazer-bez-trailblazera
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 34
+    date: "2015-02-18"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: ROM - Ruby Object Mapper
+        slides:
+        video_id: M0PfkUL_IB8
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/M0PfkUL_IB8/sddefault.jpg
+
+  - number: 33
+    date: "2015-01-21"
+    talks:
+      - full_name: Maciej Małecki
+        home_page: https://github.com/smt116
+        title: Ship your code with Codeship
+        slides:
+        video_id: SF5MmIvoF1o
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/SF5MmIvoF1o/sddefault.jpg
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: ORM, DataMapper czy Agregacja encji
+        slides: https://speakerdeck.com/wafcio/activerecord-datamapper-czy-agregacja-encji
+        video_id: dWjeToQHDkI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/dWjeToQHDkI/sddefault.jpg
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: "Języki funkcyjne: czego jeszcze mogą nas nauczyć?"
+        slides:
+        video_id: _JlL3p5V3Gg
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/_JlL3p5V3Gg/sddefault.jpg
+
+  - number: 32
+    date: "2014-12-17"
+    talks:
+      - full_name: Maciej Małecki
+        home_page: https://github.com/smt116
+        title: Eye
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Rubymotion - Smart Watch
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Repository Pattern
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 31
+    date: "2014-11-19"
+    talks:
+      - full_name: Mateusz Nowakowski
+        home_page: https://github.com/nowakov
+        title:
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Jak (nie)używać Service Object
+        slides: https://speakerdeck.com/wafcio/jak-nie-uzywac-service-object
+        video_id:
+        video_provider:
+        video_thumb:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Lotus Validations
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 30
+    date: "2014-10-14"
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Rubymotion
+        slides:
+        video_id: wmssg1g6bNA
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/wmssg1g6bNA/sddefault.jpg
+
+  - number: 29
+    date: "2014-09-17"
+    talks:
+      - full_name: Michał Podlecki
+        home_page: https://github.com/michalpodlecki
+        title: Mazureo.pl
+        slides: https://mazureo.pl/
+        video_id: b3i5CHojnsU
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/b3i5CHojnsU/sddefault.jpg
+
+      - full_name: Piotr Macuk
+        home_page: https://github.com/macuk
+        title: Konfeo.com -- moja przygoda z biznesem
+        slides: /archive/20140917/Konfeo.com-moja-przygoda-z-biznesem-Piotr-Macuk.pdf
+        video_id: l_XMz4m7lt4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/l_XMz4m7lt4/sddefault.jpg
+
+  - number: 28
+    date: "2014-08-20"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://gotar.info
+        title: Beyond MVC
+        slides: https://www.slideshare.net/oskarszrajer/beyond-mvc
+        :source_code:
+        video_id: 9b1G_Q2AHXI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/9b1G_Q2AHXI/sddefault.jpg
+      - full_name: Paweł Gościcki
+        home_page: https://github.com/pjg
+        title: "Rspec: Best practices"
+        slides: /archive/20140820/rspec.html
+        :source_code:
+        video_id: NS2N-gqTU78
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/NS2N-gqTU78/sddefault.jpg
+
+  - number: 27
+    date: "2014-07-24"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Budowanie aplikacji webowej w Ruby (Hobbit)
+        slides: https://speakerdeck.com/wafcio/hobbit
+        :source_code: https://github.com/wafcio/blog_hobbit_trug
+        video_id: njtrTTZFk-A
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/njtrTTZFk-A/sddefault.jpg
+
+  - number: 26
+    date: "2014-06-18"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://gotar.info
+        title: Lotus Router, Model, Controller, View
+        slides: https://lotusrb.org
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 25
+    date: "2014-05-21"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Modern API (JSON, REST)
+        slides:
+        video_id: Xou9TQ9fKf4
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/Xou9TQ9fKf4/sddefault.jpg
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Porównanie Rails-Django
+        slides:
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 24
+    date: "2014-04-23"
+    talks:
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Odchudzanie .gitignore
+        slides: https://speakerdeck.com/wafcio/odchudzanie-gitignore
+        video_id: 96CLV52zLwI
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/96CLV52zLwI/sddefault.jpg
+
+  - number: 23
+    date: "2014-03-19"
+    talks:
+      - full_name: Bartłomiej Kozal
+        home_page: https://github.com/bkzl
+        title: CSS w dużych aplikacjach webowych
+        slides: https://speakerdeck.com/bkzl/scalable-css
+        video_id: 96590922
+        video_provider: vimeo
+        video_thumb: https://i.vimeocdn.com/video/476683884_640.jpg
+
+      - full_name: Krzysztof Wawer
+        home_page: https://github.com/wafcio
+        title: Dynamiczne szablony Liquid Markup
+        slides: https://speakerdeck.com/wafcio/dynamiczne-szablony-liquid-markup
+        :source_code: https://github.com/wafcio/liquid_example_trug
+        video_id: W-Mg6J-97M8
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/W-Mg6J-97M8/sddefault.jpg
+
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Keep your wrists healthy
+        slides:
+        video_id: 89779134
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/468/668/468668214_640.jpg
+
+  - number: 22
+    date: "2014-02-19"
+    talks:
+      - full_name: Adrian Gruntkowski
+        home_page: https://github.com/zoldar
+        title: React JS
+        slides: https://zoldar.net/react/#1
+        video_id: 91980711
+        video_provider: vimeo
+        video_thumb: https://i.vimeocdn.com/video/471590150_640.jpg
+
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Elastic Search
+        slides:
+        video_id: 92492821
+        video_provider: vimeo
+        video_thumb: https://i.vimeocdn.com/video/472285541_640.jpg
+
+  - number: 21
+    date: "2014-01-22"
+    talks:
+      - full_name: Maciej Małecki
+        home_page: https://github.com/smt116
+        title: RethinkDB
+        slides: https://smefju.pl/presentations/rethinkdb/#1
+        video_id: 87866803
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/466/111/466111992_640.jpg
+
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Puma
+        slides:
+        video_id: 89399924
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/468/411/468411439_640.jpg
+
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Podsumowanie 2013
+        slides:
+        video_id: 89426724
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/468/411/468411386_640.jpg
+
+  - number: 19
+    date: "2013-11-20"
+    talks:
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: Git like a pro
+        slides:
+        video_id: 85487366
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/463/444/463444567_640.jpg
+
+      - full_name: Sebastian Zontek
+        home_page:
+        title: Advertine
+        slides: https://www.advertine.com/
+        video_id: 85975292
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/463/514/463514579_640.jpg
+
+  - number: 18
+    date: "2013-10-23"
+    talks:
+      - full_name: Łukasz Piestrzeniewicz
+        home_page: https://github.com/bragi
+        title: Jak być partnerem zamiast pracownikiem
+        slides: https://docs.google.com/presentation/d/1n110NqCARtX2qqASjuK_CtWRAFXPV1_N3jFldllkQRA/edit#slide=id.p
+        video_id: iDKoYfXHbwE
+        video_provider: youtube
+        video_thumb: https://img.youtube.com/vi/iDKoYfXHbwE/sddefault.jpg
+
+  - number: 17
+    date: "2013-09-18"
+    talks:
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: AngularJS + Rails
+        slides: https://mkwiatkowski.github.io/angularjs-rails4-trug-presentation
+        video_id:
+        video_provider:
+        video_thumb:
+
+      - full_name: Piotr Macuk
+        home_page: https://github.com/macuk
+        title: Mail gem problem
+        slides: https://gist.github.com/macuk/6619938
+        video_id:
+        video_provider:
+        video_thumb:
+
+      - full_name: Piotr Macuk
+        home_page: https://github.com/macuk
+        title: Less is more
+        slides: /archive/20130918/Less-is-More-Piotr-Macuk.pdf
+        video_id:
+        video_provider:
+        video_thumb:
+
+      - full_name: Adrian Gruntkowski
+        home_page: https://github.com/zoldar
+        title: Grafowe bazy danych
+        slides: /archive/20130918/Grafowe-bazy-danych.pdf
+        video_id:
+        video_provider:
+        video_thumb:
+
+  - number: 16
+    date: "2013-08-21"
+    talks:
+
+  - number: 15
+    date: "2013-07-24"
+    talks:
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Emacs
+        slides:
+        video_id: 86509377
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/465/279/465279284_640.jpg
+
+      - full_name: Szymon Wrożyński
+        home_page: https://github.com/szw
+        title: Vim
+        slides:
+        video_id: 87281357
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/465/293/465293280_640.jpg
+
+  - number: 14
+    date: "2013-06-19"
+    talks:
+      - full_name: Szymon Jeż
+        home_page: https://github.com/jeznet
+        title: The Wrong Way
+        slides:
+        video_id: 78759335
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/273/454273440_640.jpg
+
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Timeout
+        slides:
+        video_id: 80318734
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/457/527/457527903_640.jpg
+
+      - full_name: Maciej Greń
+        home_page: https://defii.co/en
+        title: Defii
+        slides:
+        video_id: 81406179
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/457/570/457570632_640.jpg
+
+  - number: 13
+    date: "2013-05-22"
+    talks:
+      - full_name: Paweł Gościcki
+        home_page: https://github.com/pjg
+        title: Alternatywa dla RVM gemsets
+        slides: /archive/20130522/alternatywa-dla-rvm-gemsets/
+        video_id: 78759336
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/273/454273368_640.jpg
+
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: MongoDB
+        slides:
+        video_id: 80318733
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/457/528/457528059_640.jpg
+
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Celluloid
+        slides:
+        video_id: 80318732
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/457/527/457527978_640.jpg
+
+  - number: 11
+    date: "2013-03-01" # TODO: znalzc date
+    talks:
+      - full_name: Adam Okoń
+        home_page: https://github.com/aokon
+        title: Faye
+        slides:
+        video_id: 78581709
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/269/454269753_640.jpg
+
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Shelly Cloud
+        slides:
+        video_id: 78670603
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/269/454269365_640.jpg
+
+  - number: 10
+    date: "2012-12-01" # TODO: znalzc date
+    talks:
+      - full_name: Przemysław Wróblewski
+        home_page: https://przemyslawwroblewski.blogspot.com/
+        title: Torquebox 2
+        slides:
+        video_id: 78670602
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/269/454269575_640.jpg
+
+  - number: 9
+    date: "2012-05-15"
+    talks:
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: Statyczna analiza kodu przy użyciu Rubiniusa
+        slides:
+        video_id: 78579342
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/270/454270056_640.jpg
+
+      - full_name: Paweł Gościcki
+        home_page: https://github.com/pjg
+        title: Współbieżność w Ruby
+        slides: /archive/20120515/wspolbieznosc-w-ruby/
+        video_id: 78579343
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/269/454269943_640.jpg
+
+  - number: 8
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Testy naprawdę jednostkowe
+        slides:
+        video_id: 78579341
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271088_640.jpg
+
+  - number: 6
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Goliath
+        slides:
+        video_id: 78578277
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/270/454270982_640.jpg
+
+  - number: 5
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: Deployment
+        slides:
+        video_id: 77541867
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271442_640.jpg
+
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Odtwarzacz muzyczny w Ruby
+        slides:
+        video_id: 77541868
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271354_640.jpg
+
+      - full_name: Maciej Wojdyr
+        home_page: https://github.com/mwojdyr
+        title: RoR i i18n
+        slides:
+        video_id: 77541869
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271206_640.jpg
+
+  - number: 4
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Michał Kwiatkowski
+        home_page: https://github.com/mkwiatkowski
+        title: Wyszukiwanie w RoR
+        slides:
+        video_id: 77527002
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271733_640.jpg
+
+  - number: 3
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: JRuby Real Use Case
+        slides:
+        video_id: 77281779
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/272/454272967_640.jpg
+
+      - full_name: Mateusz Leszczyński
+        home_page:
+        title: Hobo Cookbook
+        slides:
+        video_id: 77541866
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/271/454271652_640.jpg
+
+  - number: 2
+    date: "2012-01-01" # TODO: znalzc date
+    talks:
+      - full_name: Włodzimierz Bzyl
+        home_page: https://github.com/wbzyl
+        title: CouchDB
+        slides:
+        video_id: 77281778
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/452/750/452750252_640.jpg
+
+      - full_name: Mateusz Marek
+        home_page: https://github.com/matthewpl
+        title: Czym jest agile work flow
+        slides:
+        video_id: 77281780
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/454/272/454272115_640.jpg
+
+  - number: 1
+    date: "2010-03-03"
+    talks:
+      - full_name: Oskar Szrajer
+        home_page: https://github.com/gotar
+        title: Tworzenie aplikacji desktopowych w Ruby i Gtk2
+        slides:
+        video_id: 75640499
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/450/342/450342003_640.jpg
+
+      - full_name: Sebastian Nowak
+        home_page: https://github.com/seban
+        title: MongoDB case study
+        slides:
+        video_id: 75640498
+        video_provider: vimeo
+        video_thumb: https://b.vimeocdn.com/ts/450/342/450342180_640.jpg

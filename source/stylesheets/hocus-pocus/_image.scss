@@ -1,0 +1,26 @@
+@mixin img-replace($img-path, $img-width, $img-height) {
+  width: $img-width;
+  height: $img-height;
+  text-indent: -9999px;
+  white-space: nowrap;
+  background-image: url($img-path);
+  background-repeat: no-repeat;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.img-rwd,
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-rounded {
+  border-radius: $ui-border-radius * 2;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
