@@ -1,4 +1,11 @@
 events:
+  - number: 113
+    date: "2025-08-28"
+    talks:
+      - full_name: Adam Okoń
+        title: "Budowanie MCP w Rubym"
+      - full_name: Adam Okoń
+        title: "Przegląd AI tooli wspomagających pracę deva"
   - number: 112
     date: "2025-05-22"
     talks:
