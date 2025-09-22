@@ -1,4 +1,11 @@
 events:
+  - number: 114
+    date: "2025-09-25"
+    talks:
+      - full_name: Oskar Szrajer
+        title: "OpenCode / OpenRouter / MCP Rails w praktyce"
+      - full_name: Adam Okoń
+        title: "Open Telemetry w codziennej pracy developera"
   - number: 113
     date: "2025-08-28"
     talks:
