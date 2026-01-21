@@ -2,7 +2,7 @@ events:
   - number: 117
     date: "2026-01-22"
     talks:
-      - full_name: Warsztat
+      - full_name: Warsztat - Oskar Szrajer
         title: "Nowoczesne budowanie applikacji webowej do przy pomocy agentów AI"
   - number: 116
     date: "2025-11-27"
