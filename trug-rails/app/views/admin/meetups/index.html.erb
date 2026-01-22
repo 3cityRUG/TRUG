@@ -1,0 +1,33 @@
+<div class="admin-meetups">
+  <div class="page-header">
+    <h1>Spotkania</h1>
+    <%= link_to "+ Dodaj spotkanie", new_admin_meetup_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Numer</th>
+          <th>Data</th>
+          <th>Prezentacje</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @meetups.each do |meetup| %>
+          <tr>
+            <td><span class="meetup-badge">#<%= meetup.number %></span></td>
+            <td><%= l meetup.date, format: :long %></td>
+            <td><span class="talks-count"><%= meetup.talks.count %></span></td>
+            <td class="actions">
+              <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "+ Prezentacja", new_admin_meetup_talk_path(meetup), class: "btn btn-ghost btn-sm" %>
+              <%= button_to "Usuń", admin_meetup_path(meetup), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie?" } }, class: "btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

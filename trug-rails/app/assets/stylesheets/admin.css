@@ -1,0 +1,35 @@
+.admin-quick-actions {
+  margin-bottom: 32px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.meetups-list .meetup-number {
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.meetups-list .meetup-date {
+  color: var(--color-text-muted);
+  margin-left: 16px;
+}
+
+.meetups-list .meetup-location {
+  color: var(--color-text-muted);
+  margin-left: 16px;
+}
+
+.meetups-list .meetup-talks {
+  float: right;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}

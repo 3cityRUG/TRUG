@@ -1,0 +1,106 @@
+.hero {
+  background-color: var(--color-brand-light);
+  padding: var(--spacing-2xl) 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-xl);
+}
+
+.next-meetup {
+  margin-top: var(--spacing-xl);
+}
+
+.next-meetup h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-brand);
+}
+
+.meetup-card {
+  background-color: var(--color-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.meetup-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.meetup-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.meetup-date {
+  font-size: 1.125rem;
+  color: var(--color-gray);
+}
+
+.talks-list {
+  margin-bottom: var(--spacing-lg);
+}
+
+.talk-item {
+  margin-bottom: var(--spacing-md);
+}
+
+.talk-item:last-child {
+  margin-bottom: 0;
+}
+
+.talk-title {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.talk-speaker {
+  color: var(--color-gray);
+  font-size: 0.875rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-gray-light);
+  color: var(--color-gray);
+}
+
+.location svg {
+  color: var(--color-brand);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+  }
+
+  .meetup-card {
+    padding: var(--spacing-lg);
+  }
+}

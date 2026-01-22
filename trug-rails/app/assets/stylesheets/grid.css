@@ -1,0 +1,53 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.grid-item {
+  flex: 1;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-width: 0;
+}
+
+.grid-center {
+  justify-content: center;
+}
+
+.grid-item.one-half {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.grid-item.one-third {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.grid-item.two-thirds {
+  flex: 0 0 66.666%;
+  max-width: 66.666%;
+}
+
+.grid-item.three-fifths {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+.compact-one {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .grid-item.one-half,
+  .grid-item.one-third,
+  .grid-item.two-thirds,
+  .grid-item.three-fifths {
+    flex-basis: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}

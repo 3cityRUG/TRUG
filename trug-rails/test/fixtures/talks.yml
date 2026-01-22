@@ -1,0 +1,16 @@
+one:
+  meetup: one
+  title: "Open Telemetry w codziennej pracy developera"
+  speaker_name: "Adam Okoń"
+  speaker_homepage: "https://adamokon.pl"
+  video_id: "abc123"
+  video_provider: "youtube"
+  video_thumb: "https://img.youtube.com/vi/abc123/maxresdefault.jpg"
+
+two:
+  meetup: two
+  title: "Offline-first w praktyce"
+  speaker_name: "Krzysztof Wawer"
+  video_id: "def456"
+  video_provider: "youtube"
+  video_thumb: "https://img.youtube.com/vi/def456/maxresdefault.jpg"

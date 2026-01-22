@@ -1,0 +1,29 @@
+service: trug
+
+image: trug-rails
+
+servers:
+  web:
+    - 192.0.2.1
+
+registry:
+  username: trug-bot
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+
+healthcheck:
+  path: /up
+  port: 3000
+
+volumes:
+  - "trug-storage:/rails/storage"
+  - "trug-sqlite:/rails/db"
+
+traefik:
+  options:
+    - "--entrypoints.websecure.http.tls=true"
+    - "--entrypoints.websecure.http.tls.certresolver=letsencrypt"

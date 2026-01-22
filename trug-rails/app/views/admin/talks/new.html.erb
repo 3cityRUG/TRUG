@@ -1,0 +1,60 @@
+<div class="admin-form">
+  <h1>Nowa prezentacja dla spotkania #<%= @meetup.number %></h1>
+
+  <%= form_with model: [:admin, @meetup, @talk], local: true do |f| %>
+    <% if @talk.errors.any? %>
+      <div class="form-errors">
+        <ul>
+          <% @talk.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title, "Tytuł prezentacji" %>
+      <%= f.text_field :title, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :speaker_name, "Imię i nazwisko prelegenta" %>
+      <%= f.text_field :speaker_name, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :speaker_homepage, "Strona prelegenta" %>
+      <%= f.url_field :speaker_homepage %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :slides_url, "Slajdy (URL)" %>
+      <%= f.url_field :slides_url %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :source_code_url, "Kod źródłowy (URL)" %>
+      <%= f.url_field :source_code_url %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :video_id, "ID wideo (YouTube/Vimeo)" %>
+      <%= f.text_field :video_id %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :video_provider, "Dostawca wideo" %>
+      <%= f.select :video_provider, [["YouTube", "youtube"], ["Vimeo", "vimeo"]], include_blank: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :video_thumb, "Miniatura wideo (URL)" %>
+      <%= f.url_field :video_thumb %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Utwórz prezentację", class: "btn btn-primary" %>
+      <%= link_to "Anuluj", admin_meetups_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

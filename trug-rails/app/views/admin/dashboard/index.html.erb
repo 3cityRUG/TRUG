@@ -1,0 +1,53 @@
+<div class="admin-dashboard">
+  <h1>Dashboard</h1>
+
+  <div class="admin-stats">
+    <div class="stat-card">
+      <span class="stat-number"><%= @meetups_count %></span>
+      <span class="stat-label">Spotkań</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number"><%= @talks_count %></span>
+      <span class="stat-label">Prezentacji</span>
+    </div>
+  </div>
+
+  <section class="admin-quick-actions">
+    <h2>Szybkie akcje</h2>
+    <div class="action-buttons">
+      <%= link_to "+ Nowe spotkanie", new_admin_meetup_path, class: "btn btn-primary" %>
+      <%= link_to "Zarządzaj spotkaniami", admin_meetups_path, class: "btn btn-secondary" %>
+    </div>
+  </section>
+
+  <% if @next_meetup %>
+    <section class="admin-next-meetup">
+      <h2>Najbliższe spotkanie</h2>
+      <div class="meetup-card">
+        <h3>Spotkanie #<%= @next_meetup.number %></h3>
+        <p class="meetup-date"><%= l @next_meetup.date, format: :long %></p>
+        <p class="meetup-location"><%= @next_meetup.location %></p>
+        <div class="card-actions">
+          <%= link_to "Edytuj", edit_admin_meetup_path(@next_meetup), class: "btn btn-primary" %>
+          <%= link_to "+ Dodaj prezentację", new_admin_meetup_talk_path(@next_meetup), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+
+  <section class="admin-recent-meetups">
+    <h2>Ostatnie spotkania</h2>
+    <ul class="meetups-list">
+      <% @recent_meetups.each do |meetup| %>
+        <li>
+          <%= link_to edit_admin_meetup_path(meetup) do %>
+            <span class="meetup-number">#<%= meetup.number %></span>
+            <span class="meetup-date"><%= l meetup.date, format: :short %></span>
+            <span class="meetup-location"><%= meetup.location %></span>
+            <span class="meetup-talks"><%= meetup.talks.count %> prezentacji</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>

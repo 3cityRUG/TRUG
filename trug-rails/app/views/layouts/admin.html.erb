@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TRUG Admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+      .admin-layout { min-height: 100vh; display: flex; flex-direction: column; }
+      .admin-header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 0 24px; position: sticky; top: 0; z-index: 100; }
+      .admin-nav { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+      .admin-brand { font-size: 1.25rem; font-weight: 700; color: #e25454; text-decoration: none; }
+      .admin-nav-links { display: flex; gap: 8px; }
+      .admin-nav-links a, .admin-nav-links button { color: #555; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-weight: 500; background: none; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; }
+      .admin-nav-links a:hover, .admin-nav-links button:hover { background: #f0f0f0; }
+      .admin-nav-links a.active { background: #e25454; color: #fff; }
+      .admin-main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 32px 24px; }
+      .admin-notice { background: #d4edda; color: #155724; padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; }
+      .admin-alert { background: #f8d7da; color: #721c24; padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; }
+      h1 { font-size: 1.75rem; margin-bottom: 24px; color: #1a1a1a; }
+      h2 { font-size: 1.25rem; margin-bottom: 16px; margin-top: 32px; color: #333; font-weight: 600; }
+      .admin-stats { display: flex; gap: 16px; margin-bottom: 32px; }
+      .stat-card { background: #fff; padding: 20px 28px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; min-width: 140px; border: 1px solid #eee; }
+      .stat-number { display: block; font-size: 2rem; font-weight: 700; color: #e25454; }
+      .stat-label { color: #777; font-size: 0.875rem; }
+      .admin-quick-actions { margin-bottom: 32px; }
+      .action-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+      .btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 8px; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-size: 0.95rem; transition: all 0.2s; gap: 8px; }
+      .btn-primary { background: #e25454; color: #fff; }
+      .btn-primary:hover { background: #c23e3e; transform: translateY(-1px); }
+      .btn-secondary { background: #fff; color: #333; border: 1px solid #ddd; }
+      .btn-secondary:hover { background: #f5f5f5; border-color: #ccc; }
+      .btn-ghost { background: transparent; color: #666; }
+      .btn-ghost:hover { background: #f0f0f0; }
+      .meetup-card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 16px; border: 1px solid #eee; }
+      .meetup-card h3 { margin-bottom: 8px; font-size: 1.1rem; color: #1a1a1a; }
+      .meetup-date, .meetup-location { color: #777; margin-bottom: 4px; font-size: 0.95rem; }
+      .card-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+      .meetups-list { list-style: none; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #eee; }
+      .meetups-list li { border-bottom: 1px solid #f0f0f0; }
+      .meetups-list li:last-child { border-bottom: none; }
+      .meetups-list a { display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: #333; transition: all 0.2s; }
+      .meetups-list a:hover { background: #fafafa; }
+      .meetup-number .meetups-list { font-weight: 700; color: #e25454; font-size: 1rem; min-width: 50px; }
+      .meetups-list .meetup-date { color: #666; margin: 0 16px; min-width: 100px; }
+      .meetups-list .meetup-location { color: #888; flex: 1; }
+      .meetups-list .meetup-talsks { color: #999; font-size: 0.85rem; white-space: nowrap; }
+      .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+      .page-header h1 { margin-bottom: 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #eee; }
+      th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+      th { background: #fafafa; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; color: #666; letter-spacing: 0.5px; }
+      tr:hover td { background: #fafafa; }
+      .actions { display: flex; gap: 8px; }
+      .actions .btn { padding: 6px 14px; font-size: 0.85rem; }
+      .form-group { margin-bottom: 20px; }
+      .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #333; }
+      .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color 0.2s; }
+      .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #e25454; }
+      .form-group textarea { min-height: 120px; resize: vertical; }
+      .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+      .admin-form { background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #eee; max-width: 600px; }
+      .admin-form h1 { margin-bottom: 24px; }
+      .form-errors { background: #f8d7da; color: #721c24; padding: 16px; border-radius: 8px; margin-bottom: 20px; }
+      .form-errors ul { margin: 0; padding-left: 20px; }
+      .table-container { overflow-x: auto; }
+      .meetup-badge { display: inline-block; background: #fff0f0; color: #e25454; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+      .talks-count { display: inline-block; background: #f0f0f0; color: #666; padding: 4px 10px; border-radius: 6px; font-weight: 500; font-size: 0.85rem; }
+      .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
+      .btn-danger { background: #dc3545; color: #fff; }
+      .btn-danger:hover { background: #c82333; }
+      .empty-state { text-align: center; padding: 60px 20px; color: #888; }
+      .empty-state p { margin-bottom: 16px; }
+      @media (max-width: 768px) {
+        .admin-main { padding: 20px 16px; }
+        .admin-stats { flex-direction: column; }
+        .page-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+        .actions { flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-layout">
+      <header class="admin-header">
+        <nav class="admin-nav">
+          <%= link_to "TRUG Admin", admin_root_path, class: "admin-brand" %>
+          <div class="admin-nav-links">
+            <%= link_to "Dashboard", admin_root_path %>
+            <%= link_to "Spotkania", admin_meetups_path %>
+            <%= button_to "Wyloguj", session_path, method: :delete %>
+          </div>
+        </nav>
+      </header>
+
+      <main class="admin-main">
+        <% if notice = flash[:notice] %>
+          <div class="admin-notice"><%= notice %></div>
+        <% end %>
+        <% if alert = flash[:alert] %>
+          <div class="admin-alert"><%= alert %></div>
+        <% end %>
+
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+.archive-header {
+  background-color: var(--color-brand-light);
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.archive-header h1 {
+  font-size: 2rem;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.archive-header p {
+  color: var(--color-gray);
+}
+
+.archive-content {
+  padding: var(--spacing-xl) 0;
+}
+
+.meetups-archive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.archive-meetup {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  transition: box-shadow var(--transition-normal);
+}
+
+.archive-meetup:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.archive-meetup-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.archive-meetup .meetup-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.archive-meetup .meetup-date {
+  color: var(--color-gray);
+}
+
+.talks-archive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.archive-talk {
+  padding-left: var(--spacing-md);
+  border-left: 3px solid var(--color-brand-light);
+}
+
+.archive-talk .talk-title {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.archive-talk .talk-speaker {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-sm);
+}
+
+.archive-talk .slides-link,
+.archive-talk .source-link {
+  color: var(--color-gray);
+  transition: color var(--transition-fast);
+}
+
+.archive-talk .slides-link:hover,
+.archive-talk .source-link:hover {
+  color: var(--color-brand);
+}
+
+.no-talks {
+  color: var(--color-gray);
+  font-style: italic;
+}
+
+.video-container {
+  margin-top: var(--spacing-md);
+  width: 100%;
+  max-width: 560px;
+}
+
+.video-container:has(.video-iframe) {
+  aspect-ratio: 16 / 9;
+}
+
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  border: none;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--color-gray-dark);
+  aspect-ratio: 16 / 9;
+}
+
+.video-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.video-placeholder:hover img {
+  opacity: 1;
+}
+
+.video-placeholder .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-light);
+  opacity: 0.9;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  width: 48px;
+  height: 48px;
+}
+
+.video-placeholder:hover .play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
+.video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--border-radius);
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .archive-meetup {
+    padding: var(--spacing-md);
+  }
+
+  .archive-meetup-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+}

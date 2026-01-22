@@ -1,0 +1,83 @@
+.footer {
+  color: #ffffff;
+  background: #e25454;
+  background-image: url("/images/sparkles.svg");
+  background-repeat: no-repeat;
+  background-size: 130px;
+  background-position-y: center;
+}
+
+.footer-col-title {
+  color: #f8d7d7;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-icon {
+  height: 45px;
+  margin-top: 1.5rem;
+  margin-right: 0.75rem;
+  display: inline-block;
+}
+
+.footer-social-media {
+  margin-top: 1rem;
+}
+
+.footer input[type="email"] {
+  display: block;
+  width: 80%;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 0.375em 1em;
+}
+
+.footer input[type="email"]:active,
+.footer input[type="email"]:focus {
+  outline: none;
+}
+
+.footer button[type="submit"] {
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  width: 80%;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.footer button[type="submit"]:hover,
+.footer button[type="submit"]:active {
+  background: #e25454;
+  outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+
+  .footer .footer-col-title {
+    padding-top: 1rem;
+  }
+
+  .footer input[type="email"] {
+    margin: 0 auto;
+  }
+
+  .footer .grid-item {
+    width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 414px) {
+  .footer {
+    background-image: none;
+  }
+}

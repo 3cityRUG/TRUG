@@ -1,0 +1,28 @@
+.navbar {
+  background-color: var(--color-light);
+  position: relative;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-brand {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .navbar-logo {
+    height: 30px;
+  }
+
+  .navbar .container {
+    text-align: center;
+  }
+}
