@@ -1,0 +1,43 @@
+.btn {
+  display: inline-block;
+  padding: 0.7rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  transition: all 150ms ease;
+  line-height: 1;
+}
+
+.btn-brand {
+  background-color: var(--color-brand);
+  color: var(--color-light);
+  border-color: var(--color-brand);
+  padding: 0.7rem 2.5rem;
+}
+
+.btn-brand:hover {
+  background-color: var(--color-brand-dark);
+  border-color: var(--color-brand-dark);
+  color: var(--color-light);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+  padding: 0.5rem 2.5rem;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-brand);
+  color: var(--color-light);
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}

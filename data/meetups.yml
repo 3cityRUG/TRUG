@@ -1,4 +1,14 @@
 events:
+  - number: 117
+    date: "2026-01-22"
+    talks:
+      - full_name: Warsztat - Oskar Szrajer
+        title: "Nowoczesne budowanie applikacji webowej do przy pomocy agentów AI"
+  - number: 116
+    date: "2025-11-27"
+    talks:
+      - full_name: Warsztat
+        title: "Budowanie clienta pgmq do przy pomocy agentów AI"
   - number: 115
     date: "2025-10-23"
     talks:
@@ -293,9 +303,6 @@ events:
         video_provider: youtube
         video_thumb: https://img.youtube.com/vi/rgmW_VIzPc4/sddefault.jpg
         slides: https://speakerdeck.com/aokon/trug-number-69-make-frontend-development-great-again-in-rails
-  - number: 68
-    date: "2017-11-22"
-    talks:
       - full_name: Krzysztof Wawer
         home_page: https://github.com/wafcio
         title: DDD & Hexagonal Architecture
@@ -461,8 +468,8 @@ events:
     date: "2016-09-21"
     talks:
       - full_name: Maciej Małecki
-        title: "Dreyfus Model"
         home_page: https://github.com/smt116
+        title: "Dreyfus Model"
         video_id: T3Wlogn6HzQ
         video_provider: youtube
         video_thumb: https://img.youtube.com/vi/T3Wlogn6HzQ/sddefault.jpg

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>TRUG - Trojmiejska Grupa Uzytkownikow Ruby</title>
+    <link><%= root_url %></link>
+    <description>Meetup updates from TRUG.</description>
+    <language>pl</language>
+    <lastBuildDate><%= @meetups.first&.date&.to_time&.rfc2822 || Time.current.rfc2822 %></lastBuildDate>
+    <% @meetups.each do |meetup| %>
+      <item>
+        <title>TRUG #<%= meetup.number %> - <%= meetup.date.strftime("%Y-%m-%d") %></title>
+        <link><%= archive_url %></link>
+        <guid isPermaLink="false">trug-meetup-<%= meetup.id %></guid>
+        <pubDate><%= meetup.date.to_time.rfc2822 %></pubDate>
+        <description><![CDATA[
+          <% if meetup.description.present? %>
+            <p><%= h(meetup.description) %></p>
+          <% end %>
+          <% if meetup.talks.any? %>
+            <ul>
+              <% meetup.talks.each do |talk| %>
+                <li><%= h(talk.title) %> - <%= h(talk.speaker_name) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        ]]></description>
+      </item>
+    <% end %>
+  </channel>
+</rss>
