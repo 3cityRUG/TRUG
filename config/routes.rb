@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get "/auth/github/callback", to: "github_sessions#create"
   get "/auth/failure", to: "github_sessions#failure"
-  post "/auth/:provider", to: "omniauth#passthru", as: :auth_provider
 
   get "up" => "rails/health#show", as: :rails_health_check
   get "/video-thumbnails/:provider/:id", to: "video_thumbnails#show", as: :video_thumbnail
