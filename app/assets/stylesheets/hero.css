@@ -1,0 +1,240 @@
+/* Hero Section Styles - Modernized with Depth Effects
+   ========================================================================== */
+
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-light) 0%,
+    rgba(255, 234, 234, 0.8) 50%,
+    var(--color-light) 100%
+  );
+  padding: var(--spacing-2xl) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(226, 84, 84, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.next-meetup {
+  margin-top: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.next-meetup h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-brand);
+  font-weight: 600;
+}
+
+.meetup-card {
+  background-color: var(--color-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(226, 84, 84, 0.05);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.meetup-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 12px rgba(0, 0, 0, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(226, 84, 84, 0.08);
+}
+
+.meetup-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-brand) 0%,
+    var(--color-brand-muted) 50%,
+    var(--color-brand) 100%
+  );
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.meetup-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.meetup-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  background: linear-gradient(135deg, var(--color-brand-light) 0%, transparent 100%);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+}
+
+.meetup-date {
+  font-size: 1.125rem;
+  color: var(--color-gray);
+  font-weight: 500;
+}
+
+.talks-list {
+  margin-bottom: var(--spacing-lg);
+}
+
+.talk-item {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-gray-light);
+  transition: padding-left var(--transition-fast);
+}
+
+.talk-item:hover {
+  padding-left: var(--spacing-sm);
+}
+
+.talk-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.talk-title {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.talk-speaker {
+  color: var(--color-gray);
+  font-size: 0.875rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-gray-light);
+  color: var(--color-gray);
+  font-weight: 500;
+}
+
+.location svg {
+  color: var(--color-brand);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Responsive Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+  }
+
+  .meetup-card {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-sm);
+  }
+
+  .meetup-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .meetup-number {
+    font-size: 1.25rem;
+  }
+
+  .meetup-date {
+    font-size: 1rem;
+  }
+
+  .talk-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .next-meetup h2 {
+    font-size: 1.25rem;
+  }
+
+  .meetup-card {
+    padding: var(--spacing-md);
+  }
+}

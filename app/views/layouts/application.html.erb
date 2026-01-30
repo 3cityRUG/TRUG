@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "TRUG — Trójmiejska Grupa Użytkowników Ruby" %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="description" content="Spotkanie przeważnie odbywają się w przedostanią środę każdego miesiąca. Zapraszamy wszystkich zainteresowanych językiem programowania Ruby oraz technologiami pokrewnymi. Po prezentacjach rozmawiamy oraz gramy w gry planszowe.">
+    <meta property="og:title" content="TRUG — Trójmiejska Grupa Użytkowników Ruby">
+    <meta property="og:description" content="Spotkanie przeważnie odbywają się w przedostanią środę każdego miesiąca. Zapraszamy wszystkich zainteresowanych językiem programowania Ruby oraz technologiami pokrewnymi. Po prezentacjach rozmawiamy oraz gramy w gry planszowe.">
+    <meta property="og:type" content="website">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="TRUG">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="alternate" type="application/rss+xml" title="TRUG RSS" href="<%= rss_url %>">
+
+    <%= stylesheet_link_tag :app %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="navbar padding">
+      <div class="container">
+        <a href="/" class="navbar-brand">
+          <%= image_tag "trug-logo.svg", class: "navbar-logo", alt: "trug logo" %>
+        </a>
+        <div class="navbar-actions">
+          <a class="btn btn-ghost float-right" href="/archive">Archiwum</a>
+          <% if authenticated? %>
+            <%= link_to "Admin", admin_root_path, class: "btn btn-brand float-right" %>
+            <%= button_to "Wyloguj", session_path, method: :delete, class: "btn btn-ghost float-right" %>
+          <% else %>
+            <%= link_to "Zaloguj przez GitHub", "/auth/github", class: "btn btn-brand float-right" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="grid">
+          <div class="grid-item one-third compact-one">
+            <%= image_tag "trug-logo-light.svg", class: "navbar-logo", alt: "trug logo" %>
+            <div class="footer-social-media">
+              <a href="https://github.com/3cityRUG/TRUG" target="_blank" rel="noopener">
+                <%= image_tag "icons/github.svg", class: "footer-icon", alt: "icon github" %>
+              </a>
+              <a href="https://3cityrug.slack.com" target="_blank" rel="noopener">
+                <%= image_tag "icons/slack.svg", class: "footer-icon", alt: "icon slack" %>
+              </a>
+            </div>
+          </div>
+          <div class="grid-item one-third compact-one no-padding margin-1-2-bottom">
+            <h4 class="no-margin padding-1-2-bottom footer-col-title">Archiwum</h4>
+            <a class="link-light footer-link" href="/archive">
+              Zobacz materiały ze spotkań
+              <svg class="footer-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l1.4-1.4 6 6-6 6L9 15.6 13.6 11z" />
+              </svg>
+            </a>
+          </div>
+          <div class="grid-item one-third compact-one no-padding">
+            <h4 class="no-margin padding-1-2-bottom footer-col-title">RSS</h4>
+            <p class="footer-note">Subskrybuj nasz kanał RSS, aby być na bieżąco z najnowszymi spotkaniami:</p>
+            <a class="link-light footer-link" href="<%= rss_url %>" target="_blank" rel="noopener">
+              <svg class="footer-link-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 1.2rem; height: 1.2rem;">
+                <path d="M4 16a4 4 0 0 1 4 4H4z"/>
+                <path d="M4 10a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6z"/>
+                <path d="M4 4a16 16 0 0 1 16 16h-4A12 12 0 0 0 4 8z"/>
+              </svg>
+              Kanał RSS
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

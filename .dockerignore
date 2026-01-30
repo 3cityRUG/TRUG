@@ -1,0 +1,62 @@
+# Git
+.git
+.gitignore
+
+# Rails
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Storage (SQLite DBs, uploads)
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Environment
+.env*
+/.kamal/secrets*.yml
+/config/master.key
+
+# Node modules
+/node_modules/
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.opencode/
+
+# macOS
+.DS_Store
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# Test artifacts
+/tmp/screenshots/
+/test/fixtures/files/*
+!/test/fixtures/files/.keep
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Temporary files
+.tmp/
+*.tmp
+*.bak

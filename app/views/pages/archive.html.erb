@@ -1,0 +1,80 @@
+<div class="archive-header">
+  <div class="container">
+    <h1>Archiwum spotkań</h1>
+    <p>Wszystkie spotkania TRUG od początku istnienia społeczności</p>
+  </div>
+</div>
+
+<div class="archive-content">
+  <div class="container">
+    <% if @meetups.empty? %>
+      <div class="empty-state">
+        <p>Brak spotkań w archiwum.</p>
+      </div>
+    <% else %>
+      <div class="meetups-archive">
+        <% @meetups.each do |meetup| %>
+          <article class="archive-meetup" id="meetup-<%= meetup.number %>">
+            <div class="archive-meetup-header">
+              <span class="meetup-number">#<%= meetup.number %></span>
+              <span class="meetup-date"><%= l(meetup.date, format: :long) %></span>
+            </div>
+
+            <% if meetup.talks.any? %>
+              <div class="talks-archive">
+                <% meetup.talks.each do |talk| %>
+                  <div class="archive-talk">
+                    <h3 class="talk-title">
+                      <%= talk.title %>
+                      <% if talk.slides_url.present? %>
+                        <a href="<%= talk.slides_url %>" target="_blank" rel="noopener" class="slides-link" aria-label="Slajdy prezentacji">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
+                          </svg>
+                        </a>
+                      <% end %>
+                      <% if talk.source_code_url.present? %>
+                        <a href="<%= talk.source_code_url %>" target="_blank" rel="noopener" class="source-link" aria-label="Kod źródłowy">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                          </svg>
+                        </a>
+                      <% end %>
+                    </h3>
+                    <p class="talk-speaker">
+                      <% if talk.speaker_homepage.present? %>
+                        <%= link_to talk.speaker_name, talk.speaker_homepage, target: "_blank", rel: "noopener" %>
+                      <% else %>
+                        <%= talk.speaker_name %>
+                      <% end %>
+                    </p>
+
+                    <% if talk.video_id.present? && talk.video_provider.present? %>
+                      <% thumb_url = if talk.video_provider == 'vimeo'
+                        video_thumbnail_path('vimeo', talk.video_id)
+                      elsif talk.video_provider == 'youtube'
+                        "https://img.youtube.com/vi/#{talk.video_id}/sddefault.jpg"
+                      else
+                        talk.video_thumb
+                      end %>
+                      <div class="video-container" data-video-provider="<%= talk.video_provider %>" data-video-id="<%= talk.video_id %>">
+                        <button class="video-placeholder" aria-label="Odtwórz wideo">
+                          <img src="<%= thumb_url %>" alt="Miniatura wideo" loading="lazy">
+                          <svg class="play-icon" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="no-talks">Brak informacji o prezentacjach</p>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
