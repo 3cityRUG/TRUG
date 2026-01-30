@@ -37,6 +37,12 @@ module Authentication
       false
     end
 
+    def require_admin!
+      unless admin?
+        redirect_to root_path, alert: "Nie masz uprawnień administratora."
+      end
+    end
+
     def require_authentication
       resume_session || request_authentication
     end
