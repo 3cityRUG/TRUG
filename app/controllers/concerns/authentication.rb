@@ -31,8 +31,7 @@ module Authentication
       repo = Rails.application.credentials.github.repo
 
       client = Octokit::Client.new(access_token: token)
-      permission = client.collaborator_permission(repo, current_user.github_username)
-      %w[admin write maintain].include?(permission.permission)
+      client.collaborator?(repo, current_user.github_username)
     rescue Octokit::Error, Octokit::NotFound
       false
     end
