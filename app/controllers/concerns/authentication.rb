@@ -27,24 +27,15 @@ module Authentication
     return false unless current_user&.github?
     return true if Rails.env.development?
 
-    token = if Rails.env.production?
-      ENV.fetch("GITHUB_TOKEN")
-    else
-      Rails.application.credentials.github.token
-    end
+    token = Rails.application.credentials.github.token
+    repo = Rails.application.credentials.github.repo
 
-    repo = if Rails.env.production?
-      ENV.fetch("GITHUB_REPO", "3cityRUG/TRUG")
-    else
-      Rails.application.credentials.github.repo
-    end
-
-      client = Octokit::Client.new(access_token: token)
-      permission = client.collaborator_permission(repo, current_user.github_username)
-      %w[admin write maintain].include?(permission.permission)
-    rescue Octokit::Error, Octokit::NotFound
-      false
-    end
+    client = Octokit::Client.new(access_token: token)
+    permission = client.collaborator_permission(repo, current_user.github_username)
+    %w[admin write maintain].include?(permission.permission)
+  rescue Octokit::Error, Octokit::NotFound
+    false
+  end
 
     def require_authentication
       resume_session || request_authentication
