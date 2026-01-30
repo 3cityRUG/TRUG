@@ -57,4 +57,14 @@ module Authentication
     def after_authentication_url
       session.delete(:return_to_after_authenticating) || root_url
     end
+
+    def start_new_session_for(user)
+      Current.session = user.sessions.create!
+      cookies.signed[:session_id] = { value: Current.session.id, httponly: true, secure: Rails.env.production? }
+    end
+
+    def terminate_session
+      Current.session&.destroy
+      cookies.delete(:session_id)
+    end
 end
