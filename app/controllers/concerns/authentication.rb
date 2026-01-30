@@ -23,28 +23,22 @@ module Authentication
       Current.session&.user
     end
 
-  def admin?
-    return false unless current_user&.github?
-    return true if Rails.env.development?
+    def admin?
+      return false unless current_user&.github?
+      return true if Rails.env.development?
 
-    token = Rails.application.credentials.github.token
-    repo = Rails.application.credentials.github.repo
+      token = Rails.application.credentials.github.token
+      repo = Rails.application.credentials.github.repo
 
-    client = Octokit::Client.new(access_token: token)
-    permission = client.collaborator_permission(repo, current_user.github_username)
-    %w[admin write maintain].include?(permission.permission)
-  rescue Octokit::Error, Octokit::NotFound
-    false
-  end
+      client = Octokit::Client.new(access_token: token)
+      permission = client.collaborator_permission(repo, current_user.github_username)
+      %w[admin write maintain].include?(permission.permission)
+    rescue Octokit::Error, Octokit::NotFound
+      false
+    end
 
     def require_authentication
       resume_session || request_authentication
-    end
-
-    def require_admin!
-      unless admin?
-        redirect_to root_path, alert: "Nie masz uprawnień administratora."
-      end
     end
 
     def resume_session
@@ -61,22 +55,6 @@ module Authentication
     end
 
     def after_authentication_url
-      return_to = session.delete(:return_to_after_authenticating)
-      return return_to if return_to.present?
-      return admin_root_url if admin?
-
-      root_url
-    end
-
-    def start_new_session_for(user)
-      user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |session|
-        Current.session = session
-        cookies.signed.permanent[:session_id] = { value: session.id, httponly: true, same_site: :lax }
-      end
-    end
-
-    def terminate_session
-      Current.session.destroy
-      cookies.delete(:session_id)
+      session.delete(:return_to_after_authenticating) || root_url
     end
 end
