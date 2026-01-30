@@ -16,6 +16,8 @@ gem "turbo-rails"
 gem "bcrypt", "~> 3.1.7"
 
 # OAuth authentication with GitHub
+gem "omniauth-github", "~> 2.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "octokit"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

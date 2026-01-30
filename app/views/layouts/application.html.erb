@@ -47,76 +47,43 @@
 
     <%= yield %>
 
-    <% if current_page?(root_path) %>
-      <footer class="footer">
-        <div class="container padding-vertical">
-          <div class="grid">
-            <div class="grid-item one-half compact-one">
-              <%= image_tag "trug-logo-light.svg", class: "navbar-logo", alt: "trug logo" %>
-              <div class="footer-social-media">
-                <a href="https://github.com/gotar/TRUG.git" target="_blank" rel="noopener">
-                  <%= image_tag "icons/github.svg", class: "footer-icon", alt: "icon github" %>
-                </a>
-                <a href="https://3cityIT.slack.com/messages/trug/" target="_blank" rel="noopener">
-                  <%= image_tag "icons/slack.svg", class: "footer-icon", alt: "icon slack" %>
-                </a>
-                <a href="<%= rss_path(format: :xml) %>" class="footer-rss" aria-label="RSS">
-                  <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 16a4 4 0 0 1 4 4H4z" />
-                    <path d="M4 10a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6z" />
-                    <path d="M4 4a16 16 0 0 1 16 16h-4A12 12 0 0 0 4 8z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="grid-item one-half compact-one no-padding margin-bottom-half">
-              <h4 class="no-margin padding-bottom-half footer-col-title">Archiwum</h4>
-              <a class="link-light footer-link" href="/archive">
-                Zobacz materiały ze spotkań
-                <svg class="footer-link-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 6l1.4-1.4 6 6-6 6L9 15.6 13.6 11z" />
-                </svg>
+    <footer class="footer">
+      <div class="container">
+        <div class="grid">
+          <div class="grid-item one-third compact-one">
+            <%= image_tag "trug-logo-light.svg", class: "navbar-logo", alt: "trug logo" %>
+            <div class="footer-social-media">
+              <a href="https://github.com/3cityRUG/TRUG" target="_blank" rel="noopener">
+                <%= image_tag "icons/github.svg", class: "footer-icon", alt: "icon github" %>
+              </a>
+              <a href="https://3cityrug.slack.com" target="_blank" rel="noopener">
+                <%= image_tag "icons/slack.svg", class: "footer-icon", alt: "icon slack" %>
               </a>
             </div>
           </div>
-        </div>
-      </footer>
-    <% else %>
-      <footer class="footer">
-        <div class="container padding-vertical">
-          <div class="grid">
-            <div class="grid-item one-third compact-one">
-              <%= image_tag "trug-logo-light.svg", class: "navbar-logo", alt: "trug logo" %>
-              <div class="footer-social-media">
-                <a href="https://github.com/3cityRUG/TRUG" target="_blank" rel="noopener">
-                  <%= image_tag "icons/github.svg", class: "footer-icon", alt: "icon github" %>
-                </a>
-                <a href="https://3cityrug.slack.com" target="_blank" rel="noopener">
-                  <%= image_tag "icons/slack.svg", class: "footer-icon", alt: "icon slack" %>
-                </a>
-                <a href="<%= rss_path(format: :xml) %>" class="footer-rss" aria-label="RSS">
-                  <svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 16a4 4 0 0 1 4 4H4z" />
-                    <path d="M4 10a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6z" />
-                    <path d="M4 4a16 16 0 0 1 16 16h-4A12 12 0 0 0 4 8z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="grid-item one-third compact-one no-padding margin-bottom-half">
-              <h4 class="no-margin padding-bottom-half footer-col-title">Archiwum</h4>
-              <a class="link-light" href="/archive">Zobacz materiały ze spotkań</a>
-            </div>
-            <div class="grid-item one-third compact-one">
-              <h4 class="no-margin padding-bottom-half footer-col-title">Newsletter</h4>
-              <form action="https://forms.gle/7Z3YzZ3YzZ3YzZ3Yz" method="GET" target="_blank" rel="noopener">
-                <input type="email" name="email" placeholder="Twój adres e-mail" required>
-                <button type="submit" class="btn btn-ghost btn-small">Subskrybuj</button>
-              </form>
-            </div>
+          <div class="grid-item one-third compact-one no-padding margin-1-2-bottom">
+            <h4 class="no-margin padding-1-2-bottom footer-col-title">Archiwum</h4>
+            <a class="link-light footer-link" href="/archive">
+              Zobacz materiały ze spotkań
+              <svg class="footer-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l1.4-1.4 6 6-6 6L9 15.6 13.6 11z" />
+              </svg>
+            </a>
+          </div>
+          <div class="grid-item one-third compact-one no-padding">
+            <h4 class="no-margin padding-1-2-bottom footer-col-title">RSS</h4>
+            <p class="footer-note">Subskrybuj nasz kanał RSS, aby być na bieżąco z najnowszymi spotkaniami:</p>
+            <a class="link-light footer-link" href="<%= rss_url %>" target="_blank" rel="noopener">
+              <svg class="footer-link-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 1.2rem; height: 1.2rem;">
+                <path d="M4 16a4 4 0 0 1 4 4H4z"/>
+                <path d="M4 10a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6z"/>
+                <path d="M4 4a16 16 0 0 1 16 16h-4A12 12 0 0 0 4 8z"/>
+              </svg>
+              Kanał RSS
+            </a>
           </div>
         </div>
-      </footer>
-    <% end %>
+      </div>
+    </footer>
   </body>
 </html>

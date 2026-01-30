@@ -1,15 +1,17 @@
 <div class="landing-hero text-center">
-  <h2 class="landing-lead">
-    Trójmiejska Grupa
-    <br>
-    Użytkowników Ruby
-  </h2>
-  <a class="btn btn-brand" href="#next-meetup">
-    Najbliższe spotkanie
-    <svg class="landing-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 16.5l-6-6 1.4-1.4L12 13.7l4.6-4.6 1.4 1.4z" />
-    </svg>
-  </a>
+  <div class="landing-hero-content">
+    <h2 class="landing-lead">
+      Trójmiejska Grupa
+      <br>
+      Użytkowników Ruby
+    </h2>
+    <a class="btn btn-brand" href="#next-meetup">
+      Najbliższe spotkanie
+      <svg class="landing-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 16.5l-6-6 1.4-1.4L12 13.7l4.6-4.6 1.4 1.4z" />
+      </svg>
+    </a>
+  </div>
 </div>
 
 <div class="container text-center padding-3-1-bottom">
@@ -24,139 +26,128 @@
 <div class="landing-community"></div>
 
 <div class="container padding-3-1-vertical">
+  <h2 id="next-meetup" class="text-left">Najbliższe spotkanie</h2>
+  
   <div class="grid">
     <div class="grid-item one-half compact-one text-left">
-      <h2 id="next-meetup">Najbliższe spotkanie</h2>
-      <table class="landing-schedule">
-        <tr>
-          <td class="nowrap">
-            <p class="text-bold no-margin">
-              <svg class="landing-schedule-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1zm12 8H5v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9zM5 8h14V6a1 1 0 0 0-1-1h-1v1a1 1 0 1 1-2 0V5H8v1a1 1 0 1 1-2 0V5H5a1 1 0 0 0-1 1v2z" />
-              </svg>
-              Data
-            </p>
-          </td>
-          <td>
-            <% if @next_meetup %>
-              <%= l(@next_meetup.date, format: '%Y-%m-%d') %> (<%= l(@next_meetup.date, format: '%A') %>)
-            <% else %>
-              Brak zaplanowanych spotkań
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="nowrap">
-            <p class="text-bold no-margin">
-              <svg class="landing-schedule-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11.4V7a1 1 0 1 0-2 0v7c0 .3.1.6.3.8l3.8 3.8a1 1 0 1 0 1.4-1.4z" />
-              </svg>
-              Godzina
-            </p>
-          </td>
-          <td>18:00</td>
-        </tr>
-        <tr>
-          <td class="nowrap">
-            <p class="text-bold no-margin">
-              <svg class="landing-schedule-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-              </svg>
-              Miejsce
-            </p>
-          </td>
-          <td>Hackerspace, al. Wojska Polskiego 41, Gdańsk</td>
-        </tr>
-        <tr>
-          <td class="nowrap">
-            <p class="text-bold no-margin">
-              <svg class="landing-schedule-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 2h7l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V8h4.5L13 3.5z" />
-              </svg>
-              Agenda
-            </p>
-          </td>
-          <td>
-            <% if @next_meetup && @next_meetup.talks.any? %>
-              <% @next_meetup.talks.each do |talk| %>
-                <p class="margin-1-2-bottom">
-                  <%= talk.title %>
-                  <span class="block">
-                    &nbsp;-&nbsp;<%= talk.speaker_name %>
-                  </span>
-                </p>
-              <% end %>
-            <% else %>
-              <p class="margin-1-2-bottom">Brak informacji o prezentacjach</p>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-
       <% if @next_meetup %>
-        <div class="attendance-section">
-          <h3 class="margin-top">Kto będzie?</h3>
-          <% attendances = @next_meetup.attendances.confirmed %>
-          <% if attendances.any? %>
-            <div class="attendance-avatars">
-              <% attendances.each do |attendance| %>
-                <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar" title="<%= attendance.github_username %>">
-                  <img src="https://github.com/<%= attendance.github_username %>.png?size=40" alt="<%= attendance.github_username %>" onerror="this.src='https://github.com/identicons/<%= attendance.github_username %>.png'">
-                </a>
-              <% end %>
+        <div class="meetup-info">
+          <div class="meetup-info__header">
+            <span class="meetup-info__number">#<%= @next_meetup.number %></span>
+            <span class="meetup-info__date"><%= l(@next_meetup.date, format: '%Y-%m-%d') %> (<%= l(@next_meetup.date, format: '%A', locale: :pl) %>)</span>
+          </div>
+          
+          <div class="info-row">
+            <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11.4V7a1 1 0 1 0-2 0v7c0 .3.1.6.3.8l3.8 3.8a1 1 0 1 0 1.4-1.4z" />
+            </svg>
+            <div class="info-row__content">
+              <div class="info-row__label">Godzina</div>
+              <div class="info-row__value">18:00</div>
             </div>
-            <p class="attendance-count"><%= attendances.count %> osób potwierdziło obecność</p>
-          <% else %>
-            <p class="no-attendees">Bądź pierwszy i zgłoś obecność!</p>
-          <% end %>
-
-          <% if authenticated? && current_user.github_username %>
-            <% user_attendance = @next_meetup.attendances.find_by(github_username: current_user.github_username) %>
-            <% if user_attendance %>
-              <div class="your-attendance">
-                <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= user_attendance.status_name == 'yes' ? 'Tak, będę!' : 'Może' %></span></p>
-                <%= button_to "Zmień", attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "btn btn-secondary btn-sm" %>
-              </div>
-            <% else %>
-              <%= form_with url: attendances_path, method: :post, class: "attendance-form margin-top" do |f| %>
-                <%= f.hidden_field :meetup_id, value: @next_meetup.id %>
-                <div class="form-group">
-                  <label class="text-bold">Czy przyjdziesz?</label>
-                  <div class="radio-group">
-                    <label class="radio-label">
-                      <%= f.radio_button :status, 1, required: true %> Tak, będę!
-                    </label>
-                    <label class="radio-label">
-                      <%= f.radio_button :status, 0 %> Może
-                    </label>
-                  </div>
+          </div>
+          
+          <div class="info-row">
+            <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+            </svg>
+            <div class="info-row__content">
+              <div class="info-row__label">Miejsce</div>
+              <div class="info-row__value">Hackerspace, al. Wojska Polskiego 41, Gdańsk</div>
+            </div>
+          </div>
+          
+          <div class="talks-section">
+            <div class="talks-section__title">Agenda</div>
+            <% if @next_meetup.talks.any? %>
+              <% @next_meetup.talks.each do |talk| %>
+                <div class="talk-item">
+                  <div class="talk-item__title"><%= talk.title %></div>
+                  <div class="talk-item__speaker"><%= talk.speaker_name %></div>
                 </div>
-                <%= f.submit "Zgłoś obecność", class: "btn btn-brand" %>
               <% end %>
+            <% else %>
+              <div class="talk-item">
+                <div class="talk-item__title">Brak informacji o prezentacjach</div>
+              </div>
             <% end %>
-          <% else %>
-            <div class="attendance-form margin-top">
-              <p class="form-note">Zaloguj się przez GitHub, aby zgłosić obecność:</p>
-              <a href="<%= auth_provider_path(:github) %>" class="btn btn-brand">Zaloguj przez GitHub</a>
-            </div>
-          <% end %>
+          </div>
         </div>
+      <% else %>
+        <p>Brak zaplanowanych spotkań. Sprawdź wkrótce!</p>
       <% end %>
     </div>
+    
     <div class="grid-item one-half compact-one">
-      <h2>Lokalizacja</h2>
-      <div class="landing-map-canvas">
-        <a href="https://www.google.com/maps/place/Hackerspace+Tr%C3%B3jmiasto/@54.3896224,18.5792051,17z/data=!3m1!4b1!4m6!3m5!1s0x46fd754a50efe4c1:0xdbe977101a1abc1e!8m2!3d54.3896193!4d18.58178!16s%2Fg%2F11mv_2z54_?entry=ttu" target="_blank">
-          <%= image_tag "mapa.png", alt: "" %>
+      <h3>Lokalizacja</h3>
+      <div class="map-container">
+        <a href="https://www.google.com/maps/place/Hackerspace+Tr%C3%B3jmiasto/@54.3896224,18.5792051,17z" target="_blank" rel="noopener">
+          <%= image_tag "mapa.png", alt: "Mapa dojazdu do Hackerspace Trójmiasto", class: "map-container__image" %>
         </a>
+        <div class="map-container__caption">
+          <svg class="map-container__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+          </svg>
+          <span>Hackerspace Trójmiasto, al. Wojska Polskiego 41, Gdańsk</span>
+        </div>
       </div>
     </div>
   </div>
+  
+  <% if @next_meetup %>
+    <div class="attendance-section">
+      <h3>Kto będzie?</h3>
+      <% attendances = @next_meetup.attendances.confirmed %>
+      <% if attendances.any? %>
+        <div class="attendance-avatars">
+          <% attendances.each do |attendance| %>
+            <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar" title="<%= attendance.github_username %>">
+              <img src="https://github.com/<%= attendance.github_username %>.png?size=44" alt="<%= attendance.github_username %>" onerror="this.src='https://github.com/identicons/<%= attendance.github_username %>.png'">
+            </a>
+          <% end %>
+        </div>
+        <p class="attendance-count"><%= attendances.count %> osób potwierdziło obecność</p>
+      <% else %>
+        <p class="no-attendees">Bądź pierwszy i zgłoś obecność!</p>
+      <% end %>
+
+      <% if authenticated? && current_user.github_username %>
+        <% user_attendance = @next_meetup.attendances.find_by(github_username: current_user.github_username) %>
+        <% if user_attendance %>
+          <div class="your-attendance">
+            <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= user_attendance.status_name == 'yes' ? 'Tak, będę!' : 'Może' %></span></p>
+            <%= button_to "Zmień", attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "btn btn-secondary btn-sm" %>
+          </div>
+        <% else %>
+          <%= form_with url: attendances_path, method: :post, class: "attendance-form" do |f| %>
+            <%= f.hidden_field :meetup_id, value: @next_meetup.id %>
+            <div class="form-group">
+              <label>Czy przyjdziesz?</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <%= f.radio_button :status, 1, required: true %> Tak, będę!
+                </label>
+                <label class="radio-label">
+                  <%= f.radio_button :status, 0 %> Może
+                </label>
+              </div>
+            </div>
+            <%= f.submit "Zgłoś obecność", class: "btn btn-brand" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="attendance-form">
+          <p class="form-note">Zaloguj się przez GitHub, aby zgłosić obecność:</p>
+          <a href="/auth/github" class="btn btn-brand">Zaloguj przez GitHub</a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <div class="container padding-3-1-bottom">
-  <div class="grid">
-    <div class="grid-item one-half compact-one">
+  <div class="landing-connect">
+    <div class="landing-connect__content">
       <h2>Poznajmy się!</h2>
       <p>Tworzymy społeczność, która nie tylko dzieli się wiedzą,
         ale jest też otwarta na zawieranie nowych znajomości.
@@ -172,6 +163,8 @@
         </svg>
       </a>
     </div>
-    <div class="grid-item one-half compact-one landing-bg-rubies"></div>
+    <div class="landing-connect__visual">
+      <%= image_tag "rubies.svg", alt: "" %>
+    </div>
   </div>
 </div>

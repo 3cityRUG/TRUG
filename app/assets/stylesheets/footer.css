@@ -5,6 +5,9 @@
   background-repeat: no-repeat;
   background-size: 130px;
   background-position-y: center;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .footer-col-title {
@@ -64,10 +67,27 @@
   outline: none;
 }
 
+.footer a {
+  color: #ffffff;
+}
+
+.footer a:hover {
+  color: #f8d7d7;
+}
+
+.footer-link {
+  text-decoration: underline;
+}
+
+.footer-social-media a {
+  text-decoration: none;
+}
+
 .footer-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  color: #ffffff;
 }
 
 .footer-link-icon {
@@ -87,21 +107,38 @@
 @media only screen and (max-width: 768px) {
   .footer {
     text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   .footer .footer-col-title {
-    padding-top: 1rem;
-  }
-
-  .footer input[type="email"],
-  .footer-form-input {
-    margin: 0 auto;
+    padding-top: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .footer .grid-item {
     width: 100%;
     max-width: 100%;
     flex-basis: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-icon {
+    margin-top: 0.75rem;
+    margin-right: 0.5rem;
+  }
+
+  .footer-social-media {
+    margin-top: 0.75rem;
+  }
+
+  .footer-note {
+    margin-top: 0.5rem;
+  }
+
+  .footer-link {
+    justify-content: center;
   }
 }
 

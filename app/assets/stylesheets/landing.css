@@ -1,3 +1,8 @@
+/* Landing Page Styles - Clean and Simple
+   ========================================================================== */
+
+/* Hero Section
+   ========================================================================== */
 .landing-hero {
   background-image: url("/images/tricity-panorama.svg");
   background-size: contain;
@@ -9,13 +14,36 @@
   justify-content: center;
   height: 85vh;
   text-align: center;
+  position: relative;
+}
+
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 70%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  pointer-events: none;
+}
+
+.landing-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
 }
 
 .landing-lead {
   font-size: 2.5rem;
   font-weight: 600;
-  color: #505050;
-  margin-bottom: 3rem;
+  color: var(--color-dark);
+  margin-bottom: 2rem;
   line-height: 1.2;
 }
 
@@ -25,110 +53,160 @@
   gap: 0.5rem;
 }
 
-.landing-cta-icon,
-.landing-link-icon {
+.landing-cta-icon {
   width: 1rem;
   height: 1rem;
   fill: currentColor;
   flex-shrink: 0;
 }
 
-.landing-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.landing-section-bottom {
-  padding-bottom: 4.5rem;
-}
-
-.landing-section-vertical {
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
-}
-
-.landing-section-title {
-  padding-top: 3rem;
-}
-
-.landing-agenda-item {
-  margin-bottom: 0.75rem;
-}
-
-.landing-schedule tr {
-  vertical-align: baseline;
-}
-
-.landing-schedule td.nowrap {
-  white-space: nowrap;
-  padding-right: 1rem;
-}
-
-.landing-schedule td {
-  padding-bottom: 0.375rem;
-}
-
-.landing-schedule td.nowrap p {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.landing-schedule-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: #e25454;
-  fill: currentColor;
-  flex-shrink: 0;
-}
-
-.landing-map-canvas img {
-  width: 100%;
-  height: 270px;
-}
-
-.landing-bg-rubies {
-  background-image: url("/images/rubies.svg");
-  background-repeat: no-repeat;
-  background-position-x: right;
-  height: 180px;
-}
-
+/* Community Section
+   ========================================================================== */
 .landing-community {
   background-image: url("/images/bg-community.png");
-  height: 265px;
+  background-size: cover;
+  background-position: center;
+  height: 280px;
+  margin: 2rem 0;
 }
 
-.landing-link {
-  font-size: 1.1rem;
+/* Meetup Info - Clean Layout
+   ========================================================================== */
+.meetup-info {
+  margin-bottom: 2rem;
 }
 
+.meetup-info__header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-brand);
+}
+
+.meetup-info__number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.meetup-info__date {
+  font-size: 1.125rem;
+  color: var(--color-gray);
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.info-row__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-brand);
+  fill: currentColor;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.info-row__label {
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+
+.info-row__value {
+  color: var(--color-gray);
+}
+
+/* Talks List
+   ========================================================================== */
+.talks-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-gray-light);
+}
+
+.talks-section__title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+}
+
+.talk-item {
+  margin-bottom: 1rem;
+}
+
+.talk-item__title {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.talk-item__speaker {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+}
+
+/* Map Section
+   ========================================================================== */
+.map-container {
+  margin-top: 1rem;
+}
+
+.map-container__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-container__caption {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray);
+  font-size: 0.9rem;
+}
+
+.map-container__icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-brand);
+  fill: currentColor;
+}
+
+/* Attendance Section
+   ========================================================================== */
 .attendance-section {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #eee;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-gray-light);
 }
 
 .attendance-section h3 {
   margin-bottom: 1rem;
+  color: var(--color-dark);
 }
 
 .attendance-avatars {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .attendance-avatar {
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   overflow: hidden;
+  border: 2px solid var(--color-light);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s;
 }
 
@@ -143,123 +221,204 @@
 }
 
 .attendance-count {
-  color: #666;
+  color: var(--color-gray);
   font-size: 0.9rem;
-  margin-bottom: 0;
+  margin-bottom: 1.5rem;
 }
 
 .no-attendees {
-  color: #888;
+  color: var(--color-gray);
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
+/* Attendance Form
+   ========================================================================== */
 .attendance-form {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  max-width: 400px;
 }
 
 .attendance-form .form-group {
   margin-bottom: 1rem;
 }
 
-.attendance-form input[type="text"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
+.attendance-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-dark);
 }
 
 .radio-group {
   display: flex;
   gap: 1.5rem;
-  margin-top: 0.5rem;
 }
 
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   cursor: pointer;
-}
-
-.radio-label input[type="radio"] {
-  width: auto;
 }
 
 .form-note {
   font-size: 0.85rem;
-  color: #888;
-  margin-top: 0.5rem;
-  margin-bottom: 0;
+  color: var(--color-gray);
+  margin-bottom: 1rem;
 }
 
 .your-attendance {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  padding: 1rem;
+  background: var(--color-gray-light);
+  border-radius: var(--border-radius);
 }
 
 .attendance-status {
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .status-yes {
-  color: #28a745;
+  color: var(--color-success);
 }
 
 .status-maybe {
-  color: #ffc107;
+  color: var(--color-warning);
 }
 
-.status-no {
-  color: #dc3545;
+/* Connect Section
+   ========================================================================== */
+.landing-connect {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 0;
 }
 
-.btn-sm {
-  padding: 6px 12px;
-  font-size: 0.85rem;
+.landing-connect__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media only screen and (max-width: 768px) {
-  .landing-schedule-icon {
-    padding-right: 0;
+.landing-connect__visual img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Legacy compatibility
+   ========================================================================== */
+.landing-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.landing-link-icon {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+@media (max-width: 768px) {
+  .landing-hero {
+    height: 70vh;
   }
 
-  .landing-schedule td {
-    width: 100px;
+  .landing-hero-content {
+    padding: 1rem;
+  }
+
+  .landing-lead {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .landing-community {
+    height: 200px;
+    margin: 1.5rem 0;
+  }
+
+  .meetup-info__header {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .meetup-info__number {
+    font-size: 1.25rem;
+  }
+
+  .meetup-info__date {
+    font-size: 1rem;
+  }
+
+  .map-container {
+    margin-top: 1.5rem;
   }
 
   .attendance-section {
-    padding: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .attendance-avatars {
+    gap: 0.35rem;
+  }
+
+  .attendance-avatar {
+    width: 36px;
+    height: 36px;
   }
 
   .radio-group {
     flex-direction: column;
     gap: 0.75rem;
   }
-}
 
-@media only screen and (min-width: 760px) and (max-width: 768px),
-       only screen and (min-width: 2400px) {
-  .landing-lead {
-    padding-top: 10rem;
+  .landing-connect {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .landing-connect__visual {
+    order: -1;
+  }
+
+  .landing-connect__visual img {
+    max-width: 60%;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 414px) {
+@media (max-width: 480px) {
   .landing-hero {
-    height: 300px;
+    height: 60vh;
   }
 
   .landing-lead {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
-  .landing-bg-rubies {
-    height: 200px;
+  .info-row {
+    gap: 0.5rem;
+  }
+
+  .info-row__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .map-container__caption {
+    font-size: 0.8rem;
+  }
+
+  .talk-item__title {
+    font-size: 0.95rem;
+  }
+
+  .talk-item__speaker {
+    font-size: 0.85rem;
   }
 }

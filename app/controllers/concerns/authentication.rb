@@ -23,12 +23,12 @@ module Authentication
       Current.session&.user
     end
 
-    def admin?
-      return false unless current_user&.github?
-      return true if Rails.env.development?
+  def admin?
+    return false unless current_user&.github?
+    return true if Rails.env.development?
 
-      token = ENV.fetch("GITHUB_TOKEN")
-      repo = ENV.fetch("GITHUB_REPO", "3cityRUG/TRUG")
+    token = Rails.application.credentials.github.token
+    repo = Rails.application.credentials.github.repo
 
       client = Octokit::Client.new(access_token: token)
       permission = client.collaborator_permission(repo, current_user.github_username)
