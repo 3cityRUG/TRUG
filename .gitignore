@@ -63,3 +63,7 @@
 # Ignore master key (used for credentials).
 /config/master.key
 /config/credentials/*.key
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
