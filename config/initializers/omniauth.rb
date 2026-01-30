@@ -1,11 +1,16 @@
 OmniAuth.config.allowed_request_methods = [ :get, :post ]
 
-# Only configure OmniAuth when credentials are available (skip during asset precompilation)
-if Rails.application.credentials.github
-  Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :github,
-      Rails.application.credentials.github.client_id,
-      Rails.application.credentials.github.client_secret,
-      scope: "read:user"
+# Only configure OmniAuth when credentials are available
+# This handles cases where credentials cannot be decrypted (no RAILS_MASTER_KEY)
+begin
+  if Rails.application.credentials.github
+    Rails.application.config.middleware.use OmniAuth::Builder do
+      provider :github,
+        Rails.application.credentials.github.client_id,
+        Rails.application.credentials.github.client_secret,
+        scope: "read:user"
+    end
   end
+rescue ActiveSupport::MessageEncryptor::InvalidMessage
+  # Credentials not available (e.g., during asset precompilation without master key)
 end
