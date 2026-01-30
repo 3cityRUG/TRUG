@@ -1,5 +1,8 @@
 OmniAuth.config.allowed_request_methods = [ :get, :post ]
 
+# Configure full host for callback URL generation
+OmniAuth.config.full_host = "http://trug.pl" if Rails.env.production?
+
 # Only configure OmniAuth when credentials are available
 # This handles cases where credentials cannot be decrypted (no RAILS_MASTER_KEY)
 begin
