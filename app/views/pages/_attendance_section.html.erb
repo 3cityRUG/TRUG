@@ -1,0 +1,50 @@
+<% next_meetup = local_assigns[:next_meetup] || @next_meetup %>
+<div class="attendance-section">
+  <h3>Kto będzie?</h3>
+  <% attendances = next_meetup.attendances.confirmed %>
+  <% if attendances.any? %>
+    <div class="attendance-avatars">
+      <% attendances.each do |attendance| %>
+        <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar" title="<%= attendance.github_username %>">
+          <img src="https://github.com/<%= attendance.github_username %>.png?size=44" alt="<%= attendance.github_username %>" onerror="this.src='https://github.com/identicons/<%= attendance.github_username %>.png'">
+        </a>
+      <% end %>
+    </div>
+    <p class="attendance-count"><%= attendances.count %> osób potwierdziło obecność</p>
+  <% else %>
+    <p class="no-attendees">Bądź pierwszy i zgłoś obecność!</p>
+  <% end %>
+
+  <% if authenticated? && current_user.github_username %>
+    <% user_attendance = next_meetup.attendances.find_by(github_username: current_user.github_username) %>
+    <% if user_attendance %>
+      <div class="your-attendance">
+        <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= user_attendance.status_name == 'yes' ? 'Tak, będę!' : 'Może' %></span></p>
+        <%= form_with url: attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "button_to", data: { turbo_frame: "attendance_section" } do |f| %>
+          <%= f.submit "Zmień", class: "btn btn-secondary btn-sm" %>
+        <% end %>
+      </div>
+    <% else %>
+      <%= form_with url: attendances_path, method: :post, class: "attendance-form", data: { turbo_frame: "attendance_section" } do |f| %>
+        <%= f.hidden_field :meetup_id, value: next_meetup.id %>
+        <div class="form-group">
+          <label>Czy przyjdziesz?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <%= f.radio_button :status, 1, required: true %> Tak, będę!
+            </label>
+            <label class="radio-label">
+              <%= f.radio_button :status, 0 %> Może
+            </label>
+          </div>
+        </div>
+        <%= f.submit "Zgłoś obecność", class: "btn btn-brand" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="attendance-form">
+      <p class="form-note">Zaloguj się przez GitHub, aby zgłosić obecność:</p>
+      <a href="/auth/github" class="btn btn-brand">Zaloguj przez GitHub</a>
+    </div>
+  <% end %>
+</div>

@@ -33,7 +33,16 @@ class AttendancesController < ApplicationController
     if attendance.save
       session.delete(:attendance_meetup_id)
       session.delete(:attendance_status)
-      redirect_to root_path, notice: "Dziękujemy! Twój udział został zarejestrowany."
+      respond_to do |format|
+        format.html do
+          if turbo_frame_request?
+            @next_meetup = @meetup
+            render inline: "<%= turbo_frame_tag 'attendance_section' do %><%= render partial: 'pages/attendance_section' %><% end %>"
+          else
+            redirect_to root_path, notice: "Dziękujemy! Twój udział został zarejestrowany."
+          end
+        end
+      end
     else
       redirect_to root_path, alert: "Wystąpił błąd. Spróbuj ponownie."
     end
