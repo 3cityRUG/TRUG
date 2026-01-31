@@ -18,10 +18,10 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
   test "should create user and session from GitHub OAuth" do
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: "github",
-      uid: "12345",
+      uid: "99999",
       info: {
-        nickname: "testuser",
-        email: "test@example.com"
+        nickname: "newuser",
+        email: "newuser@example.com"
       }
     )
 
@@ -31,8 +31,8 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    user = User.find_by(github_id: "12345")
-    assert_equal "testuser", user.github_username
+    user = User.find_by(github_id: "99999")
+    assert_equal "newuser", user.github_username
     assert_redirected_to root_path
   end
 
@@ -40,13 +40,13 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
     existing_user = User.create!(
       email_address: "existing@example.com",
       password: "password123",
-      github_id: "12345",
+      github_id: "88888",
       github_username: "oldusername"
     )
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: "github",
-      uid: "12345",
+      uid: "88888",
       info: {
         nickname: "testuser",
         email: "test@example.com"
@@ -66,10 +66,10 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
   test "should redirect after successful GitHub auth" do
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: "github",
-      uid: "12345",
+      uid: "77777",
       info: {
-        nickname: "testuser",
-        email: "test@example.com"
+        nickname: "testuser2",
+        email: "test2@example.com"
       }
     )
 
