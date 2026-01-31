@@ -5,6 +5,9 @@ class Admin::MeetupsController < ApplicationController
 
   def index
     @meetups = Meetup.ordered.includes(:talks)
+    @total_meetups = Meetup.count
+    @upcoming_meetups = Meetup.upcoming.count
+    @total_talks = Talk.count
   end
 
   def show

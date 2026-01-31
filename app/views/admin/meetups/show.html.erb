@@ -2,7 +2,16 @@
   <div class="page-header">
     <div class="header-title">
       <h1>Spotkanie #<%= @meetup.number %></h1>
-      <span class="meetup-date"><%= l @meetup.date, format: :long %></span>
+      <span class="meetup-date">
+        <%= l @meetup.date, format: :long %>
+        <% if @meetup.date.today? %>
+          <span class="status-badge status-today">Dzisiaj</span>
+        <% elsif @meetup.date.future? %>
+          <span class="status-badge status-upcoming">Nadchodzące</span>
+        <% else %>
+          <span class="status-badge status-past">Odbyte</span>
+        <% end %>
+      </span>
     </div>
     <div class="header-actions">
       <%= link_to "← Wróć do spotkań", admin_meetups_path, class: "btn btn-secondary" %>

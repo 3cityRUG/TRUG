@@ -22,7 +22,16 @@
                 <span class="meetup-badge">#<%= meetup.number %></span>
               <% end %>
             </td>
-            <td><%= l meetup.date, format: :long %></td>
+            <td>
+              <%= l meetup.date, format: :long %>
+              <% if meetup.date.today? %>
+                <span class="status-badge status-today">Dzisiaj</span>
+              <% elsif meetup.date.future? %>
+                <span class="status-badge status-upcoming">Nadchodzące</span>
+              <% else %>
+                <span class="status-badge status-past">Odbyte</span>
+              <% end %>
+            </td>
             <td>
               <%= link_to admin_meetup_path(meetup), class: "talks-count-link" do %>
                 <span class="talks-count"><%= meetup.talks.count %></span>

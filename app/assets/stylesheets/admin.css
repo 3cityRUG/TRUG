@@ -1,3 +1,246 @@
+/* Admin Panel Styles - TRUG */
+
+/* Reset & Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header & Navigation */
+.admin-header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.admin-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.admin-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e25454;
+  text-decoration: none;
+}
+
+.admin-nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-nav-links a,
+.admin-nav-links button {
+  color: #555;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.admin-nav-links a:hover,
+.admin-nav-links button:hover {
+  background: #f0f0f0;
+}
+
+.admin-nav-links a.active {
+  background: #e25454;
+  color: #fff;
+}
+
+/* Main Content */
+.admin-main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Flash Messages */
+.admin-notice {
+  background: #d4edda;
+  color: #155724;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid #c3e6cb;
+}
+
+.admin-alert {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Typography */
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  margin-top: 32px;
+  color: #333;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-header h1 {
+  margin-bottom: 0;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-title h1 {
+  margin-bottom: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: #e25454;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #c23e3e;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #666;
+}
+
+.btn-ghost:hover {
+  background: #f0f0f0;
+}
+
+.btn-danger {
+  background: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+/* Stats Cards */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: #fff;
+  padding: 20px 28px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e25454;
+}
+
+.stat-label {
+  color: #777;
+  font-size: 0.875rem;
+}
+
+/* Quick Actions */
 .admin-quick-actions {
   margin-bottom: 32px;
 }
@@ -5,31 +248,439 @@
 .action-buttons {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Meetup Cards */
+.meetup-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  margin-bottom: 16px;
+  border: 1px solid #eee;
+}
+
+.meetup-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+}
+
+.meetup-date,
+.meetup-location {
+  color: #777;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
 }
 
 .card-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-top: 16px;
+  flex-wrap: wrap;
 }
 
-.meetups-list .meetup-number {
+/* Meetup Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  gap: 4px;
+}
+
+.status-upcoming {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-past {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.status-today {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Meetup List */
+.meetups-list {
+  list-style: none;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+.meetups-list li {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.meetups-list li:last-child {
+  border-bottom: none;
+}
+
+.meetups-list a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.meetups-list a:hover {
+  background: #fafafa;
+}
+
+.meetup-number {
   font-weight: 700;
-  color: var(--color-brand);
+  color: #e25454;
+  font-size: 1rem;
+  min-width: 50px;
 }
 
 .meetups-list .meetup-date {
-  color: var(--color-text-muted);
-  margin-left: 16px;
+  color: #666;
+  margin: 0 16px;
+  min-width: 100px;
 }
 
 .meetups-list .meetup-location {
-  color: var(--color-text-muted);
-  margin-left: 16px;
+  color: #888;
+  flex: 1;
 }
 
 .meetups-list .meetup-talks {
-  float: right;
-  color: var(--color-text-muted);
-  font-size: 0.875rem;
+  color: #999;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+  background: #fafafa;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+tr:hover td {
+  background: #fafafa;
+}
+
+tr:hover td.actions {
+  background: transparent;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.actions .btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #e25454;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 4px;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.admin-form {
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  max-width: 600px;
+}
+
+.admin-form h1 {
+  margin-bottom: 24px;
+}
+
+.form-errors {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+}
+
+.form-errors ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.form-errors li {
+  margin-bottom: 4px;
+}
+
+/* Badges */
+.meetup-badge {
+  display: inline-flex;
+  background: #fff0f0;
+  color: #e25454;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.meetup-badge:hover {
+  background: #ffe0e0;
+}
+
+.talks-count {
+  display: inline-flex;
+  background: #f0f0f0;
+  color: #666;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.talks-count:hover {
+  background: #e0e0e0;
+}
+
+.video-badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.video-badge.youtube {
+  background: #ff0000;
+  color: #fff;
+}
+
+.video-badge.vimeo {
+  background: #1ab7ea;
+  color: #fff;
+}
+
+/* Links */
+.meetup-link,
+.date-link,
+.talks-count-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.meetup-link:hover,
+.date-link:hover,
+.talks-count-link:hover {
+  text-decoration: none;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+.empty-state p {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+/* Meetup Show Page */
+.meetup-description {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+.meetup-description p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.meetup-talks-section {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+.meetup-talks-section h2 {
+  margin-top: 0;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.breadcrumbs a {
+  color: #e25454;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  color: #999;
+}
+
+/* Text Utilities */
+.text-muted {
+  color: #888;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-main {
+    padding: 20px 16px;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  table {
+    display: block;
+  }
+
+  th, td {
+    padding: 10px 12px;
+  }
+
+  .admin-form {
+    padding: 20px;
+  }
+
+  .meetup-card {
+    padding: 16px;
+  }
+
+  .admin-nav-links a,
+  .admin-nav-links button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
