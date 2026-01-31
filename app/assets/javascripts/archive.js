@@ -1,5 +1,3 @@
-import "site"
-
 document.addEventListener('DOMContentLoaded', () => {
   const getVideoUrl = (videoId, provider) => {
     if (provider === 'youtube') {
