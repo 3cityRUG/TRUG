@@ -31,7 +31,15 @@ module Authentication
       repo = Rails.application.credentials.github.repo
 
       client = Octokit::Client.new(access_token: token)
-      client.collaborator?(repo, current_user.github_username)
+
+      # Check collaborator status (includes admins, maintainers, writers)
+      return true if client.collaborator?(repo, current_user.github_username)
+
+      # Also check if user is the repo owner (owner is not a "collaborator")
+      repo_info = client.repo(repo)
+      return true if repo_info.owner.login.downcase == current_user.github_username.downcase
+
+      false
     rescue Octokit::Error, Octokit::NotFound
       false
     end
