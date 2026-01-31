@@ -1,5 +1,10 @@
 <div class="admin-form">
-  <h1>Edytuj spotkanie #<%= @meetup.number %></h1>
+  <div class="page-header">
+    <h1>Edytuj spotkanie #<%= @meetup.number %></h1>
+    <div class="header-actions">
+      <%= link_to "← Wróć do spotkania", admin_meetup_path(@meetup), class: "btn btn-secondary" %>
+    </div>
+  </div>
 
   <%= form_with model: [:admin, @meetup], local: true do |f| %>
     <% if @meetup.errors.any? %>

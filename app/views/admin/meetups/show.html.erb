@@ -1,0 +1,85 @@
+<div class="admin-meetup-show">
+  <div class="page-header">
+    <div class="header-title">
+      <h1>Spotkanie #<%= @meetup.number %></h1>
+      <span class="meetup-date"><%= l @meetup.date, format: :long %></span>
+    </div>
+    <div class="header-actions">
+      <%= link_to "← Wróć do spotkań", admin_meetups_path, class: "btn btn-secondary" %>
+      <%= link_to "Edytuj spotkanie", edit_admin_meetup_path(@meetup), class: "btn btn-secondary" %>
+      <%= link_to "+ Dodaj prezentację", new_admin_meetup_talk_path(@meetup), class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <% if @meetup.description.present? %>
+    <div class="meetup-description">
+      <h3>Opis</h3>
+      <p><%= @meetup.description %></p>
+    </div>
+  <% end %>
+
+  <div class="meetup-talks-section">
+    <h2>Prezentacje (<%= @meetup.talks.count %>)</h2>
+    
+    <% if @meetup.talks.any? %>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tytuł</th>
+              <th>Prelegent</th>
+              <th>Slajdy</th>
+              <th>Kod źródłowy</th>
+              <th>Wideo</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @meetup.talks.each do |talk| %>
+              <tr>
+                <td><strong><%= talk.title %></strong></td>
+                <td>
+                  <% if talk.speaker_homepage.present? %>
+                    <%= link_to talk.speaker_name, talk.speaker_homepage, target: "_blank" %>
+                  <% else %>
+                    <%= talk.speaker_name %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if talk.slides_url.present? %>
+                    <%= link_to "Slajdy", talk.slides_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
+                  <% else %>
+                    <span class="text-muted">-</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% if talk.source_code_url.present? %>
+                    <%= link_to "Kod", talk.source_code_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
+                  <% else %>
+                    <span class="text-muted">-</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% if talk.video_id.present? %>
+                    <span class="video-badge <%= talk.video_provider %>"><%= talk.video_provider&.capitalize || "Wideo" %></span>
+                  <% else %>
+                    <span class="text-muted">-</span>
+                  <% end %>
+                </td>
+                <td class="actions">
+                  <%= link_to "Edytuj", edit_admin_meetup_talk_path(@meetup, talk), class: "btn btn-secondary btn-sm" %>
+                  <%= button_to "Usuń", admin_meetup_talk_path(@meetup, talk), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć tę prezentację?" } }, class: "btn btn-danger btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <p>Brak prezentacji dla tego spotkania.</p>
+        <%= link_to "+ Dodaj pierwszą prezentację", new_admin_meetup_talk_path(@meetup), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

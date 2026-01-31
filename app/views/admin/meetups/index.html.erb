@@ -17,10 +17,19 @@
       <tbody>
         <% @meetups.each do |meetup| %>
           <tr>
-            <td><span class="meetup-badge">#<%= meetup.number %></span></td>
+            <td>
+              <%= link_to admin_meetup_path(meetup), class: "meetup-link" do %>
+                <span class="meetup-badge">#<%= meetup.number %></span>
+              <% end %>
+            </td>
             <td><%= l meetup.date, format: :long %></td>
-            <td><span class="talks-count"><%= meetup.talks.count %></span></td>
+            <td>
+              <%= link_to admin_meetup_path(meetup), class: "talks-count-link" do %>
+                <span class="talks-count"><%= meetup.talks.count %></span>
+              <% end %>
+            </td>
             <td class="actions">
+              <%= link_to "Pokaż", admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
               <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
               <%= link_to "+ Prezentacja", new_admin_meetup_talk_path(meetup), class: "btn btn-ghost btn-sm" %>
               <%= button_to "Usuń", admin_meetup_path(meetup), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie?" } }, class: "btn btn-danger btn-sm" %>

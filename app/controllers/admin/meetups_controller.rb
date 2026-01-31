@@ -4,7 +4,11 @@ class Admin::MeetupsController < ApplicationController
   before_action :require_admin!
 
   def index
-    @meetups = Meetup.ordered
+    @meetups = Meetup.ordered.includes(:talks)
+  end
+
+  def show
+    @meetup = Meetup.includes(:talks).find(params[:id])
   end
 
   def new
