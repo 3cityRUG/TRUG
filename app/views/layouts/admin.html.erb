@@ -1,34 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
   <head>
     <title>TRUG Admin</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tag %>
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
   </head>
   <body>
-    <div class="admin-layout">
-      <header class="admin-header">
-        <nav class="admin-nav">
-          <%= link_to "TRUG Admin", admin_root_path, class: "admin-brand" %>
-          <div class="admin-nav-links">
-            <%= link_to "Dashboard", admin_root_path, class: ("active" if current_page?(admin_root_path)) %>
-            <%= link_to "Spotkania", admin_meetups_path, class: ("active" if controller_name == "meetups") %>
-            <%= link_to "Prezentacje", admin_talks_path, class: ("active" if controller_name == "talks") %>
-            <%= button_to "Wyloguj", session_path, method: :delete %>
+    <div class="admin-wrapper">
+      <%# Mobile Sidebar Toggle %>
+      <button type="button" class="sidebar-toggle" onclick="document.querySelector('.admin-sidebar').classList.toggle('open'); document.querySelector('.sidebar-overlay').classList.toggle('open');">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      
+      <%# Overlay for mobile %>
+      <div class="sidebar-overlay" onclick="document.querySelector('.admin-sidebar').classList.remove('open'); this.classList.remove('open');"></div>
+      
+      <%# Sidebar Navigation %>
+      <aside class="admin-sidebar" role="complementary" aria-label="Nawigacja admina">
+        <div class="sidebar-brand">
+          <%= link_to admin_root_path do %>
+            <div class="sidebar-brand-logo">T</div>
+            <span>TRUG Admin</span>
+          <% end %>
+        </div>
+        
+        <nav class="sidebar-nav" aria-label="Główna">
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Menu</div>
+            <ul class="sidebar-menu" role="menubar">
+              <li class="sidebar-item" role="none">
+                <%= link_to admin_root_path, class: "sidebar-link #{'active' if current_page?(admin_root_path)}", role: "menuitem" do %>
+                  <span class="sidebar-icon">📊</span>
+                  <span class="sidebar-text">Dashboard</span>
+                <% end %>
+              </li>
+              <li class="sidebar-item" role="none">
+                <%= link_to admin_meetups_path, class: "sidebar-link #{'active' if controller_name == 'meetups'}", role: "menuitem" do %>
+                  <span class="sidebar-icon">📅</span>
+                  <span class="sidebar-text">Spotkania</span>
+                <% end %>
+              </li>
+              <li class="sidebar-item" role="none">
+                <%= link_to admin_talks_path, class: "sidebar-link #{'active' if controller_name == 'talks'}", role: "menuitem" do %>
+                  <span class="sidebar-icon">🎤</span>
+                  <span class="sidebar-text">Prezentacje</span>
+                <% end %>
+              </li>
+            </ul>
           </div>
         </nav>
-      </header>
-
-      <main class="admin-main">
-        <% if notice = flash[:notice] %>
-          <div class="admin-notice"><%= notice %></div>
-        <% end %>
-        <% if alert = flash[:alert] %>
-          <div class="admin-alert"><%= alert %></div>
-        <% end %>
-
-        <%= yield %>
+        
+        <div class="sidebar-footer">
+          <% if current_user %>
+            <div class="sidebar-user">
+              <div class="sidebar-user-avatar">
+                <%= current_user.github_username&.first&.upcase || 'U' %>
+              </div>
+              <div class="sidebar-user-info">
+                <div class="sidebar-user-name"><%= current_user.github_username || current_user.email_address %></div>
+                <div class="sidebar-user-role">Administrator</div>
+              </div>
+            </div>
+          <% end %>
+          <%= button_to session_path, method: :delete, class: "sidebar-logout" do %>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Wyloguj
+          <% end %>
+        </div>
+      </aside>
+      
+      <%# Main Content %>
+      <main class="admin-main" role="main">
+        <div class="admin-content">
+          <% if notice = flash[:notice] %>
+            <div class="admin-notice" role="alert"><%= notice %></div>
+          <% end %>
+          <% if alert = flash[:alert] %>
+            <div class="admin-alert" role="alert"><%= alert %></div>
+          <% end %>
+          
+          <%= yield %>
+        </div>
       </main>
     </div>
   </body>
