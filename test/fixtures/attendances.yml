@@ -1,0 +1,17 @@
+attendance_one:
+  meetup: one
+  user: user_one
+  github_username: "testuser"
+  status: 1
+
+attendance_two:
+  meetup: two
+  user: user_two
+  github_username: "adminuser"
+  status: 0
+
+attendance_without_user:
+  meetup: one
+  user: null
+  github_username: "external_user"
+  status: 1

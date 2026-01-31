@@ -1,0 +1,17 @@
+user_one:
+  email_address: "test@example.com"
+  password_digest: <%= BCrypt::Password.create("password123") %>
+  github_id: "12345"
+  github_username: "testuser"
+
+user_two:
+  email_address: "admin@example.com"
+  password_digest: <%= BCrypt::Password.create("admin123") %>
+  github_id: "67890"
+  github_username: "adminuser"
+
+user_regular:
+  email_address: "regular@example.com"
+  password_digest: <%= BCrypt::Password.create("regular123") %>
+  github_id: null
+  github_username: null

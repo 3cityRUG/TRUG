@@ -1,0 +1,11 @@
+session_one:
+  user: user_one
+  user_agent: "Mozilla/5.0 Test"
+  ip_address: "127.0.0.1"
+  created_at: <%= Time.current %>
+
+session_two:
+  user: user_two
+  user_agent: "Mozilla/5.0 Admin"
+  ip_address: "192.168.1.1"
+  created_at: <%= Time.current %>
