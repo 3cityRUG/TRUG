@@ -67,3 +67,11 @@
 # Ignore key files for decrypting credentials and more.
 /config/credentials/*.key
 
+
+# Ignore development logs and storage
+/log/*
+!/log/.keep
+/storage/*
+!/storage/.keep
+/tmp/*
+!/tmp/.keep
