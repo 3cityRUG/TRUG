@@ -542,6 +542,51 @@ bin/rails meetups:fetch_vimeo_thumbs
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* added */
   ```
 
+## Deployment & Release Process
+
+### Commit Conventions
+This project uses **semantic commits** in English:
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `style:` - Visual/CSS changes
+- `test:` - Test changes
+- `docs:` - Documentation updates
+- `wip:` - Work in progress
+
+### Kamal Deployment
+**Configuration** (`config/deploy.yml`):
+- Service: `trug`
+- Image: `trug-rails`
+- Server: `pi5` (Raspberry Pi)
+- Proxy Host: `trug.pl`
+- Local Registry: `localhost:5555`
+
+**Deploy Commands**:
+```bash
+# Standard deploy
+kamal deploy
+
+# Check deployment status
+kamal details
+
+# Build without deploying
+kamal build
+
+# View app logs
+kamal app logs
+
+# Rollback to previous version
+kamal rollback [VERSION]
+```
+
+**Recent Deployment** (Jan 31, 2026):
+5 commits deployed successfully:
+1. `style: enhance landing-lead typography and update favicon`
+2. `fix: update omniauth-rails_csrf_protection to 2.0.1 for Rails 8.2 deprecation`
+3. `fix: add POST route for GitHub OAuth callback`
+4. `test: fix GitHub OAuth tests with unique IDs to avoid fixture conflicts`
+5. `docs: update README and AGENTS with recent changes`
+
 ## Known Issues & Solutions
 
 ### Vimeo Thumbnails CORS
