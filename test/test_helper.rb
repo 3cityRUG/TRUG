@@ -30,7 +30,7 @@ end
 class ActionDispatch::IntegrationTest
   def sign_in_as(user, user_agent: "Test Browser", ip_address: "127.0.0.1")
     session = user.sessions.create!(user_agent: user_agent, ip_address: ip_address)
-    cookies[:session_id] = { value: session.id, httponly: true }
+    cookies[:session_id] = session.id
   end
 
   def sign_out

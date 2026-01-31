@@ -43,5 +43,6 @@ class AttendancesController < ApplicationController
 
   def set_meetup
     @meetup = Meetup.ordered.first
+    render plain: "Not Found", status: :not_found unless @meetup
   end
 end
