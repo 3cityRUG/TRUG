@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider", to: "github_sessions#new", as: :auth_provider
   get "/auth/github/callback", to: "github_sessions#create"
+  post "/auth/github/callback", to: "github_sessions#create"
   get "/auth/failure", to: "github_sessions#failure"
 
   get "up" => "rails/health#show", as: :rails_health_check
