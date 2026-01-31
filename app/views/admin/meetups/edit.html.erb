@@ -1,40 +1,22 @@
-<div class="admin-form">
-  <div class="page-header">
-    <h1>Edytuj spotkanie #<%= @meetup.number %></h1>
-    <div class="header-actions">
-      <%= link_to "← Wróć do spotkania", admin_meetup_path(@meetup), class: "btn btn-secondary" %>
-    </div>
-  </div>
+<%# Edit Meetup %>
+<nav class="breadcrumbs" aria-label="Nawigacja">
+  <%= link_to "Dashboard", admin_root_path %>
+  <span class="breadcrumbs-separator">/</span>
+  <%= link_to "Spotkania", admin_meetups_path %>
+  <span class="breadcrumbs-separator">/</span>
+  <%= link_to "Spotkanie ##{@meetup.number}", admin_meetup_path(@meetup) %>
+  <span class="breadcrumbs-separator">/</span>
+  <span class="breadcrumbs-current">Edycja</span>
+</nav>
 
-  <%= form_with model: [:admin, @meetup], local: true do |f| %>
-    <% if @meetup.errors.any? %>
-      <div class="form-errors">
-        <ul>
-          <% @meetup.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
+<div class="page-header">
+  <h1 class="page-title">Edycja spotkania #<%= @meetup.number %></h1>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_with model: [:admin, @meetup], local: true, class: "form" do |f| %>
+      <%= render "form", meetup: @meetup, f: f %>
     <% end %>
-
-    <div class="form-group">
-      <%= f.label :number, "Numer spotkania" %>
-      <%= f.number_field :number, required: true %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :date, "Data" %>
-      <%= f.date_field :date, required: true %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :description, "Opis" %>
-      <%= f.text_area :description %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit "Zapisz zmiany", class: "btn btn-primary" %>
-      <%= link_to "Anuluj", admin_meetups_path, class: "btn btn-secondary" %>
-    </div>
-  <% end %>
+  </div>
 </div>

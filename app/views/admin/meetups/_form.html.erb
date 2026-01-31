@@ -1,0 +1,52 @@
+<%# Meetup Form %>
+<% if meetup.errors.any? %>
+  <div class="form-errors">
+    <div class="form-errors-title">Formularz zawiera błędy:</div>
+    <ul class="form-errors-list">
+      <% meetup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-section">
+  <div class="form-row">
+    <div class="form-field">
+      <%= f.label :number, "Numer spotkania", class: "form-label" %>
+      <%= f.number_field :number, class: "form-input", min: 1 %>
+      <span class="form-hint">Unikalny numer spotkania (np. 123)</span>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :date, class: "form-label" do %>
+        Data spotkania <span class="required">*</span>
+      <% end %>
+      <%= f.date_field :date, class: "form-input", required: true %>
+      <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
+    </div>
+  </div>
+  
+  <div class="form-field">
+    <%= f.label :description, "Opis", class: "form-label" %>
+    <%= f.textarea :description, class: "form-textarea", rows: 4 %>
+    <span class="form-hint">Opcjonalny opis spotkania, agendy, informacje o miejscu</span>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= f.submit meetup.persisted? ? "Zapisz zmiany" : "Utwórz spotkanie", class: "btn btn-primary" %>
+  <%= link_to "Anuluj", admin_meetups_path, class: "btn btn-ghost" %>
+</div>
+
+<% if meetup.persisted? %>
+  <div class="form-section" style="margin-top: 3rem; border-top: 2px solid var(--color-border); padding-top: 2rem;">
+    <h3 style="color: var(--color-danger); font-size: var(--text-lg); margin-bottom: 1rem;">Strefa niebezpieczeństwa</h3>
+    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
+      Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.
+    </p>
+    <%= button_to "Usuń spotkanie", admin_meetup_path(meetup), method: :delete, 
+        form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie i wszystkie jego prezentacje?" } }, 
+        class: "btn btn-danger" %>
+  </div>
+<% end %>

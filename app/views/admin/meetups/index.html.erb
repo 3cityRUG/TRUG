@@ -1,51 +1,133 @@
-<div class="admin-meetups">
-  <div class="page-header">
-    <h1>Spotkania</h1>
-    <%= link_to "+ Dodaj spotkanie", new_admin_meetup_path, class: "btn btn-primary" %>
-  </div>
-
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Numer</th>
-          <th>Data</th>
-          <th>Prezentacje</th>
-          <th>Akcje</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @meetups.each do |meetup| %>
-          <tr>
-            <td>
-              <%= link_to admin_meetup_path(meetup), class: "meetup-link" do %>
-                <span class="meetup-badge">#<%= meetup.number %></span>
-              <% end %>
-            </td>
-            <td>
-              <%= l meetup.date, format: :long %>
-              <% if meetup.date.today? %>
-                <span class="status-badge status-today">Dzisiaj</span>
-              <% elsif meetup.date.future? %>
-                <span class="status-badge status-upcoming">Nadchodzące</span>
-              <% else %>
-                <span class="status-badge status-past">Odbyte</span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_meetup_path(meetup), class: "talks-count-link" do %>
-                <span class="talks-count"><%= meetup.talks.count %></span>
-              <% end %>
-            </td>
-            <td class="actions">
-              <%= link_to "Pokaż", admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
-              <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
-              <%= link_to "+ Prezentacja", new_admin_meetup_talk_path(meetup), class: "btn btn-ghost btn-sm" %>
-              <%= button_to "Usuń", admin_meetup_path(meetup), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie?" } }, class: "btn btn-danger btn-sm" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<%# Meetups Index - Redesigned %>
+<div class="page-header">
+  <div class="page-header-row">
+    <div>
+      <h1 class="page-title">
+        Spotkania
+        <span class="badge badge-count"><%= @total_meetups %></span>
+      </h1>
+      <p class="page-subtitle">Zarządzaj spotkaniami TRUG i ich prezentacjami</p>
+    </div>
+    <div class="page-actions">
+      <%= link_to new_admin_meetup_path, class: "btn btn-primary" do %>
+        <span>+</span>
+        <span>Nowe spotkanie</span>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<%# Stats Grid %>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value"><%= @total_meetups %></div>
+    <div class="stat-label">Wszystkie spotkania</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--color-success);"><%= @upcoming_meetups %></div>
+    <div class="stat-label">Nadchodzące</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--color-brand);"><%= @total_talks %></div>
+    <div class="stat-label">Wszystkie prezentacje</div>
+  </div>
+</div>
+
+<%# Meetups Table (Desktop) %>
+<div class="data-table-wrapper hide-mobile">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Numer</th>
+        <th>Data</th>
+        <th>Opis</th>
+        <th>Prezentacje</th>
+        <th class="actions">Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @meetups.each do |meetup| %>
+        <tr>
+          <td>
+            <%= link_to admin_meetup_path(meetup), class: "meetup-link" do %>
+              <span class="meetup-badge">#<%= meetup.number %></span>
+            <% end %>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <%= l meetup.date, format: :long %>
+              <% if meetup.date.today? %>
+                <span class="badge badge-today">Dzisiaj</span>
+              <% elsif meetup.date.future? %>
+                <span class="badge badge-upcoming">Nadchodzące</span>
+              <% else %>
+                <span class="badge badge-past">Odbyte</span>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <% if meetup.description.present? %>
+              <span class="text-secondary"><%= truncate(meetup.description, length: 50) %></span>
+            <% else %>
+              <span class="text-muted">-</span>
+            <% end %>
+          </td>
+          <td>
+            <span class="badge badge-count"><%= meetup.talks.size %></span>
+          </td>
+          <td class="actions">
+            <%= link_to "Pokaż", admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "+ Prezentacja", new_admin_meetup_talk_path(meetup), class: "btn btn-ghost btn-sm" %>
+            <%= button_to "Usuń", admin_meetup_path(meetup), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie?" } }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%# Meetups Cards (Mobile) %>
+<div class="data-cards hide-desktop">
+  <% @meetups.each do |meetup| %>
+    <div class="data-card">
+      <div class="data-card-header">
+        <div>
+          <%= link_to admin_meetup_path(meetup) do %>
+            <span class="meetup-badge">#<%= meetup.number %></span>
+          <% end %>
+          <div class="data-card-subtitle" style="margin-top: 0.5rem;">
+            <%= l meetup.date, format: :long %>
+            <% if meetup.date.today? %>
+              <span class="badge badge-today">Dzisiaj</span>
+            <% elsif meetup.date.future? %>
+              <span class="badge badge-upcoming">Nadchodzące</span>
+            <% else %>
+              <span class="badge badge-past">Odbyte</span>
+            <% end %>
+          </div>
+        </div>
+        <span class="badge badge-count"><%= meetup.talks.size %> <%= polish_pluralize(meetup.talks.size, "prezentacja", "prezentacje", "prezentacji") %></span>
+      </div>
+      <% if meetup.description.present? %>
+        <div class="data-card-body">
+          <p class="text-secondary"><%= truncate(meetup.description, length: 100) %></p>
+        </div>
+      <% end %>
+      <div class="data-card-footer">
+        <%= link_to "Pokaż", admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
+        <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-secondary btn-sm" %>
+        <%= link_to "+", new_admin_meetup_talk_path(meetup), class: "btn btn-ghost btn-sm" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @meetups.empty? %>
+  <div class="empty-state">
+    <div class="empty-state-icon">📅</div>
+    <h3 class="empty-state-title">Brak spotkań</h3>
+    <p class="empty-state-text">Rozpocznij dodając pierwsze spotkanie TRUG</p>
+    <%= link_to "+ Nowe spotkanie", new_admin_meetup_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
