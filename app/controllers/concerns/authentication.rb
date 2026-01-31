@@ -24,23 +24,42 @@ module Authentication
     end
 
     def admin?
-      return false unless current_user&.github?
+      Rails.logger.info "[ADMIN CHECK] Starting admin check for user: #{current_user&.github_username}"
+
+      unless current_user
+        Rails.logger.info "[ADMIN CHECK] FAILED: No current_user"
+        return false
+      end
+
+      unless current_user.github?
+        Rails.logger.info "[ADMIN CHECK] FAILED: User #{current_user.github_username} has no github_id"
+        return false
+      end
+
       return true if Rails.env.development?
 
       token = Rails.application.credentials.github.token
       repo = Rails.application.credentials.github.repo
 
+      Rails.logger.info "[ADMIN CHECK] Checking GitHub access for #{current_user.github_username} on repo #{repo}"
+
       client = Octokit::Client.new(access_token: token)
 
       # Check collaborator status (includes admins, maintainers, writers)
-      return true if client.collaborator?(repo, current_user.github_username)
+      is_collaborator = client.collaborator?(repo, current_user.github_username)
+      Rails.logger.info "[ADMIN CHECK] collaborator? result: #{is_collaborator}"
+      return true if is_collaborator
 
       # Also check if user is the repo owner (owner is not a "collaborator")
       repo_info = client.repo(repo)
-      return true if repo_info.owner.login.downcase == current_user.github_username.downcase
+      owner_match = repo_info.owner.login.downcase == current_user.github_username.downcase
+      Rails.logger.info "[ADMIN CHECK] owner check: repo_owner=#{repo_info.owner.login}, user=#{current_user.github_username}, match=#{owner_match}"
+      return true if owner_match
 
+      Rails.logger.info "[ADMIN CHECK] FAILED: User is neither collaborator nor owner"
       false
-    rescue Octokit::Error, Octokit::NotFound
+    rescue Octokit::Error, Octokit::NotFound => e
+      Rails.logger.error "[ADMIN CHECK] ERROR: #{e.class}: #{e.message}"
       false
     end
 
