@@ -39,6 +39,10 @@ module TrugRails
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Set Polish as the default locale
+    config.i18n.default_locale = :pl
+    config.i18n.available_locales = [ :pl, :en ]
+
     # Enable Rack::Attack for bot and abuse protection
     config.middleware.use Rack::Attack
 
