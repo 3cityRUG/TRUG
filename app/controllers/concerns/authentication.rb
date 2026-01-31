@@ -88,6 +88,19 @@ module Authentication
 
     def resume_session
       Current.session ||= find_session_by_cookie
+
+      # Development bypass - auto-authenticate as admin
+      if Rails.env.development? && Current.session.nil?
+        dev_user = User.find_or_create_by!(github_username: "dev_admin") do |u|
+          u.github_id = "999999"
+          u.email_address = "dev@localhost"
+          u.password = SecureRandom.hex(32)
+        end
+        Current.session = dev_user.sessions.create!
+        cookies.signed[:session_id] = { value: Current.session.id, httponly: true }
+      end
+
+      Current.session
     end
 
     def find_session_by_cookie
