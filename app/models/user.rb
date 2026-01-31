@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
 
+  validates :email_address, presence: true
+  validates :password, presence: true, on: :create
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   def self.from_github(github_data)

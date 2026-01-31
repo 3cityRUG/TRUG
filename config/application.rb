@@ -41,5 +41,8 @@ module TrugRails
 
     # Enable Rack::Attack for bot and abuse protection
     config.middleware.use Rack::Attack
+
+    # Suppress deprecation warnings in production (rack-attack gem issue)
+    config.active_support.report_deprecations = false unless Rails.env.development?
   end
 end

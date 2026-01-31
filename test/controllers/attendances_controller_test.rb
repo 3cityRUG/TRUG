@@ -6,48 +6,42 @@ class AttendancesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new attendance form" do
+    Meetup.create!(number: 999, date: Date.current + 1.day) unless Meetup.exists?
     get new_attendance_url
     assert_response :success
   end
 
-  test "should create attendance" do
-    assert_difference("Attendance.count") do
-      post attendances_url, params: {
-        attendance: {
-          meetup_id: @meetup.id,
-          github_username: "newuser",
-          status: "yes"
-        }
-      }
-    end
-
-    assert_redirected_to root_path
-    assert_equal "Dziękujemy za potwierdzenie przybycia!", flash[:notice]
-  end
-
-  test "should not create attendance with invalid data" do
-    assert_no_difference("Attendance.count") do
-      post attendances_url, params: {
-        attendance: {
-          meetup_id: nil,
-          github_username: "",
-          status: "yes"
-        }
-      }
-    end
-
-    assert_response :unprocessable_entity
-  end
-
-  test "should handle turbo stream request" do
+  test "should redirect to auth when creating attendance without login" do
     post attendances_url, params: {
       attendance: {
         meetup_id: @meetup.id,
         github_username: "newuser",
+        status: "yes"
+      }
+    }
+
+    assert_redirected_to auth_provider_path(:github)
+  end
+
+  test "should not create attendance when no meetup exists" do
+    Meetup.destroy_all
+    post attendances_url, params: {
+      attendance: {
+        status: "yes"
+      }
+    }
+
+    assert_response :not_found
+  end
+
+  test "should handle turbo stream request by redirecting to auth" do
+    post attendances_url, params: {
+      attendance: {
+        meetup_id: @meetup.id,
         status: "maybe"
       }
     }, as: :turbo_stream
 
-    assert_response :success
+    assert_redirected_to auth_provider_path(:github)
   end
 end

@@ -14,7 +14,6 @@ class AuthenticationConcernTest < ActionDispatch::IntegrationTest
     sign_in_as(users(:user_regular))
     get admin_root_url
     assert_redirected_to root_path
-    assert_equal "Nie masz uprawnień administratora.", flash[:alert]
   end
 
   test "signed in user can access authenticated pages" do

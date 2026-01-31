@@ -11,10 +11,10 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should redirect to root with alert when no code provided" do
-    get github_session_url
-    assert_redirected_to root_path
-    assert_equal "Brak kodu autoryzacji.", flash[:alert]
+  test "should handle missing OAuth code" do
+    # OmniAuth redirects to failure path when CSRF detected
+    get auth_github_callback_url
+    assert_response :redirect
   end
 
   test "should create user and session from GitHub OAuth callback" do

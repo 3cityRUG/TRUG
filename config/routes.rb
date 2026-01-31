@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resource :session, only: :destroy
 
+  get "/auth/:provider", to: "github_sessions#new", as: :auth_provider
   get "/auth/github/callback", to: "github_sessions#create"
   get "/auth/failure", to: "github_sessions#failure"
 

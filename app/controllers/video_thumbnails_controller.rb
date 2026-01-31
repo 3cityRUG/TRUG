@@ -1,4 +1,6 @@
 class VideoThumbnailsController < ApplicationController
+  allow_unauthenticated_access
+
   def show
     video_id = params[:id]
     provider = params[:provider]

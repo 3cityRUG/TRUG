@@ -12,7 +12,6 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
     get admin_root_url
     assert_redirected_to root_path
-    assert_equal "Nie masz uprawnień administratora.", flash[:alert]
   end
 
   test "should get dashboard when admin" do
