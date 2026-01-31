@@ -8,6 +8,7 @@ class Admin::MeetupsController < ApplicationController
     @total_meetups = Meetup.count
     @upcoming_meetups = Meetup.upcoming.count
     @total_talks = Talk.count
+    @average_talks_per_meetup = @total_meetups > 0 ? (@total_talks.to_f / @total_meetups).round(1) : 0
   end
 
   def show
