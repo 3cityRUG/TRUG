@@ -277,6 +277,21 @@ bin/rails db:drop db:create          # Reset database
 bin/rails assets:clobber             # Clear asset cache
 ```
 
+## Code Quality & Testing
+
+### Recent Fixes
+
+**GitHub OAuth Tests**: Fixed test failures caused by fixture conflicts. Tests now use unique GitHub IDs that don't conflict with fixture data.
+
+**OmniAuth CSRF Protection**: Updated `omniauth-rails_csrf_protection` from 1.0.2 to 2.0.1 to fix Rails 8.2 deprecation warning.
+
+**Favicon**: Updated from placeholder to use the TRUG logo SVG (`public/icon.svg`).
+
+**Landing Page Typography**: Enhanced `.landing-lead` ("Trójmiejska Grupa Użytkowników Ruby" heading) with:
+- Increased font-size from 2.5rem to 3rem
+- Increased font-weight from 600 to 700
+- Added text-shadow for better visibility
+
 ## Known Issues & Solutions
 
 ### Vimeo Thumbnails CORS

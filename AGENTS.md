@@ -524,6 +524,24 @@ bin/rails meetups:migrate_from_yaml
 bin/rails meetups:fetch_vimeo_thumbs
 ```
 
+## Recent Changes & Learnings
+
+### Test Suite Fixes
+- **GitHub OAuth Tests**: Updated to use unique GitHub IDs (99999, 88888, 77777) to avoid conflicts with fixture data (user_one has github_id: "12345")
+- **Route Configuration**: Added POST support for `/auth/github/callback` to match OmniAuth callback behavior
+
+### Dependency Updates
+- **omniauth-rails_csrf_protection**: Updated from 1.0.2 to 2.0.1 to resolve Rails 8.2 deprecation warning about `ActiveSupport::Configurable`
+
+### Visual Improvements
+- **Favicon**: Replaced placeholder `icon.svg` with TRUG logo
+- **Landing Lead**: Enhanced `.landing-lead` styling:
+  ```css
+  font-size: 3rem;  /* was 2.5rem */
+  font-weight: 700; /* was 600 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* added */
+  ```
+
 ## Known Issues & Solutions
 
 ### Vimeo Thumbnails CORS
