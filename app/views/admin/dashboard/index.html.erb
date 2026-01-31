@@ -1,54 +1,158 @@
-<div class="admin-dashboard">
-  <h1>Dashboard</h1>
+<header class="page-header">
+  <h1 class="page-title">Dashboard</h1>
+  <p class="page-subtitle">Przegląd aktywności TRUG</p>
+</header>
 
-  <div class="admin-stats">
-    <div class="stat-card">
+<% upcoming_count = Meetup.upcoming.count %>
+<% avg_talks = @meetups_count > 0 ? (@talks_count.to_f / @meetups_count).round(1) : 0 %>
+
+<section class="section" aria-labelledby="stats-heading">
+  <h2 id="stats-heading" class="visually-hidden">Statystyki</h2>
+  <div class="stats-grid">
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">📅</span>
       <span class="stat-number"><%= @meetups_count %></span>
-      <span class="stat-label">Spotkań</span>
-    </div>
-    <div class="stat-card">
+      <span class="stat-label"><%= polish_pluralize(@meetups_count, "Spotkanie", "Spotkania", "Spotkań") %></span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">🎤</span>
       <span class="stat-number"><%= @talks_count %></span>
-      <span class="stat-label">Prezentacji</span>
+      <span class="stat-label"><%= polish_pluralize(@talks_count, "Prezentacja", "Prezentacje", "Prezentacji") %></span>
+    </article>
+
+    <article class="stat-card <%= 'success' if upcoming_count > 0 %>">
+      <span class="stat-icon" aria-hidden="true">🚀</span>
+      <span class="stat-number">
+        <%= upcoming_count %>
+        <% if upcoming_count > 0 %>
+          <span class="badge badge-success badge-sm">Aktywne</span>
+        <% end %>
+      </span>
+      <span class="stat-label"><%= polish_pluralize(upcoming_count, "Nadchodzące", "Nadchodzące", "Nadchodzących") %></span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">📊</span>
+      <span class="stat-number"><%= avg_talks %></span>
+      <span class="stat-label">Prezentacji / spotkanie</span>
+    </article>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="actions-heading">
+  <div class="card">
+    <div class="card-header">
+      <h2 id="actions-heading" class="card-header-title">
+        <span aria-hidden="true">⚡</span>
+        Szybkie akcje
+      </h2>
+    </div>
+    <div class="card-body">
+      <div class="action-grid">
+        <%= link_to new_admin_meetup_path, class: "action-card" do %>
+          <span class="action-card-icon" aria-hidden="true">📅</span>
+          <span class="action-card-label">Nowe spotkanie</span>
+        <% end %>
+
+        <%= link_to admin_meetups_path, class: "action-card" do %>
+          <span class="action-card-icon" aria-hidden="true">📋</span>
+          <span class="action-card-label">Wszystkie spotkania</span>
+        <% end %>
+
+        <%= link_to admin_talks_path, class: "action-card" do %>
+          <span class="action-card-icon" aria-hidden="true">🎤</span>
+          <span class="action-card-label">Wszystkie prezentacje</span>
+        <% end %>
+      </div>
     </div>
   </div>
+</section>
 
-  <section class="admin-quick-actions">
-    <h2>Szybkie akcje</h2>
-    <div class="action-buttons">
-      <%= link_to "+ Nowe spotkanie", new_admin_meetup_path, class: "btn btn-primary" %>
-      <%= link_to "Zarządzaj spotkaniami", admin_meetups_path, class: "btn btn-secondary" %>
-      <%= link_to "Zarządzaj prezentacjami", admin_talks_path, class: "btn btn-secondary" %>
-    </div>
-  </section>
-
-  <% if @next_meetup %>
-    <section class="admin-next-meetup">
-      <h2>Najbliższe spotkanie</h2>
-      <div class="meetup-card">
-        <h3>Spotkanie #<%= @next_meetup.number %></h3>
-        <p class="meetup-date"><%= l @next_meetup.date, format: :long %></p>
-        <p class="meetup-location"><%= @next_meetup.location %></p>
-        <div class="card-actions">
-          <%= link_to "Edytuj", edit_admin_meetup_path(@next_meetup), class: "btn btn-primary" %>
-          <%= link_to "+ Dodaj prezentację", new_admin_meetup_talk_path(@next_meetup), class: "btn btn-secondary" %>
+<% if @next_meetup %>
+  <section class="section" aria-labelledby="next-meetup-heading">
+    <article class="card next-meetup-card">
+      <div class="card-header">
+        <h2 id="next-meetup-heading" class="card-header-title">
+          <span aria-hidden="true">🎯</span>
+          Najbliższe spotkanie
+        </h2>
+        <% if @next_meetup.date >= Date.today %>
+          <span class="badge badge-success">Nadchodzące</span>
+        <% else %>
+          <span class="badge badge-secondary">Zakończone</span>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <div class="next-meetup-highlight">
+          <span class="next-meetup-number" aria-label="Spotkanie numer <%= @next_meetup.number %>">#<%= @next_meetup.number %></span>
+          <div class="next-meetup-details">
+            <p class="next-meetup-date">
+              <time datetime="<%= @next_meetup.date.iso8601 %>">
+                <%= l @next_meetup.date, format: :long %>
+              </time>
+            </p>
+            <p class="next-meetup-talks">
+              <%= @next_meetup.talks.size %> <%= polish_pluralize(@next_meetup.talks.size, "prezentacja", "prezentacje", "prezentacji") %>
+            </p>
+          </div>
         </div>
       </div>
-    </section>
-  <% end %>
-
-  <section class="admin-recent-meetups">
-    <h2>Ostatnie spotkania</h2>
-    <ul class="meetups-list">
-      <% @recent_meetups.each do |meetup| %>
-        <li>
-          <%= link_to edit_admin_meetup_path(meetup) do %>
-            <span class="meetup-number">#<%= meetup.number %></span>
-            <span class="meetup-date"><%= l meetup.date, format: :short %></span>
-            <span class="meetup-location"><%= meetup.location %></span>
-            <span class="meetup-talks"><%= meetup.talks.count %> prezentacji</span>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+      <div class="card-footer">
+        <%= link_to "Edytuj spotkanie", edit_admin_meetup_path(@next_meetup), class: "btn btn-brand btn-small" %>
+        <%= link_to "Dodaj prezentację", new_admin_meetup_talk_path(@next_meetup), class: "btn btn-ghost btn-small" %>
+      </div>
+    </article>
   </section>
-</div>
+<% end %>
+
+<section class="section" aria-labelledby="recent-heading">
+  <div class="card">
+    <div class="card-header">
+      <h2 id="recent-heading" class="card-header-title">
+        <span aria-hidden="true">🕐</span>
+        <%= @recent_meetups.count %> <%= polish_pluralize(@recent_meetups.count, "ostatnie spotkanie", "ostatnie spotkania", "ostatnich spotkań") %>
+      </h2>
+      <%= link_to "Zobacz wszystkie", admin_meetups_path, class: "btn btn-ghost btn-small" %>
+    </div>
+    <div class="card-body">
+      <% if @recent_meetups.any? %>
+        <ul class="meetup-list" role="list">
+          <% @recent_meetups.each do |meetup| %>
+            <li class="meetup-list-item">
+              <div class="meetup-list-info">
+                <span class="meetup-list-number" aria-hidden="true"><%= meetup.number %></span>
+                <div class="meetup-list-details">
+                  <span class="meetup-list-title">Spotkanie #<%= meetup.number %></span>
+                  <span class="meetup-list-meta">
+                    <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
+                    <span aria-hidden="true">•</span>
+                    <span><%= meetup.talks.size %> <%= polish_pluralize(meetup.talks.size, "prezentacja", "prezentacje", "prezentacji") %></span>
+                  </span>
+                </div>
+              </div>
+              <div class="meetup-list-actions">
+                <%= link_to "Szczegóły", admin_meetup_path(meetup), class: "btn btn-ghost btn-small" %>
+                <%= link_to "Edytuj", edit_admin_meetup_path(meetup), class: "btn btn-brand btn-small" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% elsif @meetups_count == 0 %>
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">📭</div>
+          <h3 class="empty-state-title">Brak spotkań</h3>
+          <p class="empty-state-description">
+            Nie masz jeszcze żadnych spotkań. Utwórz pierwsze spotkanie, aby rozpocząć.
+          </p>
+          <%= link_to "Utwórz pierwsze spotkanie", new_admin_meetup_path, class: "btn btn-brand" %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">📭</div>
+          <p class="empty-state-description">Brak wcześniejszych spotkań do wyświetlenia.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
