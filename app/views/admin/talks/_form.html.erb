@@ -1,0 +1,92 @@
+<%# Talk Form %>
+<% if talk.errors.any? %>
+  <div class="form-errors">
+    <div class="form-errors-title">Formularz zawiera błędy:</div>
+    <ul class="form-errors-list">
+      <% talk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-section">
+  <h3 class="form-section-title">Informacje podstawowe</h3>
+  
+  <div class="form-field">
+    <%= f.label :title, class: "form-label" do %>
+      Tytuł prezentacji <span class="required">*</span>
+    <% end %>
+    <%= f.text_field :title, class: "form-input", required: true %>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <%= f.label :speaker_name, class: "form-label" do %>
+        Prelegent <span class="required">*</span>
+      <% end %>
+      <%= f.text_field :speaker_name, class: "form-input", required: true %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :speaker_homepage, "Strona prelegenta", class: "form-label" %>
+      <%= f.url_field :speaker_homepage, class: "form-input", placeholder: "https://..." %>
+    </div>
+  </div>
+</div>
+
+<div class="form-section">
+  <h3 class="form-section-title">Materiały</h3>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <%= f.label :slides_url, "Link do slajdów", class: "form-label" %>
+      <%= f.url_field :slides_url, class: "form-input", placeholder: "https://slides.com/..." %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :source_code_url, "Kod źródłowy", class: "form-label" %>
+      <%= f.url_field :source_code_url, class: "form-input", placeholder: "https://github.com/..." %>
+    </div>
+  </div>
+</div>
+
+<div class="form-section">
+  <h3 class="form-section-title">Wideo</h3>
+  
+  <div class="form-row">
+    <div class="form-field">
+      <%= f.label :video_provider, "Dostawca wideo", class: "form-label" %>
+      <%= f.select :video_provider, 
+          [['YouTube', 'youtube'], ['Vimeo', 'vimeo']], 
+          { include_blank: "Wybierz..." },
+          { class: "form-select" } %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :video_id, "ID wideo", class: "form-label" %>
+      <%= f.text_field :video_id, class: "form-input", placeholder: "np. dQw4w9WgXcQ" %>
+      <span class="form-hint">Identyfikator wideo z YouTube lub Vimeo</span>
+    </div>
+  </div>
+  
+  <div class="form-field">
+    <%= f.label :video_thumb, "URL miniatury", class: "form-label" %>
+    <%= f.url_field :video_thumb, class: "form-input", placeholder: "https://..." %>
+    <span class="form-hint">Opcjonalny URL niestandardowej miniatury</span>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= f.submit talk.persisted? ? "Zapisz zmiany" : "Dodaj prezentację", class: "btn btn-primary" %>
+  <%= link_to "Anuluj", admin_meetup_path(meetup), class: "btn btn-ghost" %>
+</div>
+
+<% if talk.persisted? %>
+  <div class="form-section" style="margin-top: 3rem; border-top: 2px solid var(--color-border); padding-top: 2rem;">
+    <h3 style="color: var(--color-danger); font-size: var(--text-lg); margin-bottom: 1rem;">Strefa niebezpieczeństwa</h3>
+    <%= button_to "Usuń prezentację", admin_meetup_talk_path(meetup, talk), method: :delete, 
+        form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć tę prezentację?" } }, 
+        class: "btn btn-danger" %>
+  </div>
+<% end %>
