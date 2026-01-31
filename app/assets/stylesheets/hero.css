@@ -69,10 +69,11 @@
 }
 
 .next-meetup h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: var(--spacing-lg);
   color: var(--color-brand);
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .meetup-card {
@@ -231,7 +232,7 @@
   }
 
   .next-meetup h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .meetup-card {
