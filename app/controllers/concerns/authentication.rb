@@ -38,8 +38,21 @@ module Authentication
 
       return true if Rails.env.development?
 
+      # Check against hardcoded list of known admins (bypass API for owners)
+      hardcoded_admins = [ "gotar" ]
+      if hardcoded_admins.include?(current_user.github_username.downcase)
+        Rails.logger.info "[ADMIN CHECK] PASSED: User is in hardcoded admin list"
+        return true
+      end
+
       token = Rails.application.credentials.github.token
       repo = Rails.application.credentials.github.repo
+
+      # Skip API check if token is the placeholder
+      if token == "ghp_development_test_token"
+        Rails.logger.error "[ADMIN CHECK] ERROR: GitHub token is placeholder. Set a real token in credentials."
+        return false
+      end
 
       Rails.logger.info "[ADMIN CHECK] Checking GitHub access for #{current_user.github_username} on repo #{repo}"
 
