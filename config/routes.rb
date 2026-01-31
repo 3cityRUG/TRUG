@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :meetups do
       resources :talks, except: [ :index ]
     end
-    resources :talks, only: [ :edit, :update, :destroy ]
+    resources :talks, only: [ :index, :edit, :update, :destroy ]
   end
 end

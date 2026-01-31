@@ -1,0 +1,34 @@
+<div class="admin-talks">
+  <div class="page-header">
+    <h1>Prezentacje</h1>
+    <%= link_to "← Wróć do spotkań", admin_meetups_path, class: "btn btn-secondary" %>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Tytuł</th>
+          <th>Prelegent</th>
+          <th>Spotkanie</th>
+          <th>Data spotkania</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @talks.each do |talk| %>
+          <tr>
+            <td><strong><%= talk.title %></strong></td>
+            <td><%= talk.speaker_name %></td>
+            <td><span class="meetup-badge">#<%= talk.meetup.number %></span></td>
+            <td><%= l talk.meetup.date, format: :long %></td>
+            <td class="actions">
+              <%= link_to "Edytuj", edit_admin_meetup_talk_path(talk.meetup, talk), class: "btn btn-secondary btn-sm" %>
+              <%= button_to "Usuń", admin_meetup_talk_path(talk.meetup, talk), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć tę prezentację?" } }, class: "btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

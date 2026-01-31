@@ -5,6 +5,10 @@ class Admin::TalksController < ApplicationController
   before_action :set_meetup, only: [ :new, :create ]
   before_action :set_talk, only: [ :edit, :update, :destroy ]
 
+  def index
+    @talks = Talk.includes(:meetup).order("meetups.date DESC")
+  end
+
   def new
     @talk = @meetup.talks.new
   end
