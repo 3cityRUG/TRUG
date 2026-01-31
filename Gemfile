@@ -30,6 +30,10 @@ gem "solid_queue"
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
+# Block bad bots and abusive requests
+# [https://github.com/rack/rack-attack]
+gem "rack-attack"
+
 # Testing
 gem "minitest"
 gem "capybara"

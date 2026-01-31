@@ -38,5 +38,8 @@ module TrugRails
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Enable Rack::Attack for bot and abuse protection
+    config.middleware.use Rack::Attack
   end
 end
