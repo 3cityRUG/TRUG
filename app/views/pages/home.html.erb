@@ -63,7 +63,13 @@
               <% @next_meetup.talks.each do |talk| %>
                 <div class="talk-item">
                   <div class="talk-item__title"><%= talk.title %></div>
-                  <div class="talk-item__speaker"><%= talk.speaker_name %></div>
+                  <div class="talk-item__speaker">
+                    <% if talk.speaker_homepage.present? %>
+                      <%= link_to talk.speaker_name, talk.speaker_homepage, target: "_blank", rel: "noopener" %>
+                    <% else %>
+                      <%= talk.speaker_name %>
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
             <% else %>
