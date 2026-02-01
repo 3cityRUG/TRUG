@@ -13,20 +13,24 @@ BRANCH="db-backups"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 COMMIT_MSG="backup: production db backup ${TIMESTAMP}"
 HASH_FILE="/tmp/trug_db_last_hash"
-KAMAL_BIN="/home/gotar/.local/share/gem/ruby/3.2.0/bin/kamal"
-PROJECT_DIR="/home/gotar/Programowanie/TRUG"
-
-if [ ! -f "$KAMAL_BIN" ]; then
-    KAMAL_BIN=$(which kamal 2>/dev/null || echo "kamal")
-fi
+DOCKER_BIN="/usr/bin/docker"
+CONTAINER_NAME="trug-web"
 
 echo "[DB BACKUP] Starting backup process..."
 echo "[DB BACKUP] Timestamp: $TIMESTAMP"
 
-cd "$PROJECT_DIR"
+echo "[DB BACKUP] Finding TRUG container..."
+FULL_CONTAINER=$(docker ps --filter "name=${CONTAINER_NAME}" --format "{{.Names}}" | head -1)
+
+if [ -z "$FULL_CONTAINER" ]; then
+    echo "[DB BACKUP] ERROR: Could not find container matching ${CONTAINER_NAME}"
+    exit 1
+fi
+
+echo "[DB BACKUP] Using container: $FULL_CONTAINER"
 
 echo "[DB BACKUP] Calculating database hash..."
-CURRENT_HASH=$($KAMAL_BIN app exec --reuse "md5sum $DB_CONTAINER_PATH" 2>/dev/null | awk '{ print $1 }')
+CURRENT_HASH=$(docker exec "$FULL_CONTAINER" md5sum "$DB_CONTAINER_PATH" 2>/dev/null | awk '{ print $1 }')
 
 if [ -z "$CURRENT_HASH" ]; then
     echo "[DB BACKUP] ERROR: Could not calculate database hash"
@@ -49,7 +53,7 @@ echo "[DB BACKUP] Database changed, proceeding with backup..."
 
 TEMP_DB="/tmp/trug_db_export_${TIMESTAMP}.sqlite3"
 echo "[DB BACKUP] Exporting database from container..."
-$KAMAL_BIN app exec --reuse "cat $DB_CONTAINER_PATH" > "$TEMP_DB"
+docker exec "$FULL_CONTAINER" cat "$DB_CONTAINER_PATH" > "$TEMP_DB"
 
 if [ ! -f "$TEMP_DB" ]; then
     echo "[DB BACKUP] ERROR: Failed to export database"
