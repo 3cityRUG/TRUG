@@ -1,5 +1,10 @@
 # Block bad bots and common vulnerability scanners
 class Rack::Attack
+  # Safelist localhost for development
+  safelist("allow localhost") do |request|
+    request.ip == "127.0.0.1" || request.ip == "::1" || request.ip == "localhost"
+  end
+
   # Block requests for common WordPress/PHP vulnerability scanning paths
   BLOCKED_PATHS = %w[
     .php
@@ -90,7 +95,8 @@ class Rack::Attack
 
   # Throttle general requests by IP (optional but recommended)
   throttle("req/ip", limit: 300, period: 5.minutes) do |request|
-    request.ip unless request.path.start_with?("/assets/")
+    # Skip throttling for assets and session endpoints
+    request.ip unless request.path.start_with?("/assets/", "/session")
   end
 
   # Log blocked requests

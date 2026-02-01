@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "github_sessions#failure"
 
   get "up" => "rails/health#show", as: :rails_health_check
+  
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+
   get "/video-thumbnails/:provider/:id", to: "video_thumbnails#show", as: :video_thumbnail
 
   resources :attendances, only: [ :new, :create ]

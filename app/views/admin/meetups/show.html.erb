@@ -121,7 +121,7 @@
                 </td>
                 <td>
                   <% if talk.video_id.present? %>
-                    <span class="badge-video badge-<%= talk.video_provider || 'youtube' %>">
+                    <span class="video-badge <%= talk.video_provider || 'youtube' %>">
                       <%= (talk.video_provider || 'youtube').capitalize %>
                     </span>
                   <% else %>
@@ -158,7 +158,7 @@
                     <%= link_to "Kod", talk.source_code_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
                   <% end %>
                   <% if talk.video_id.present? %>
-                    <span class="badge-video badge-<%= talk.video_provider || 'youtube' %>">
+                    <span class="video-badge <%= talk.video_provider || 'youtube' %>">
                       <%= (talk.video_provider || 'youtube').capitalize %>
                     </span>
                   <% end %>

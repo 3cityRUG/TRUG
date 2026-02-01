@@ -57,8 +57,8 @@
                       else
                         talk.video_thumb
                       end %>
-                      <div class="video-container" data-video-provider="<%= talk.video_provider %>" data-video-id="<%= talk.video_id %>">
-                        <button class="video-placeholder" aria-label="Odtwórz wideo">
+                      <div class="video-container" data-controller="video-player" data-video-player-target="container" data-video-provider="<%= talk.video_provider %>" data-video-id="<%= talk.video_id %>">
+                        <button class="video-placeholder" data-action="click->video-player#play" aria-label="Odtwórz wideo">
                           <img src="<%= thumb_url %>" alt="Miniatura wideo" loading="lazy">
                           <svg class="play-icon" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>

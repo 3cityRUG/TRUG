@@ -4,7 +4,7 @@
 /* Hero Section
    ========================================================================== */
 .landing-hero {
-  background-image: url("/images/tricity-panorama.svg");
+  background-image: url("tricity-panorama.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -64,7 +64,7 @@
 /* Community Section
    ========================================================================== */
 .landing-community {
-  background-image: url("/images/bg-community.png");
+  background-image: url("bg-community.png");
   background-size: cover;
   background-position: center;
   height: 280px;

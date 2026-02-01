@@ -14,32 +14,41 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <meta name="theme-color" content="#e25454">
     <link rel="alternate" type="application/rss+xml" title="TRUG RSS" href="<%= rss_url %>">
 
-    <%= stylesheet_link_tag :app %>
+    <%= stylesheet_link_tag :app, data: { turbo_track: "reload" } %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div class="navbar padding">
+    <div class="navbar padding" data-controller="navbar" data-action="click@window->navbar#closeOnClickOutside">
       <div class="container">
         <a href="/" class="navbar-brand">
           <%= image_tag "trug-logo.svg", class: "navbar-logo", alt: "trug logo" %>
         </a>
-        <div class="navbar-actions">
-          <a class="btn btn-ghost float-right" href="/archive">Archiwum</a>
+        <button type="button" class="navbar-toggle" data-action="click->navbar#toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-menu">
+          <span class="navbar-toggle-icon" aria-hidden="true"></span>
+          <span class="navbar-toggle-icon" aria-hidden="true"></span>
+          <span class="navbar-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <div class="navbar-actions" id="navbar-menu" data-navbar-target="menu">
+          <a class="btn btn-ghost" href="/archive">Archiwum</a>
           <% if authenticated? %>
-            <%= link_to "Admin", admin_root_path, class: "btn btn-brand float-right" %>
-            <%= button_to "Wyloguj", session_path, method: :delete, class: "btn btn-ghost float-right" %>
+            <%= link_to "Admin", admin_root_path, class: "btn btn-brand" %>
+            <%= link_to "Wyloguj", session_path, data: { turbo_method: :delete }, class: "btn btn-ghost" %>
           <% else %>
-            <%= link_to "Zaloguj przez GitHub", "/auth/github", class: "btn btn-brand float-right" %>
+            <%= link_to "Zaloguj przez GitHub", "/auth/github", class: "btn btn-brand" %>
           <% end %>
         </div>
       </div>

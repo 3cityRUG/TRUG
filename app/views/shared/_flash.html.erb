@@ -1,0 +1,11 @@
+<%# Flash Messages Partial %>
+<% if flash.any? %>
+  <div class="flash-messages">
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>" role="alert">
+        <%= message %>
+        <button type="button" class="flash-close" aria-label="Close" onclick="this.parentElement.remove()">&times;</button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

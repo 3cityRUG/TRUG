@@ -1,152 +1,109 @@
-<%# Unified Talks Index - Matches Meetups Structure %>
-<div class="page-header">
-  <div class="page-header-row">
-    <div class="page-header-content">
-      <h1 class="page-title">
-        Prezentacje
-        <span class="badge badge-count"><%= @talks.count %></span>
-      </h1>
-      <p class="page-subtitle">Wszystkie prezentacje z spotkań TRUG</p>
+<%# Talks Index - Restructured for mobile compatibility %>
+<header class="page-header">
+  <h1 class="page-title">
+    Prezentacje
+    <span class="badge badge-count"><%= @talks.count %></span>
+  </h1>
+  <p class="page-subtitle">Wszystkie prezentacje z spotkań TRUG</p>
+</header>
+
+<section class="section">
+  <%# Action Button %>
+  <div class="action-grid" style="margin-bottom: var(--space-6);">
+    <%= link_to admin_meetups_path, class: "action-card" do %>
+      <span class="action-card-icon" aria-hidden="true">←</span>
+      <span class="action-card-label">Wróć do spotkań</span>
+    <% end %>
+  </div>
+
+  <%# Stats %>
+  <% 
+    talks_with_video = @talks.select { |t| t.video_id.present? }.count
+    talks_with_slides = @talks.select { |t| t.slides_url.present? }.count
+    total_meetups = Meetup.count
+    avg_talks = total_meetups > 0 ? (@talks.count.to_f / total_meetups).round(1) : 0
+  %>
+
+  <div class="stats-grid" style="margin-bottom: var(--space-6);">
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">🎤</span>
+      <span class="stat-number"><%= @talks.count %></span>
+      <span class="stat-label">Wszystkie</span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">🎥</span>
+      <span class="stat-number" style="color: var(--color-success);"><%= talks_with_video %></span>
+      <span class="stat-label">Z wideo</span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">📊</span>
+      <span class="stat-number" style="color: var(--color-brand);"><%= talks_with_slides %></span>
+      <span class="stat-label">Ze slajdami</span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-icon" aria-hidden="true">📈</span>
+      <span class="stat-number"><%= avg_talks %></span>
+      <span class="stat-label">Śr. na spotkanie</span>
+    </article>
+  </div>
+
+  <%# Talks List %>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-header-title">
+        <span aria-hidden="true">🎤</span>
+        Lista prezentacji
+      </h2>
     </div>
-    <div class="page-actions">
-      <%= link_to admin_meetups_path, class: "btn btn-secondary" do %>
-        ← Wróć do spotkań
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<%# Stats Grid %>
-<% 
-  talks_with_video = @talks.select { |t| t.video_id.present? }.count
-  talks_with_slides = @talks.select { |t| t.slides_url.present? }.count
-  total_meetups = Meetup.count
-  avg_talks = total_meetups > 0 ? (@talks.count.to_f / total_meetups).round(1) : 0
-%>
-
-<div class="stats-grid">
-  <div class="stat-card">
-    <div class="stat-value"><%= @talks.count %></div>
-    <div class="stat-label">Wszystkie</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value" style="color: var(--color-success);"><%= talks_with_video %></div>
-    <div class="stat-label">Z wideo</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value" style="color: var(--color-brand);"><%= talks_with_slides %></div>
-    <div class="stat-label">Ze slajdami</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value"><%= avg_talks %></div>
-    <div class="stat-label">Śr. na spotkanie</div>
-  </div>
-</div>
-
-<%# Talks Table (Desktop) %>
-<div class="data-table-wrapper hide-mobile">
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th>Tytuł</th>
-        <th>Prelegent</th>
-        <th>Spotkanie</th>
-        <th>Materiały</th>
-        <th class="actions">Akcje</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @talks.each do |talk| %>
-        <tr>
-          <td>
-            <strong><%= talk.title %></strong>
-          </td>
-          <td>
-            <%= talk.speaker_name %>
-          </td>
-          <td>
-            <%= link_to admin_meetup_path(talk.meetup), class: "meetup-link" do %>
-              <span class="meetup-badge">#<%= talk.meetup.number %></span>
-            <% end %>
-            <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-1);">
-              <%= l talk.meetup.date, format: :long %>
-            </div>
-          </td>
-          <td>
-            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-              <% if talk.slides_url.present? %>
-                <%= link_to "Slajdy", talk.slides_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
-              <% end %>
-              <% if talk.source_code_url.present? %>
-                <%= link_to "Kod", talk.source_code_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
-              <% end %>
-              <% if talk.video_id.present? %>
-                <span class="badge-video badge-<%= talk.video_provider || 'youtube' %>">
-                  <%= (talk.video_provider || 'youtube').capitalize %>
-                </span>
-              <% end %>
-              <% if talk.slides_url.blank? && talk.source_code_url.blank? && talk.video_id.blank? %>
-                <span class="text-muted">-</span>
-              <% end %>
-            </div>
-          </td>
-          <td class="actions">
-            <%= link_to "Edytuj", edit_admin_meetup_talk_path(talk.meetup, talk), class: "btn btn-secondary btn-sm" %>
-            <%= button_to "Usuń", admin_meetup_talk_path(talk.meetup, talk), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć tę prezentację?" } }, class: "btn btn-danger btn-sm" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<%# Talks Cards (Mobile) %>
-<div class="data-cards hide-desktop">
-  <% @talks.each do |talk| %>
-    <div class="data-card">
-      <div class="data-card-header">
-        <div class="data-card-title"><%= talk.title %></div>
-        <div class="data-card-subtitle"><%= talk.speaker_name %></div>
-      </div>
-      <div class="data-card-body">
-        <div style="margin-bottom: var(--space-3);">
-          <%= link_to admin_meetup_path(talk.meetup) do %>
-            <span class="meetup-badge">#<%= talk.meetup.number %></span>
+    <div class="card-body">
+      <% if @talks.any? %>
+        <ul class="meetup-list" role="list">
+          <% @talks.each do |talk| %>
+            <li class="meetup-list-item">
+              <div class="meetup-list-info">
+                <span class="meetup-list-number" aria-hidden="true">🎤</span>
+                <div class="meetup-list-details">
+                  <span class="meetup-list-title"><%= talk.title %></span>
+                  <span class="meetup-list-meta">
+                    <%= talk.speaker_name %>
+                    <span aria-hidden="true">•</span>
+                    <%= link_to admin_meetup_path(talk.meetup), class: "meetup-link" do %>
+                      <span class="meetup-badge">#<%= talk.meetup.number %></span>
+                    <% end %>
+                    <span aria-hidden="true">•</span>
+                    <time datetime="<%= talk.meetup.date.iso8601 %>"><%= l talk.meetup.date, format: :long %></time>
+                  </span>
+                </div>
+              </div>
+              <div class="meetup-list-actions" style="flex-wrap: wrap; gap: var(--space-2);">
+                <% if talk.slides_url.present? %>
+                  <%= link_to "Slajdy", talk.slides_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
+                <% end %>
+                <% if talk.source_code_url.present? %>
+                  <%= link_to "Kod", talk.source_code_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
+                <% end %>
+                <% if talk.video_id.present? %>
+                  <span class="video-badge <%= talk.video_provider || 'youtube' %>">
+                    <%= (talk.video_provider || 'youtube').capitalize %>
+                  </span>
+                <% end %>
+                <%= link_to "Edytuj", edit_admin_meetup_talk_path(talk.meetup, talk), class: "btn btn-secondary btn-sm" %>
+                <%= button_to "Usuń", admin_meetup_talk_path(talk.meetup, talk), method: :delete, form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć tę prezentację?" } }, class: "btn btn-danger btn-sm" %>
+              </div>
+            </li>
           <% end %>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-1);">
-            <%= l talk.meetup.date, format: :long %>
-          </div>
+        </ul>
+      <% else %>
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">🎤</div>
+          <h3 class="empty-state-title">Brak prezentacji</h3>
+          <p class="empty-state-description">Dodaj prezentacje do spotkań, aby zobaczyć je na tej liście.</p>
+          <%= link_to "Przejdź do spotkań", admin_meetups_path, class: "btn btn-brand" %>
         </div>
-        
-        <% if talk.slides_url.present? || talk.source_code_url.present? || talk.video_id.present? %>
-          <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-            <% if talk.slides_url.present? %>
-              <%= link_to "Slajdy", talk.slides_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
-            <% end %>
-            <% if talk.source_code_url.present? %>
-              <%= link_to "Kod", talk.source_code_url, target: "_blank", class: "btn btn-ghost btn-sm" %>
-            <% end %>
-            <% if talk.video_id.present? %>
-              <span class="badge-video badge-<%= talk.video_provider || 'youtube' %>">
-                <%= (talk.video_provider || 'youtube').capitalize %>
-              </span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="data-card-footer">
-        <%= link_to "Edytuj", edit_admin_meetup_talk_path(talk.meetup, talk), class: "btn btn-secondary btn-sm" %>
-        <%= button_to "Usuń", admin_meetup_talk_path(talk.meetup, talk), method: :delete, form: { data: { turbo_confirm: "Usunąć?" } }, class: "btn btn-danger btn-sm" %>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
-
-<% if @talks.empty? %>
-  <div class="empty-state">
-    <div class="empty-state-icon">🎤</div>
-    <h3 class="empty-state-title">Brak prezentacji</h3>
-    <p class="empty-state-text">Dodaj prezentacje do spotkań</p>
-    <%= link_to "Przejdź do spotkań", admin_meetups_path, class: "btn btn-primary" %>
   </div>
-<% end %>
+</section>

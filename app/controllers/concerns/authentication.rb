@@ -90,7 +90,8 @@ module Authentication
       Current.session ||= find_session_by_cookie
 
       # Development bypass - auto-authenticate as admin
-      if Rails.env.development? && Current.session.nil?
+      # Skip if user explicitly logged out
+      if Rails.env.development? && Current.session.nil? && !session[:skip_auto_login]
         dev_user = User.find_or_create_by!(github_username: "dev_admin") do |u|
           u.github_id = "999999"
           u.email_address = "dev@localhost"

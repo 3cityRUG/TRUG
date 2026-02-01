@@ -1,7 +1,7 @@
 .footer {
   color: #ffffff;
   background: #e25454;
-  background-image: url("/images/sparkles.svg");
+  background-image: url("sparkles.svg");
   background-repeat: no-repeat;
   background-size: 130px;
   background-position-y: center;
