@@ -15,9 +15,17 @@
     <%= f.label :event_type, "Typ spotkania", class: "form-label" do %>
       Typ spotkania <span class="required">*</span>
     <% end %>
-    <%= f.select :event_type, 
-        [["TRUG - Formalne spotkania z prezentacjami", "formal"], ["Bar TRUG - Nieformalne spotkania", "bar"]], 
-        { class: "form-input" } %>
+    <div class="custom-select">
+      <%= f.select :event_type, 
+          [["TRUG - Formalne spotkania z prezentacjami", "formal", data: { icon: "formal" }], 
+           ["Bar TRUG - Nieformalne spotkania", "bar", data: { icon: "bar" }]], 
+          { class: "custom-select__input" } %>
+      <div class="custom-select__icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
     <span class="form-hint">Wybierz typ spotkania</span>
   </div>
 
@@ -60,11 +68,9 @@
 </div>
 
 <% if meetup.persisted? %>
-  <div class="form-section" style="margin-top: 3rem; border-top: 2px solid var(--color-border); padding-top: 2rem;">
-    <h3 style="color: var(--color-danger); font-size: var(--text-lg); margin-bottom:1rem;">Strefa niebezpieczeństwa</h3>
-    <p style="color: var(--color-text-secondary); margin-bottom:1rem;">
-      Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.
-    </p>
+  <div class="form-section form-section--danger">
+    <h3>Strefa niebezpieczeństwa</h3>
+    <p>Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.</p>
     <%= button_to "Usuń spotkanie", admin_meetup_path(meetup), method: :delete, 
         form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie i wszystkie jego prezentacje?" } }, 
         class: "btn btn-danger" %>
@@ -79,18 +85,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const numberRequiredIndicator = document.getElementById('number-required-indicator');
   
   function toggleFormalFields() {
-    if (eventTypeSelect.value === 'formal') {
+    if (eventTypeSelect && eventTypeSelect.value === 'formal') {
       formalFields.style.display = 'block';
       numberField.required = true;
       numberRequiredIndicator.style.display = 'inline';
-    } else {
+    } else if (formalFields) {
       formalFields.style.display = 'none';
       numberField.required = false;
       numberRequiredIndicator.style.display = 'none';
     }
   }
   
-  eventTypeSelect.addEventListener('change', toggleFormalFields);
-  toggleFormalFields();
+  if (eventTypeSelect) {
+    eventTypeSelect.addEventListener('change', toggleFormalFields);
+    toggleFormalFields();
+  }
 });
 </script>
