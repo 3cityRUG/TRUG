@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_22_193725) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_03_174334) do
   create_table "attendances", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "github_username"
@@ -24,9 +24,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_193725) do
     t.datetime "created_at", null: false
     t.date "date", null: false
     t.text "description"
+    t.string "event_type", default: "formal"
     t.string "location"
-    t.integer "number", null: false
+    t.integer "number"
     t.datetime "updated_at", null: false
+    t.index ["event_type"], name: "index_meetups_on_event_type"
     t.index ["number"], name: "index_meetups_on_number", unique: true
   end
 
