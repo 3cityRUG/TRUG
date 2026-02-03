@@ -102,6 +102,18 @@ rm -f "$TEMP_DB"
 
 echo "[DB BACKUP] Database copied to $BACKUP_FILE"
 
+# Keep only last 5 backups
+shopt -s nullglob
+backups=(db/backups/production_*.sqlite3)
+if [ "${#backups[@]}" -gt 5 ]; then
+  excess=$(( ${#backups[@]} - 5 ))
+  for ((i=0; i<excess; i++)); do
+    echo "[DB BACKUP] Removing old backup: $(basename "${backups[$i]}")"
+    rm -f "${backups[$i]}"
+  done
+fi
+shopt -u nullglob
+
 git add -A
 
 if git diff --cached --quiet; then

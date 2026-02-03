@@ -72,6 +72,16 @@ namespace :db do
         FileUtils.cp(db_path, latest_file)
         puts "[DB BACKUP] Database copied to #{backup_file}"
 
+        # Keep only last 5 backups
+        all_backups = Dir.glob("db/backups/production_*.sqlite3").sort
+        if all_backups.count > 5
+          old_backups = all_backups[0...-5]
+          old_backups.each do |old|
+            File.delete(old)
+            puts "[DB BACKUP] Removed old backup: #{File.basename(old)}"
+          end
+        end
+
         # Add and commit
         run_command("git add -A")
 
