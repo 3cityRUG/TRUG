@@ -14,13 +14,13 @@ class Admin::MeetupsControllerTest < ActionDispatch::IntegrationTest
   test "new action works" do
     get :new
     assert_response :success
-    assert_equal assigns(:meetup).event_type, "formal"
+    assert_equal "formal", assigns(:meetup).event_type
   end
 
   test "new action with bar type" do
     get :new, params: { type: "bar" }
     assert_response :success
-    assert_equal assigns(:meetup).event_type, "bar"
+    assert_equal "bar", assigns(:meetup).event_type
   end
 
   test "create formal meetup" do
