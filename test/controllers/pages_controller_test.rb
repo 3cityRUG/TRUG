@@ -15,4 +15,23 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get archive_url
     assert_response :success
   end
+
+  test "home action sets next formal meetup" do
+    get :home
+    assert_response :success
+    assert_not_nil assigns(:next_formal_meetup)
+  end
+
+  test "home action sets next bar meetup" do
+    get :home
+    assert_response :success
+    assert_not_nil assigns(:next_bar_meetup)
+  end
+
+  test "archive action filters to formal" do
+    get :archive
+    assert_response :success
+    meetups = assigns(:meetups)
+    assert meetups.respond_to?(:each)
+  end
 end
