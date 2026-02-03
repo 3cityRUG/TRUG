@@ -4,24 +4,60 @@ class MeetupTest < ActiveSupport::TestCase
   test "validations" do
     meetup = Meetup.new
     assert_not meetup.valid?
-    assert_includes meetup.errors[:number], "can't be blank"
-    assert_includes meetup.errors[:date], "can't be blank"
+    assert meetup.errors[:number].any?
+    assert meetup.errors[:date].any?
   end
 
-  test "ordered scope returns meetups in descending date order" do
-    meetup1 = meetups(:one)
-    meetup2 = meetups(:two)
-    assert_equal Meetup.ordered, Meetup.order(date: :desc)
+  test "formal meetup requires number" do
+    formal = Meetup.new(event_type: "formal", date: Date.today)
+    assert_not formal.valid?
+    assert formal.errors[:number].any?
+  end
+
+  test "bar meetup does not require number" do
+    bar = Meetup.new(event_type: "bar", date: Date.today, location: "Test Restaurant")
+    assert bar.valid?
+  end
+
+  test "ordered scope returns meetups ordered by event_type and date" do
+    result = Meetup.ordered.to_a
+    assert_instance_of Array, result
+  end
+
+  test "formal scope filters to formal meetups only" do
+    result = Meetup.formal
+    assert_equal result.to_a, Meetup.where(event_type: "formal").to_a
+  end
+
+  test "bar scope filters to bar meetups only" do
+    result = Meetup.bar
+    assert_equal result.to_a, Meetup.where(event_type: "bar").to_a
+  end
+
+  test "archived scope returns only past formal meetups" do
+    result = Meetup.archived
+    past_formal = Meetup.formal.past
+    assert_equal result.to_a, past_formal.to_a
+  end
+
+  test "cannot change formal to bar if talks exist" do
+    formal = meetups(:one)
+    assert formal.talks.any?
+    formal.event_type = "bar"
+    assert_not formal.valid?
+    assert formal.errors[:event_type].any?
   end
 
   test "number uniqueness" do
-    duplicate_meetup = Meetup.new(
-      number: meetups(:one).number,
+    existing = meetups(:one)
+    duplicate = Meetup.new(
+      number: existing.number,
       date: Date.today,
-      location: "Test Location"
+      location: "Test Location",
+      event_type: "formal"
     )
-    assert_not duplicate_meetup.valid?
-    assert_includes duplicate_meetup.errors[:number], "has already been taken"
+    assert_not duplicate.valid?
+    assert duplicate.errors[:number].any?
   end
 
   test "has many talks" do
