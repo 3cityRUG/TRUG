@@ -75,11 +75,6 @@ builder:
 ssh:
   user: gotar
 
-# Run commands before/after deployment
-hooks:
-  post-deploy:
-    - bin/rails db:migrate
-
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
 #   db:
