@@ -2,6 +2,7 @@ class Meetup < ApplicationRecord
   has_many :talks, dependent: :destroy
   has_many :attendances, dependent: :destroy
 
+  attribute :event_type, :string
   enum :event_type, { formal: "formal", bar: "bar" }, default: "formal"
 
   validates :number, presence: true, uniqueness: true, if: :formal?
