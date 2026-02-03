@@ -1,0 +1,77 @@
+<div class="event-card event-card--<%= type %>">
+  <div class="event-card__header">
+    <span class="event-card__title"><%= title %></span>
+    <% if type == 'formal' && meetup.number.present? %>
+      <span class="event-card__number">#<%= meetup.number %></span>
+    <% end %>
+    <span class="event-card__date">
+      <%= l(meetup.date, format: '%Y-%m-%d') %> (<%= l(meetup.date, format: '%A', locale: :pl) %>)
+    </span>
+  </div>
+  
+  <div class="info-row">
+    <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11.4V7a1 1 0 1 0-2 0v7c0 .3.1.6.3.8l3.8 3.8a1 1 0 1 0 1.4-1.4z" />
+    </svg>
+    <div class="info-row__content">
+      <div class="info-row__label">Godzina</div>
+      <div class="info-row__value">18:00</div>
+    </div>
+  </div>
+  
+  <div class="info-row">
+    <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+    </svg>
+    <div class="info-row__content">
+      <div class="info-row__label">Miejsce</div>
+      <div class="info-row__value">
+        <%= type == 'formal' ? 'Hackerspace, al. Wojska Polskiego 41, Gdańsk' : meetup.location %>
+      </div>
+    </div>
+  </div>
+  
+  <% if type == 'formal' && meetup.talks.any? %>
+    <div class="talks-section">
+      <div class="talks-section__title">Agenda</div>
+      <% meetup.talks.each do |talk| %>
+        <div class="talk-item">
+          <div class="talk-item__title"><%= talk.title %></div>
+          <div class="talk-item__speaker">
+            <% if talk.speaker_homepage.present? %>
+              <%= link_to talk.speaker_name, talk.speaker_homepage, target: "_blank", rel: "noopener" %>
+            <% else %>
+              <%= talk.speaker_name %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% elsif type == 'formal' %>
+    <div class="talks-section">
+      <div class="talks-section__title">Agenda</div>
+      <div class="talk-item">
+        <div class="talk-item__title">Brak informacji o prezentacjach</div>
+      </div>
+    </div>
+  <% end %>
+  
+  <% if type == 'formal' %>
+    <div class="map-container">
+      <h3>Lokalizacja</h3>
+      <a href="https://www.google.com/maps/place/Hackerspace+Tr%C3%B3jmiasto/@54.3896224,18.5792051,17z" target="_blank" rel="noopener">
+        <%= image_tag "mapa.png", alt: "Mapa dojazdu do Hackerspace Trójmiasto", class: "map-container__image" %>
+      </a>
+      <div class="map-container__caption">
+        <svg class="map-container__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+        </svg>
+        <span>Hackerspace Trójmiasto, al. Wojska Polskiego 41, Gdańsk</span>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= turbo_frame_tag "attendance_section_#{meetup.id}" do %>
+    <%= render partial: "pages/attendance_section", locals: { next_meetup: meetup } %>
+  <% end %>
+</div>

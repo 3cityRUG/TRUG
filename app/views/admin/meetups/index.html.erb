@@ -1,4 +1,4 @@
-<%# Meetups Index - Restructured for mobile compatibility %>
+<%# Meetups Index - Updated with type filter and type column %>
 <header class="page-header">
   <h1 class="page-title">
     Spotkania
@@ -14,7 +14,17 @@
       <span class="action-card-label">Nowe spotkanie</span>
     <% end %>
   </div>
-
+  
+  <%# Type Filter %>
+  <div class="filter-section" style="margin-bottom: var(--space-6);">
+    <label for="type-filter" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Filtruj według typu:</label>
+    <select id="type-filter" onchange="window.location.href = '?type=' + this.value" style="width: 100%; max-width: 300px; padding: 0.5rem; border-radius: 8px; border: 1px solid var(--color-border);">
+      <option value="">Wszystkie</option>
+      <option value="formal" <%= params[:type] == 'formal' ? 'selected' : '' %>>TRUG</option>
+      <option value="bar" <%= params[:type] == 'bar' ? 'selected' : '' %>>Bar TRUG</option>
+    </select>
+  </div>
+  
   <%# Stats %>
   <div class="stats-grid" style="margin-bottom: var(--space-6);">
     <article class="stat-card">
@@ -22,20 +32,20 @@
       <span class="stat-number"><%= @total_meetups %></span>
       <span class="stat-label">Wszystkie spotkania</span>
     </article>
-
+  
     <article class="stat-card">
       <span class="stat-icon" aria-hidden="true">🚀</span>
       <span class="stat-number"><%= @upcoming_meetups %></span>
       <span class="stat-label">Nadchodzące</span>
     </article>
-
+  
     <article class="stat-card">
       <span class="stat-icon" aria-hidden="true">🎤</span>
       <span class="stat-number"><%= @total_talks %></span>
       <span class="stat-label">Prezentacje</span>
     </article>
   </div>
-
+  
   <%# Meetups List %>
   <div class="card">
     <div class="card-header">
@@ -50,9 +60,16 @@
           <% @meetups.each do |meetup| %>
             <li class="meetup-list-item">
               <div class="meetup-list-info">
-                <span class="meetup-list-number" aria-hidden="true"><%= meetup.number %></span>
+                <% if meetup.event_type == 'formal' && meetup.number.present? %>
+                  <span class="meetup-list-number" aria-hidden="true"><%= meetup.number %></span>
+                <% end %>
                 <div class="meetup-list-details">
-                  <span class="meetup-list-title">Spotkanie #<%= meetup.number %></span>
+                  <span class="meetup-list-title">
+                    <%= meetup.event_type == 'formal' ? "Spotkanie ##{meetup.number}" : "Bar TRUG" %>
+                  </span>
+                  <span class="meetup-list-type-badge <%= "meetup-list-type--#{meetup.event_type}" %>">
+                    <%= meetup.event_type == 'formal' ? 'TRUG' : 'Bar TRUG' %>
+                  </span>
                   <span class="meetup-list-meta">
                     <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
                     <% if meetup.date.today? %>

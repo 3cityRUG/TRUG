@@ -6,7 +6,7 @@
       Użytkowników Ruby
     </h2>
     <a class="btn btn-brand" href="#next-meetup">
-      Najbliższe spotkanie
+      Najbliższe spotkania
       <svg class="landing-cta-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 16.5l-6-6 1.4-1.4L12 13.7l4.6-4.6 1.4 1.4z" />
       </svg>
@@ -18,7 +18,11 @@
   <div class="grid grid-center">
     <div class="grid-item three-fifths compact-one">
       <h2 class="no-margin padding-2-1-top">Spotkania</h2>
-      <p>Przeważnie odbywają się w przedostanią środę każdego miesiąca. Zapraszamy wszystkich zainteresowanych językiem programowania Ruby oraz technologiami pokrewnymi. Po prezentacjach rozmawiamy oraz gramy w gry planszowe.</p>
+      <p>Organizujemy dwa rodzaje spotkań:</p>
+      <ul style="text-align: left; display: inline-block;">
+        <li><strong>TRUG</strong> - Formalne spotkania z prezentacjami, odbywające się co miesiąc w Hackerspace</li>
+        <li><strong>Bar TRUG</strong> - Nieformalne spotkania w restauracjach, co dwa tygodnie, tylko rozmowy i integracja</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -26,85 +30,43 @@
 <div class="landing-community"></div>
 
 <div class="container padding-3-1-vertical">
-  <h2 id="next-meetup" class="text-left">Najbliższe spotkanie</h2>
+  <h2 id="next-meetup" class="text-left">Najbliższe spotkania</h2>
   
-  <div class="grid">
-    <div class="grid-item one-half compact-one text-left">
-      <% if @next_meetup %>
-        <div class="meetup-info">
-          <div class="meetup-info__header">
-            <span class="meetup-info__number">#<%= @next_meetup.number %></span>
-            <span class="meetup-info__date"><%= l(@next_meetup.date, format: '%Y-%m-%d') %> (<%= l(@next_meetup.date, format: '%A', locale: :pl) %>)</span>
-          </div>
-          
-          <div class="info-row">
-            <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11.4V7a1 1 0 1 0-2 0v7c0 .3.1.6.3.8l3.8 3.8a1 1 0 1 0 1.4-1.4z" />
-            </svg>
-            <div class="info-row__content">
-              <div class="info-row__label">Godzina</div>
-              <div class="info-row__value">18:00</div>
-            </div>
-          </div>
-          
-          <div class="info-row">
-            <svg class="info-row__icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-            </svg>
-            <div class="info-row__content">
-              <div class="info-row__label">Miejsce</div>
-              <div class="info-row__value">Hackerspace, al. Wojska Polskiego 41, Gdańsk</div>
-            </div>
-          </div>
-          
-          <div class="talks-section">
-            <div class="talks-section__title">Agenda</div>
-            <% if @next_meetup.talks.any? %>
-              <% @next_meetup.talks.each do |talk| %>
-                <div class="talk-item">
-                  <div class="talk-item__title"><%= talk.title %></div>
-                  <div class="talk-item__speaker">
-                    <% if talk.speaker_homepage.present? %>
-                      <%= link_to talk.speaker_name, talk.speaker_homepage, target: "_blank", rel: "noopener" %>
-                    <% else %>
-                      <%= talk.speaker_name %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            <% else %>
-              <div class="talk-item">
-                <div class="talk-item__title">Brak informacji o prezentacjach</div>
-              </div>
-            <% end %>
+  <div class="events-grid">
+    <div class="events-grid__item">
+      <% if @next_formal_meetup %>
+        <%= render partial: 'pages/event_card', locals: { 
+          meetup: @next_formal_meetup, 
+          type: 'formal',
+          title: 'TRUG' 
+        } %>
+      <% else %>
+        <div class="event-card">
+          <div class="event-card__header">
+            <span class="event-card__title">TRUG</span>
+            <span class="event-card__date">Brak zaplanowanych spotkań</span>
           </div>
         </div>
-      <% else %>
-        <p>Brak zaplanowanych spotkań. Sprawdź wkrótce!</p>
       <% end %>
     </div>
     
-    <div class="grid-item one-half compact-one">
-      <h3>Lokalizacja</h3>
-      <div class="map-container">
-        <a href="https://www.google.com/maps/place/Hackerspace+Tr%C3%B3jmiasto/@54.3896224,18.5792051,17z" target="_blank" rel="noopener">
-          <%= image_tag "mapa.png", alt: "Mapa dojazdu do Hackerspace Trójmiasto", class: "map-container__image" %>
-        </a>
-        <div class="map-container__caption">
-          <svg class="map-container__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-          </svg>
-          <span>Hackerspace Trójmiasto, al. Wojska Polskiego 41, Gdańsk</span>
+    <div class="events-grid__item">
+      <% if @next_bar_meetup %>
+        <%= render partial: 'pages/event_card', locals: { 
+          meetup: @next_bar_meetup, 
+          type: 'bar',
+          title: 'Bar TRUG' 
+        } %>
+      <% else %>
+        <div class="event-card">
+          <div class="event-card__header">
+            <span class="event-card__title">Bar TRUG</span>
+            <span class="event-card__date">Brak zaplanowanych spotkań</span>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
-  
-  <% if @next_meetup %>
-    <%= turbo_frame_tag "attendance_section" do %>
-      <%= render partial: "pages/attendance_section", locals: { next_meetup: @next_meetup } %>
-    <% end %>
-  <% end %>
 </div>
 
 <div class="container padding-3-1-bottom">

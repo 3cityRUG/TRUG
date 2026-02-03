@@ -1,4 +1,4 @@
-<%# Meetup Form %>
+<%# Meetup Form - Updated with event type selector %>
 <% if meetup.errors.any? %>
   <div class="form-errors">
     <div class="form-errors-title">Formularz zawiera błędy:</div>
@@ -11,22 +11,42 @@
 <% end %>
 
 <div class="form-section">
-  <div class="form-row">
+  <div class="form-field">
+    <%= f.label :event_type, "Typ spotkania", class: "form-label" do %>
+      Typ spotkania <span class="required">*</span>
+    <% end %>
+    <%= f.select :event_type, 
+        [["TRUG - Formalne spotkania z prezentacjami", "formal"], ["Bar TRUG - Nieformalne spotkania", "bar"]], 
+        { class: "form-input" } %>
+    <span class="form-hint">Wybierz typ spotkania</span>
+  </div>
+
+  <div class="form-row" id="formal-fields">
     <div class="form-field">
-      <%= f.label :number, "Numer spotkania", class: "form-label" %>
-      <%= f.number_field :number, class: "form-input", min: 1 %>
-      <span class="form-hint">Unikalny numer spotkania (np. 123)</span>
-    </div>
-    
-    <div class="form-field">
-      <%= f.label :date, class: "form-label" do %>
-        Data spotkania <span class="required">*</span>
+      <%= f.label :number, "Numer spotkania", class: "form-label" do %>
+        Numer spotkania <span id="number-required-indicator" class="required">*</span>
       <% end %>
-      <%= f.date_field :date, class: "form-input", required: true %>
-      <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
+      <%= f.number_field :number, class: "form-input", min: 1, id: "meetup_number_field" %>
+      <span class="form-hint">Unikalny numer spotkania (tylko dla TRUG)</span>
     </div>
   </div>
   
+  <div class="form-field">
+    <%= f.label :date, class: "form-label" do %>
+      Data spotkania <span class="required">*</span>
+    <% end %>
+    <%= f.date_field :date, class: "form-input", required: true %>
+    <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
+  </div>
+</div>
+
+<div class="form-section">
+  <div class="form-field">
+    <%= f.label :location, "Miejsce", class: "form-label" %>
+    <%= f.text_field :location, class: "form-input" %>
+    <span class="form-hint">Miejsce spotkania (domyślnie: Hackerspace dla TRUG)</span>
+  </div>
+
   <div class="form-field">
     <%= f.label :description, "Opis", class: "form-label" %>
     <%= f.textarea :description, class: "form-textarea", rows: 4 %>
@@ -41,8 +61,8 @@
 
 <% if meetup.persisted? %>
   <div class="form-section" style="margin-top: 3rem; border-top: 2px solid var(--color-border); padding-top: 2rem;">
-    <h3 style="color: var(--color-danger); font-size: var(--text-lg); margin-bottom: 1rem;">Strefa niebezpieczeństwa</h3>
-    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
+    <h3 style="color: var(--color-danger); font-size: var(--text-lg); margin-bottom:1rem;">Strefa niebezpieczeństwa</h3>
+    <p style="color: var(--color-text-secondary); margin-bottom:1rem;">
       Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.
     </p>
     <%= button_to "Usuń spotkanie", admin_meetup_path(meetup), method: :delete, 
@@ -50,3 +70,27 @@
         class: "btn btn-danger" %>
   </div>
 <% end %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const eventTypeSelect = document.querySelector('#meetup_event_type');
+  const formalFields = document.getElementById('formal-fields');
+  const numberField = document.getElementById('meetup_number_field');
+  const numberRequiredIndicator = document.getElementById('number-required-indicator');
+  
+  function toggleFormalFields() {
+    if (eventTypeSelect.value === 'formal') {
+      formalFields.style.display = 'block';
+      numberField.required = true;
+      numberRequiredIndicator.style.display = 'inline';
+    } else {
+      formalFields.style.display = 'none';
+      numberField.required = false;
+      numberRequiredIndicator.style.display = 'none';
+    }
+  }
+  
+  eventTypeSelect.addEventListener('change', toggleFormalFields);
+  toggleFormalFields();
+});
+</script>
