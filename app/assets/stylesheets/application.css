@@ -122,6 +122,23 @@ p {
   padding-top: 3rem;
 }
 
+.padding-4-0-bottom {
+  padding-bottom: 4rem;
+}
+
+.padding-4-0-vertical {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.padding-2-0-top {
+  padding-top: 2rem;
+}
+
+.padding-1-0-bottom {
+  padding-bottom: 1rem;
+}
+
 .padding-horizontal {
   padding-left: 1rem;
   padding-right: 1rem;
