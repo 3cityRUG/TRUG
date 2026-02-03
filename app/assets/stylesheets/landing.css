@@ -99,48 +99,36 @@
   margin-bottom: 0.5rem;
 }
 
-/* Custom Select Component
+/* Form Select Styling
    ========================================================================== */
-.custom-select {
-  position: relative;
-  display: block;
-}
-
-.custom-select__input {
+.form-select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 100%;
-  padding: 0.75rem 3rem 0.75rem 1rem;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
   font-size: 1rem;
   font-family: var(--font-family);
   color: var(--color-dark);
   background-color: var(--color-light);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23505050'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
   border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.custom-select__input:hover {
+.form-select:hover {
   border-color: var(--color-brand);
 }
 
-.custom-select__input:focus {
+.form-select:focus {
   outline: none;
   border-color: var(--color-brand);
   box-shadow: 0 0 0 3px rgba(226, 84, 84, 0.15);
-}
-
-.custom-select__icon {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--color-gray);
-  width: 1.25rem;
-  height: 1.25rem;
 }
 
 /* Form Section - Danger Zone

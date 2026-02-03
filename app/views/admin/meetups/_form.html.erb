@@ -15,17 +15,10 @@
     <%= f.label :event_type, "Typ spotkania", class: "form-label" do %>
       Typ spotkania <span class="required">*</span>
     <% end %>
-    <div class="custom-select">
-      <%= f.select :event_type, 
-          [["TRUG - Formalne spotkania z prezentacjami", "formal", data: { icon: "formal" }], 
-           ["Bar TRUG - Nieformalne spotkania", "bar", data: { icon: "bar" }]], 
-          { class: "custom-select__input" } %>
-      <div class="custom-select__icon">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
+    <%= f.select :event_type, 
+        [["TRUG - Formalne spotkania z prezentacjami", "formal"], 
+         ["Bar TRUG - Nieformalne spotkania", "bar"]], 
+        { class: "form-select" } %>
     <span class="form-hint">Wybierz typ spotkania</span>
   </div>
 
