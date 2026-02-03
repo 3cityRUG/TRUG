@@ -30,12 +30,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 70%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 70%,
+      rgba(255, 255, 255, 1) 100%);
   pointer-events: none;
 }
 
@@ -80,7 +78,7 @@
     flex-direction: row;
     gap: 3rem;
   }
-  
+
   .events-grid__item {
     flex: 1 1 0;
     min-width: 0;
@@ -165,7 +163,7 @@
   box-shadow: var(--shadow-sm);
   height: 100%;
   margin-bottom: 0;
-  
+
   /* Subtle hover effect */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -197,13 +195,11 @@
   margin: -1.5rem -1.5rem 2rem -1.5rem;
   border-bottom: 2px solid var(--color-brand);
   border-radius: var(--border-radius) var(--border-radius) 0 0;
-  
+
   /* Subtle gradient background */
-  background: linear-gradient(
-    to bottom,
-    rgba(226, 84, 84, 0.05) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(226, 84, 84, 0.05) 0%,
+      transparent 100%);
 }
 
 .event-card__title {
@@ -314,7 +310,12 @@
 
 /* Typography - Spacing below headings
     ========================================================================= */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 1.5rem;
 }
 
@@ -630,33 +631,33 @@ h1, h2, h3, h4, h5, h6 {
   .landing-lead {
     font-size: 1.75rem;
   }
-  
+
   .event-card {
     padding: 1rem;
   }
-  
+
   .event-card__title {
     font-size: 1rem;
   }
-  
+
   .event-card__date {
     font-size: 0.85rem;
   }
-  
+
   .info-row {
     gap: 0.5rem;
   }
-  
+
   .info-row__icon {
     width: 1.25rem;
     height: 1.25rem;
   }
-  
+
   .attendance-avatar {
     width: 38px;
     height: 38px;
   }
-  
+
   .landing-connect__visual img {
     max-width: 50%;
   }
@@ -668,24 +669,24 @@ h1, h2, h3, h4, h5, h6 {
   .landing-hero-content {
     padding: 1rem;
   }
-  
+
   .event-card {
     padding: 1rem;
   }
-  
+
   .event-card__title {
     font-size: 1.125rem;
   }
-  
+
   .event-card__header {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .map-container {
     margin-top: 1.5rem;
   }
-  
+
   .map-container__caption {
     font-size: 0.8rem;
     flex-direction: column;
