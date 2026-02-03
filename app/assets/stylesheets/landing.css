@@ -228,6 +228,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: var(--space-6);
 }
 
 @media (max-width: 768px) {
@@ -237,12 +238,39 @@
   }
 }
 
-.filter-section select {
-  font-size: 1rem;
-  padding: 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-sm);
-  background: var(--color-light);
+.filter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+@media (min-width: 769px) {
+  .filter-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.form-select--filter {
+  width: 100%;
+  max-width: 300px;
+}
+
+@media (min-width: 769px) {
+  .form-select--filter {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+/* Admin Stats Grid
+   ========================================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: var(--space-6);
 }
 
 /* Community Section
@@ -561,6 +589,47 @@
 }
 
 /* Mobile enhancements - Better touch targets and readability
+   ========================================================================== */
+
+/* Small phones (up to 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .landing-lead {
+    font-size: 1.75rem;
+  }
+  
+  .event-card {
+    padding: 1rem;
+  }
+  
+  .event-card__title {
+    font-size: 1rem;
+  }
+  
+  .event-card__date {
+    font-size: 0.85rem;
+  }
+  
+  .info-row {
+    gap: 0.5rem;
+  }
+  
+  .info-row__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .attendance-avatar {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .landing-connect__visual img {
+    max-width: 50%;
+  }
+}
+
+/* Tablet and up (768px+)
    ========================================================================== */
 @media (max-width: 768px) {
   .landing-hero-content {

@@ -8,7 +8,7 @@
 </header>
 
 <section class="section">
-  <div class="action-grid" style="margin-bottom: var(--space-6);">
+  <div class="action-grid">
     <%= link_to new_admin_meetup_path, class: "action-card" do %>
       <span class="action-card-icon" aria-hidden="true">+</span>
       <span class="action-card-label">Nowe spotkanie</span>
@@ -16,17 +16,17 @@
   </div>
   
   <%# Type Filter %>
-  <div class="filter-section" style="margin-bottom: var(--space-6);">
-    <label for="type-filter" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Filtruj według typu:</label>
-    <select id="type-filter" onchange="window.location.href = '?type=' + this.value" style="width: 100%; max-width: 300px; padding: 0.5rem; border-radius: 8px; border: 1px solid var(--color-border);">
-      <option value="">Wszystkie</option>
-      <option value="formal" <%= params[:type] == 'formal' ? 'selected' : '' %>>TRUG</option>
-      <option value="bar" <%= params[:type] == 'bar' ? 'selected' : '' %>>Bar TRUG</option>
-    </select>
+  <div class="filter-section">
+    <label for="type-filter" class="filter-label">Filtruj według typu:</label>
+    <%= select_tag :type, 
+        options_for_select([["Wszystkie", ""], ["TRUG", "formal"], ["Bar TRUG", "bar"]], params[:type]),
+        id: "type-filter", 
+        class: "form-select form-select--filter",
+        onchange: "window.location.href = '?type=' + this.value" %>
   </div>
   
   <%# Stats %>
-  <div class="stats-grid" style="margin-bottom: var(--space-6);">
+  <div class="stats-grid">
     <article class="stat-card">
       <span class="stat-icon" aria-hidden="true">📊</span>
       <span class="stat-number"><%= @total_meetups %></span>
