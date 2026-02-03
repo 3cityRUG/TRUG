@@ -21,7 +21,7 @@
       <p class="padding-1-0-bottom">Organizujemy dwa rodzaje spotkań:</p>
       <ul class="list-inline">
         <li><strong>TRUG</strong> - Formalne spotkania z prezentacjami, odbywające się co miesiąc w Hackerspace</li>
-        <li><strong>Bar TRUG</strong> - Nieformalne spotkania w restauracjach, co dwa tygodnie, tylko rozmowy i integracja</li>
+        <li><strong>TRUG Bar</strong> - Nieformalne spotkania w restauracjach, co dwa tygodnie, tylko rozmowy i integracja</li>
       </ul>
     </div>
   </div>
@@ -55,12 +55,12 @@
         <%= render partial: 'pages/event_card', locals: { 
           meetup: @next_bar_meetup, 
           type: 'bar',
-          title: 'Bar TRUG' 
+          title: 'TRUG Bar' 
         } %>
       <% else %>
         <div class="event-card event-card--empty">
           <div class="event-card__header">
-            <span class="event-card__title">Bar TRUG</span>
+            <span class="event-card__title">TRUG Bar</span>
             <span class="event-card__date">Brak zaplanowanych spotkań</span>
           </div>
         </div>

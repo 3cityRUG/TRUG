@@ -19,7 +19,7 @@
   <div class="filter-section">
     <label for="type-filter" class="filter-label">Filtruj według typu:</label>
     <%= select_tag :type, 
-        options_for_select([["Wszystkie", ""], ["TRUG", "formal"], ["Bar TRUG", "bar"]], params[:type]),
+         options_for_select([["Wszystkie", ""], ["TRUG", "formal"], ["TRUG Bar", "bar"]], params[:type]),
         id: "type-filter", 
         class: "form-select form-select--filter",
         onchange: "window.location.href = '?type=' + this.value" %>
@@ -65,10 +65,10 @@
                 <% end %>
                 <div class="meetup-list-details">
                   <span class="meetup-list-title">
-                    <%= meetup.event_type == 'formal' ? "Spotkanie ##{meetup.number}" : "Bar TRUG" %>
+                     <%= meetup.event_type == 'formal' ? "Spotkanie ##{meetup.number}" : "TRUG Bar" %>
                   </span>
                   <span class="meetup-list-type-badge <%= "meetup-list-type--#{meetup.event_type}" %>">
-                    <%= meetup.event_type == 'formal' ? 'TRUG' : 'Bar TRUG' %>
+                     <%= meetup.event_type == 'formal' ? 'TRUG' : 'TRUG Bar' %>
                   </span>
                   <span class="meetup-list-meta">
                     <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
