@@ -5,6 +5,7 @@ class Admin::MeetupsController < ApplicationController
 
   def index
     @meetups = Meetup.ordered.includes(:talks)
+    @meetups = @meetups.where(event_type: params[:type]) if params[:type].present?
     @total_meetups = Meetup.count
     @upcoming_meetups = Meetup.upcoming.count
     @total_talks = Talk.count
@@ -16,7 +17,8 @@ class Admin::MeetupsController < ApplicationController
   end
 
   def new
-    @meetup = Meetup.new(number: Meetup.maximum(:number).to_i + 1, date: Date.current)
+    next_number = Meetup.formal.maximum(:number).to_i + 1
+    @meetup = Meetup.new(number: next_number, date: Date.current, event_type: params[:type] || "formal")
   end
 
   def create
@@ -50,6 +52,6 @@ class Admin::MeetupsController < ApplicationController
   private
 
   def meetup_params
-    params.require(:meetup).permit(:number, :date, :description)
+    params.require(:meetup).permit(:number, :date, :description, :location, :event_type)
   end
 end
