@@ -1,7 +1,7 @@
-/* Landing Page Styles - Clean and Simple
+/* Landing Page Styles - Mobile-First and Clean
    ========================================================================== */
 
-/* Hero Section
+/* Hero Section - Reduced from 85vh to 45vh for mobile-first design
    ========================================================================== */
 .landing-hero {
   background-image: url("tricity-panorama.svg");
@@ -12,9 +12,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 85vh;
+  height: 45vh;
   text-align: center;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .landing-hero {
+    height: 40vh;
+  }
 }
 
 .landing-hero::before {
@@ -36,14 +42,14 @@
 .landing-hero-content {
   position: relative;
   z-index: 1;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .landing-lead {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -61,6 +67,115 @@
   flex-shrink: 0;
 }
 
+/* Events Grid - Mobile-First Layout
+   ========================================================================== */
+.events-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .events-grid {
+    flex-direction: row;
+  }
+  
+  .events-grid__item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* Event Cards - Reusable Styles for Both Types
+   ========================================================================== */
+.event-card {
+  background: var(--color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.event-card--formal {
+  border-left: 4px solid var(--color-dark);
+}
+
+.event-card--bar {
+  border-left: 4px solid var(--color-brand);
+}
+
+.event-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-brand);
+}
+
+.event-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.event-card__number {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.event-card__date {
+  font-size: 0.95rem;
+  color: var(--color-gray-dark);
+}
+
+/* Admin Type Badges
+   ========================================================================== */
+.meetup-list-type-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.meetup-list-type--formal {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.meetup-list-type--bar {
+  background-color: var(--color-brand);
+  color: var(--color-light);
+}
+
+/* Admin Filter Section
+   ========================================================================== */
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.filter-section select {
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  background: var(--color-light);
+}
+
 /* Community Section
    ========================================================================== */
 .landing-community {
@@ -69,6 +184,13 @@
   background-position: center;
   height: 280px;
   margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .landing-community {
+    height: 200px;
+    margin: 1.5rem 0;
+  }
 }
 
 /* Meetup Info - Clean Layout
@@ -94,7 +216,7 @@
 
 .meetup-info__date {
   font-size: 1.125rem;
-  color: var(--color-gray);
+  color: var(--color-gray-dark);
 }
 
 .info-row {
@@ -102,6 +224,12 @@
   align-items: flex-start;
   gap: 0.75rem;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .info-row {
+    gap: 0.5rem;
+  }
 }
 
 .info-row__icon {
@@ -113,6 +241,13 @@
   margin-top: 0.125rem;
 }
 
+@media (max-width: 768px) {
+  .info-row__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
 .info-row__label {
   font-weight: 600;
   color: var(--color-dark);
@@ -120,7 +255,7 @@
 }
 
 .info-row__value {
-  color: var(--color-gray);
+  color: var(--color-gray-dark);
 }
 
 /* Talks List
@@ -147,7 +282,7 @@
 }
 
 .talk-item__speaker {
-  color: var(--color-gray);
+  color: var(--color-gray-dark);
   font-size: 0.9rem;
 }
 
@@ -169,7 +304,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-gray);
+  color: var(--color-gray-dark);
   font-size: 0.9rem;
 }
 
@@ -200,6 +335,12 @@
   margin-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+  .attendance-avatars {
+    gap: 0.35rem;
+  }
+}
+
 .attendance-avatar {
   display: block;
   width: 44px;
@@ -209,6 +350,13 @@
   border: 2px solid var(--color-light);
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+  .attendance-avatar {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .attendance-avatar:hover {
@@ -222,7 +370,7 @@
 }
 
 .attendance-count {
-  color: var(--color-gray);
+  color: var(--color-gray-dark);
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
 }
@@ -253,6 +401,13 @@
 .radio-group {
   display: flex;
   gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .radio-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .radio-label {
@@ -297,6 +452,14 @@
   padding: 2rem 0;
 }
 
+@media (max-width: 768px) {
+  .landing-connect {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+}
+
 .landing-connect__visual {
   display: flex;
   justify-content: center;
@@ -306,6 +469,12 @@
 .landing-connect__visual img {
   max-width: 100%;
   height: auto;
+}
+
+@media (max-width: 768px) {
+  .landing-connect__visual img {
+    max-width: 60%;
+  }
 }
 
 /* Legacy compatibility
@@ -322,104 +491,33 @@
   fill: currentColor;
 }
 
+/* Mobile enhancements - Better touch targets and readability
+   ========================================================================== */
 @media (max-width: 768px) {
-  .landing-hero {
-    height: 70vh;
-  }
-
   .landing-hero-content {
     padding: 1rem;
   }
-
-  .landing-lead {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+  
+  .event-card {
+    padding: 1rem;
   }
-
-  .landing-community {
-    height: 200px;
-    margin: 1.5rem 0;
+  
+  .event-card__title {
+    font-size: 1.125rem;
   }
-
-  .meetup-info__header {
+  
+  .event-card__header {
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 1rem;
   }
-
-  .meetup-info__number {
-    font-size: 1.25rem;
-  }
-
-  .meetup-info__date {
-    font-size: 1rem;
-  }
-
+  
   .map-container {
     margin-top: 1.5rem;
   }
-
-  .attendance-section {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-  }
-
-  .attendance-avatars {
-    gap: 0.35rem;
-  }
-
-  .attendance-avatar {
-    width: 36px;
-    height: 36px;
-  }
-
-  .radio-group {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .landing-connect {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem 0;
-  }
-
-  .landing-connect__visual {
-    order: -1;
-  }
-
-  .landing-connect__visual img {
-    max-width: 60%;
-  }
-}
-
-@media (max-width: 480px) {
-  .landing-hero {
-    height: 60vh;
-  }
-
-  .landing-lead {
-    font-size: 1.75rem;
-  }
-
-  .info-row {
-    gap: 0.5rem;
-  }
-
-  .info-row__icon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
+  
   .map-container__caption {
     font-size: 0.8rem;
-  }
-
-  .talk-item__title {
-    font-size: 0.95rem;
-  }
-
-  .talk-item__speaker {
-    font-size: 0.85rem;
+    flex-direction: column;
+    text-align: center;
   }
 }
