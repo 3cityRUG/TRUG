@@ -4,7 +4,7 @@ class Admin::MeetupsController < ApplicationController
   before_action :require_admin!
 
   def index
-    @meetups = Meetup.ordered.includes(:talks)
+    @meetups = Meetup.order(date: :desc).includes(:talks)
     @meetups = @meetups.where(event_type: params[:type]) if params[:type].present?
     @total_meetups = Meetup.count
     @upcoming_meetups = Meetup.upcoming.count
