@@ -8,13 +8,22 @@
     <lastBuildDate><%= @meetups.first&.date&.to_time&.rfc2822 || Time.current.rfc2822 %></lastBuildDate>
     <% @meetups.each do |meetup| %>
       <item>
-        <title>TRUG #<%= meetup.number %> - <%= meetup.date.strftime("%Y-%m-%d") %></title>
+        <title>
+          <% if meetup.formal? %>
+            TRUG #<%= meetup.number %> - <%= meetup.date.strftime("%Y-%m-%d") %>
+          <% else %>
+            TRUG Bar - <%= meetup.date.strftime("%Y-%m-%d") %>
+          <% end %>
+        </title>
         <link><%= archive_url %></link>
         <guid isPermaLink="false">trug-meetup-<%= meetup.id %></guid>
         <pubDate><%= meetup.date.to_time.rfc2822 %></pubDate>
         <description><![CDATA[
           <% if meetup.description.present? %>
             <p><%= h(meetup.description) %></p>
+          <% end %>
+          <% if meetup.location.present? %>
+            <p><strong>Miejsce:</strong> <%= h(meetup.location) %></p>
           <% end %>
           <% if meetup.talks.any? %>
             <ul>
