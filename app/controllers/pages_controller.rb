@@ -13,5 +13,6 @@ class PagesController < ApplicationController
 
   def rss
     @meetups = Meetup.order(date: :desc).includes(:talks).limit(20)
+    @last_modified = Meetup.maximum(:updated_at)
   end
 end

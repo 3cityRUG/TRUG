@@ -5,7 +5,7 @@
     <link><%= root_url %></link>
     <description>Meetup updates from TRUG.</description>
     <language>pl</language>
-    <lastBuildDate><%= @meetups.first&.date&.to_time&.rfc2822 || Time.current.rfc2822 %></lastBuildDate>
+    <lastBuildDate><%= (@last_modified || Time.current).rfc2822 %></lastBuildDate>
     <% @meetups.each do |meetup| %>
       <item>
         <title>
