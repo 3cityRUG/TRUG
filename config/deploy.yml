@@ -17,6 +17,9 @@ servers:
 proxy:
   ssl: false
   host: trug.pl
+  run:
+    repository: basecamp/kamal-proxy
+    version: v0.9.0
 
 # Credentials for your image host.
 registry:

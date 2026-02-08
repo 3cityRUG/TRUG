@@ -81,10 +81,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (eventTypeSelect && eventTypeSelect.value === 'formal') {
       formalFields.style.display = 'block';
       numberField.required = true;
+      numberField.disabled = false;
       numberRequiredIndicator.style.display = 'inline';
     } else if (formalFields) {
       formalFields.style.display = 'none';
       numberField.required = false;
+      numberField.disabled = true;
+      numberField.value = ''; // Clear number for bar events
       numberRequiredIndicator.style.display = 'none';
     }
   }

@@ -17,8 +17,15 @@ class Admin::MeetupsController < ApplicationController
   end
 
   def new
-    next_number = Meetup.formal.maximum(:number).to_i + 1
-    @meetup = Meetup.new(number: next_number, date: Date.current, event_type: params[:type] || "formal")
+    event_type = params[:type] || "formal"
+    attributes = { date: Date.current, event_type: event_type }
+
+    # Only set default number for formal meetups, not for bar events
+    if event_type == "formal"
+      attributes[:number] = Meetup.formal.maximum(:number).to_i + 1
+    end
+
+    @meetup = Meetup.new(attributes)
   end
 
   def create
