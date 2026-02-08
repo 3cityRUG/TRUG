@@ -12,6 +12,6 @@ class PagesController < ApplicationController
   end
 
   def rss
-    @meetups = Meetup.ordered.includes(:talks).limit(20)
+    @meetups = Meetup.order(date: :desc).includes(:talks).limit(20)
   end
 end
