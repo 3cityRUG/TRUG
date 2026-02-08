@@ -20,12 +20,13 @@
     <% if user_attendance %>
       <div class="your-attendance">
         <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= user_attendance.status_name == 'yes' ? 'Tak, będę!' : 'Może' %></span></p>
-        <%= form_with url: attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "button_to", data: { turbo_frame: "attendance_section" } do |f| %>
+        <%= form_with url: attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "button_to", data: { turbo_frame: "attendance_section_#{next_meetup.id}" } do |f| %>
+          <%= f.hidden_field :meetup_id, value: next_meetup.id %>
           <%= f.submit "Zmień", class: "btn btn-secondary btn-sm" %>
         <% end %>
       </div>
     <% else %>
-      <%= form_with url: attendances_path, method: :post, class: "attendance-form", data: { turbo_frame: "attendance_section" } do |f| %>
+      <%= form_with url: attendances_path, method: :post, class: "attendance-form", data: { turbo_frame: "attendance_section_#{next_meetup.id}" } do |f| %>
         <%= f.hidden_field :meetup_id, value: next_meetup.id %>
         <div class="form-group">
           <label>Czy przyjdziesz?</label>

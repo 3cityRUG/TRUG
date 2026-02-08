@@ -36,8 +36,10 @@ class AttendancesController < ApplicationController
       respond_to do |format|
         format.html do
           if turbo_frame_request?
-            @next_meetup = @meetup
-            render inline: "<%= turbo_frame_tag 'attendance_section' do %><%= render partial: 'pages/attendance_section' %><% end %>"
+            frame = helpers.turbo_frame_tag("attendance_section_#{@meetup.id}") do
+              render_to_string(partial: "pages/attendance_section", locals: { next_meetup: @meetup })
+            end
+            render html: frame
           else
             redirect_to root_path, notice: "Dziękujemy! Twój udział został zarejestrowany."
           end
@@ -51,7 +53,9 @@ class AttendancesController < ApplicationController
   private
 
   def set_meetup
-    @meetup = Meetup.ordered.first
+    meetup_id = params[:meetup_id] || session[:attendance_meetup_id]
+    @meetup = Meetup.find_by(id: meetup_id) if meetup_id.present?
+    @meetup ||= Meetup.upcoming.first
     render plain: "Not Found", status: :not_found unless @meetup
   end
 end
