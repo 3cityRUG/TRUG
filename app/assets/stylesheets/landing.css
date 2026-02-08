@@ -73,6 +73,14 @@
   gap: 2rem;
 }
 
+.events-grid__item--formal {
+  order: 0;
+}
+
+.events-grid__item--bar {
+  order: 1;
+}
+
 @media (min-width: 768px) {
   .events-grid {
     flex-direction: row;

@@ -33,7 +33,7 @@
   <h2 id="next-meetup" class="text-left padding-2-0-bottom">Najbliższe spotkania</h2>
   
   <div class="events-grid">
-    <div class="events-grid__item">
+    <div class="events-grid__item events-grid__item--formal">
       <% if @next_formal_meetup %>
         <%= render partial: 'pages/event_card', locals: { 
           meetup: @next_formal_meetup, 
@@ -50,7 +50,7 @@
       <% end %>
     </div>
     
-    <div class="events-grid__item">
+    <div class="events-grid__item events-grid__item--bar">
       <% if @next_bar_meetup %>
         <%= render partial: 'pages/event_card', locals: { 
           meetup: @next_bar_meetup, 
