@@ -10,91 +10,70 @@
   </div>
 <% end %>
 
-<div class="form-section">
-  <div class="form-field">
-    <%= f.label :event_type, "Typ spotkania", class: "form-label" do %>
-      Typ spotkania <span class="required">*</span>
-    <% end %>
-    <%= f.select :event_type, 
-         [["TRUG - Formalne spotkania z prezentacjami w Hackerspace (4. czwartek)", "formal"], 
-          ["TRUG Bar - Nieformalne spotkania w restauracjach (2. czwartek)", "bar"]],
-        { class: "form-select" } %>
-    <span class="form-hint">Wybierz typ spotkania</span>
-  </div>
-
-  <div class="form-row" id="formal-fields">
+<div data-controller="meetup-form">
+  <div class="form-section">
     <div class="form-field">
-      <%= f.label :number, "Numer spotkania", class: "form-label" do %>
-        Numer spotkania <span id="number-required-indicator" class="required">*</span>
+      <%= f.label :event_type, "Typ spotkania", class: "form-label" do %>
+        Typ spotkania <span class="required">*</span>
       <% end %>
-      <%= f.number_field :number, class: "form-input", min: 1, id: "meetup_number_field" %>
-      <span class="form-hint">Unikalny numer spotkania (tylko dla TRUG)</span>
+      <%= f.select :event_type,
+           [["TRUG - Formalne spotkania z prezentacjami w Hackerspace (4. czwartek)", "formal"],
+            ["TRUG Bar - Nieformalne spotkania w restauracjach (2. czwartek)", "bar"]],
+           {},
+           class: "form-select",
+           data: { action: "change->meetup-form#toggle", "meetup-form-target": "eventType" } %>
+      <span class="form-hint">Wybierz typ spotkania</span>
+    </div>
+
+    <div class="form-row" id="formal-fields" data-meetup-form-target="formalFields">
+      <div class="form-field">
+        <%= f.label :number, "Numer spotkania", class: "form-label" do %>
+          Numer spotkania <span id="number-required-indicator" class="required" data-meetup-form-target="numberRequiredIndicator">*</span>
+        <% end %>
+        <%= f.number_field :number,
+            class: "form-input",
+            min: 1,
+            id: "meetup_number_field",
+            data: { "meetup-form-target": "numberField" } %>
+        <span class="form-hint">Unikalny numer spotkania (tylko dla TRUG)</span>
+      </div>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :date, class: "form-label" do %>
+        Data spotkania <span class="required">*</span>
+      <% end %>
+      <%= f.date_field :date, class: "form-input", required: true %>
+      <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
     </div>
   </div>
-  
-  <div class="form-field">
-    <%= f.label :date, class: "form-label" do %>
-      Data spotkania <span class="required">*</span>
-    <% end %>
-    <%= f.date_field :date, class: "form-input", required: true %>
-    <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
+
+  <div class="form-section">
+    <div class="form-field">
+      <%= f.label :location, "Miejsce", class: "form-label" %>
+      <%= f.text_field :location, class: "form-input" %>
+      <span class="form-hint">Miejsce spotkania (domyślnie: Hackerspace dla TRUG)</span>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :description, "Opis", class: "form-label" %>
+      <%= f.textarea :description, class: "form-textarea", rows: 4 %>
+      <span class="form-hint">Opcjonalny opis spotkania, agendy, informacje o miejscu</span>
+    </div>
   </div>
+
+  <div class="form-actions">
+    <%= f.submit meetup.persisted? ? "Zapisz zmiany" : "Utwórz spotkanie", class: "btn btn-primary" %>
+    <%= link_to "Anuluj", admin_meetups_path, class: "btn btn-ghost" %>
+  </div>
+
+  <% if meetup.persisted? %>
+    <div class="form-section form-section--danger">
+      <h3>Strefa niebezpieczeństwa</h3>
+      <p>Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.</p>
+      <%= button_to "Usuń spotkanie", admin_meetup_path(meetup), method: :delete,
+          form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie i wszystkie jego prezentacje?" } },
+          class: "btn btn-danger" %>
+    </div>
+  <% end %>
 </div>
-
-<div class="form-section">
-  <div class="form-field">
-    <%= f.label :location, "Miejsce", class: "form-label" %>
-    <%= f.text_field :location, class: "form-input" %>
-    <span class="form-hint">Miejsce spotkania (domyślnie: Hackerspace dla TRUG)</span>
-  </div>
-
-  <div class="form-field">
-    <%= f.label :description, "Opis", class: "form-label" %>
-    <%= f.textarea :description, class: "form-textarea", rows: 4 %>
-    <span class="form-hint">Opcjonalny opis spotkania, agendy, informacje o miejscu</span>
-  </div>
-</div>
-
-<div class="form-actions">
-  <%= f.submit meetup.persisted? ? "Zapisz zmiany" : "Utwórz spotkanie", class: "btn btn-primary" %>
-  <%= link_to "Anuluj", admin_meetups_path, class: "btn btn-ghost" %>
-</div>
-
-<% if meetup.persisted? %>
-  <div class="form-section form-section--danger">
-    <h3>Strefa niebezpieczeństwa</h3>
-    <p>Usunięcie spotkania spowoduje także usunięcie wszystkich powiązanych prezentacji. Tej operacji nie można cofnąć.</p>
-    <%= button_to "Usuń spotkanie", admin_meetup_path(meetup), method: :delete, 
-        form: { data: { turbo_confirm: "Czy na pewno chcesz usunąć to spotkanie i wszystkie jego prezentacje?" } }, 
-        class: "btn btn-danger" %>
-  </div>
-<% end %>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const eventTypeSelect = document.querySelector('#meetup_event_type');
-  const formalFields = document.getElementById('formal-fields');
-  const numberField = document.getElementById('meetup_number_field');
-  const numberRequiredIndicator = document.getElementById('number-required-indicator');
-  
-  function toggleFormalFields() {
-    if (eventTypeSelect && eventTypeSelect.value === 'formal') {
-      formalFields.style.display = 'block';
-      numberField.required = true;
-      numberField.disabled = false;
-      numberRequiredIndicator.style.display = 'inline';
-    } else if (formalFields) {
-      formalFields.style.display = 'none';
-      numberField.required = false;
-      numberField.disabled = true;
-      numberField.value = ''; // Clear number for bar events
-      numberRequiredIndicator.style.display = 'none';
-    }
-  }
-  
-  if (eventTypeSelect) {
-    eventTypeSelect.addEventListener('change', toggleFormalFields);
-    toggleFormalFields();
-  }
-});
-</script>
