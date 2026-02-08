@@ -17,7 +17,7 @@
         </title>
         <link><%= archive_url %></link>
         <guid isPermaLink="false">trug-meetup-<%= meetup.id %></guid>
-        <pubDate><%= meetup.date.to_time.rfc2822 %></pubDate>
+        <pubDate><%= meetup.updated_at.rfc2822 %></pubDate>
         <description><![CDATA[
           <% if meetup.description.present? %>
             <p><%= h(meetup.description) %></p>
