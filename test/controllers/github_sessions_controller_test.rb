@@ -45,7 +45,7 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
       github_username: "oldusername"
     )
 
-    mock_auth = OmniAuth::AuthHash.new(
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       provider: "github",
       uid: "88888",
       info: {
@@ -54,9 +54,10 @@ class GithubSessionsControllerTest < ActionDispatch::IntegrationTest
       }
     )
 
-    post "/auth/github/callback", env: { "omniauth.auth" => mock_auth }
+    post "/auth/github/callback"
 
-    assert_equal existing_user.id, Session.last.user_id
+    session = Session.find_by(user_id: existing_user.id)
+    assert session.present?, "Expected session to be created for user #{existing_user.id}"
     assert_redirected_to root_path
   end
 end

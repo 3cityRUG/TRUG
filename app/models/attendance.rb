@@ -14,4 +14,32 @@ class Attendance < ApplicationRecord
   def status_name
     STATUSES.key(status).to_s if status.present?
   end
+
+  # Cycles through: yes (1) -> maybe (0) -> no (2) -> yes (1)
+  def next_status
+    case status
+    when STATUSES[:yes] then STATUSES[:maybe]
+    when STATUSES[:maybe] then STATUSES[:no]
+    when STATUSES[:no] then STATUSES[:yes]
+    else STATUSES[:yes]
+    end
+  end
+
+  def status_label
+    case status
+    when STATUSES[:yes] then "Tak, będę!"
+    when STATUSES[:maybe] then "Może"
+    when STATUSES[:no] then "Nie będę"
+    else "Nieznany"
+    end
+  end
+
+  def self.status_label(status_value)
+    case status_value
+    when STATUSES[:yes] then "Tak, będę!"
+    when STATUSES[:maybe] then "Może"
+    when STATUSES[:no] then "Nie będę"
+    else "Nieznany"
+    end
+  end
 end
