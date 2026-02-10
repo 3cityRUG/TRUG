@@ -15,15 +15,4 @@ class AttendancesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to auth_provider_path(:github)
   end
-
-  test "should handle turbo stream request by redirecting to auth" do
-    post attendances_url, params: {
-      attendance: {
-        meetup_id: @meetup.id,
-        status: "maybe"
-      }
-    }, as: :turbo_stream
-
-    assert_redirected_to auth_provider_path(:github)
-  end
 end

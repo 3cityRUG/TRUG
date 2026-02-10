@@ -1,16 +1,27 @@
 <% next_meetup = local_assigns[:next_meetup] || @next_meetup %>
 <div class="attendance-section">
   <h3>Kto będzie?</h3>
-  <% attendances = next_meetup.attendances.confirmed %>
-  <% if attendances.any? %>
+  <% confirmed = next_meetup.attendances.confirmed %>
+  <% maybe = next_meetup.attendances.where(status: Attendance::STATUSES[:maybe]) %>
+  <% no = next_meetup.attendances.where(status: Attendance::STATUSES[:no]) %>
+
+  <% if confirmed.any? || maybe.any? %>
     <div class="attendance-avatars">
-      <% attendances.each do |attendance| %>
-        <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar" title="<%= attendance.github_username %>">
+      <% confirmed.each do |attendance| %>
+        <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar attendance-avatar--yes" title="<%= attendance.github_username %> (będę)">
           <img src="https://github.com/<%= attendance.github_username %>.png?size=44" alt="<%= attendance.github_username %>" onerror="this.src='https://github.com/identicons/<%= attendance.github_username %>.png'">
         </a>
       <% end %>
+      <% maybe.each do |attendance| %>
+        <a href="https://github.com/<%= attendance.github_username %>" target="_blank" rel="noopener" class="attendance-avatar attendance-avatar--maybe" title="<%= attendance.github_username %> (może)">
+          <img src="https://github.com/<%= attendance.github_username %>.png?size=44" alt="<%= attendance.github_username %>" onerror="this.src='https://github.com/identicons/<%= attendance.github_username %>.png'">
+          <span class="attendance-avatar__badge">?</span>
+        </a>
+      <% end %>
     </div>
-    <p class="attendance-count"><%= attendances.count %> osób potwierdziło obecność</p>
+    <p class="attendance-count">
+      <%= confirmed.count %> osób potwierdziło<% if maybe.any? %>, <%= maybe.count %> może<% end %>
+    </p>
   <% else %>
     <p class="no-attendees">Bądź pierwszy i zgłoś obecność!</p>
   <% end %>
@@ -19,9 +30,20 @@
     <% user_attendance = next_meetup.attendances.find_by(github_username: current_user.github_username) %>
     <% if user_attendance %>
       <div class="your-attendance">
-        <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= user_attendance.status_name == 'yes' ? 'Tak, będę!' : 'Może' %></span></p>
-        <%= form_with url: attendances_path(status: user_attendance.status == 1 ? 0 : 1), method: :post, class: "button_to", data: { turbo_frame: "attendance_section_#{next_meetup.id}" } do |f| %>
+        <p class="attendance-status">Twoja odpowiedź: <span class="status-<%= user_attendance.status_name %>"><%= { 'yes' => 'Tak, będę!', 'maybe' => 'Może', 'no' => 'Nie będę' }[user_attendance.status_name] %></span></p>
+        <%= form_with url: attendances_path, method: :post, class: "attendance-change-form", data: { turbo_frame: "attendance_section_#{next_meetup.id}" } do |f| %>
           <%= f.hidden_field :meetup_id, value: next_meetup.id %>
+          <div class="radio-group radio-group--inline">
+            <label class="radio-label">
+              <%= f.radio_button :status, 1, checked: user_attendance.status == 1 %> Będę
+            </label>
+            <label class="radio-label">
+              <%= f.radio_button :status, 0, checked: user_attendance.status == 0 %> Może
+            </label>
+            <label class="radio-label">
+              <%= f.radio_button :status, 2, checked: user_attendance.status == 2 %> Nie
+            </label>
+          </div>
           <%= f.submit "Zmień", class: "btn btn-secondary btn-sm" %>
         <% end %>
       </div>
@@ -36,6 +58,9 @@
             </label>
             <label class="radio-label">
               <%= f.radio_button :status, 0 %> Może
+            </label>
+            <label class="radio-label">
+              <%= f.radio_button :status, 2 %> Nie będę
             </label>
           </div>
         </div>

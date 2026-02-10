@@ -33,39 +33,25 @@
   <h2 id="next-meetup" class="text-left padding-2-0-bottom">Najbliższe spotkania</h2>
   
   <div class="events-grid">
-    <div class="events-grid__item events-grid__item--formal">
-      <% if @next_formal_meetup %>
+    <% @upcoming_events.each do |meetup| %>
+      <% type = meetup.bar? ? 'bar' : 'formal' %>
+      <% title = meetup.bar? ? 'TRUG Bar' : 'TRUG' %>
+      <div class="events-grid__item events-grid__item--<%= type %>">
         <%= render partial: 'pages/event_card', locals: { 
-          meetup: @next_formal_meetup, 
-          type: 'formal',
-          title: 'TRUG' 
+          meetup: meetup, 
+          type: type,
+          title: title 
         } %>
-      <% else %>
-        <div class="event-card event-card--empty">
-          <div class="event-card__header">
-            <span class="event-card__title">TRUG</span>
-            <span class="event-card__date">Brak zaplanowanych spotkań</span>
-          </div>
-        </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     
-    <div class="events-grid__item events-grid__item--bar">
-      <% if @next_bar_meetup %>
-        <%= render partial: 'pages/event_card', locals: { 
-          meetup: @next_bar_meetup, 
-          type: 'bar',
-          title: 'TRUG Bar' 
-        } %>
-      <% else %>
-        <div class="event-card event-card--empty">
-          <div class="event-card__header">
-            <span class="event-card__title">TRUG Bar</span>
-            <span class="event-card__date">Brak zaplanowanych spotkań</span>
-          </div>
+    <% if @upcoming_events.empty? %>
+      <div class="event-card event-card--empty">
+        <div class="event-card__header">
+          <span class="event-card__title">Brak zaplanowanych spotkań</span>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

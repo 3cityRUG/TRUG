@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "bcrypt"
 require "mocha/minitest"
 
 class ActiveSupport::TestCase
@@ -29,11 +30,16 @@ end
 
 class ActionDispatch::IntegrationTest
   def sign_in_as(user, user_agent: "Test Browser", ip_address: "127.0.0.1")
-    session = user.sessions.create!(user_agent: user_agent, ip_address: ip_address)
-    cookies[:session_id] = session.id
+    @session = user.sessions.create!(user_agent: user_agent, ip_address: ip_address)
+    # Stub the authentication to return the session
+    ApplicationController.any_instance.stubs(:resume_session).returns(@session)
+    ApplicationController.any_instance.stubs(:authenticated?).returns(true)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
   end
 
   def sign_out
-    cookies.delete(:session_id)
+    ApplicationController.any_instance.stubs(:resume_session).returns(nil)
+    ApplicationController.any_instance.stubs(:authenticated?).returns(false)
+    ApplicationController.any_instance.stubs(:current_user).returns(nil)
   end
 end

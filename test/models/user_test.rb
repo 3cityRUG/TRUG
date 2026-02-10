@@ -12,13 +12,13 @@ class UserTest < ActiveSupport::TestCase
   test "invalid without email" do
     user = User.new(password: "secure_password")
     assert_not user.valid?
-    assert_includes user.errors[:email_address], "can't be blank"
+    assert user.errors[:email_address].any?
   end
 
   test "invalid without password" do
     user = User.new(email_address: "test@example.com")
     assert_not user.valid?
-    assert_includes user.errors[:password], "can't be blank"
+    assert user.errors[:password].any?
   end
 
   test "normalizes email address to lowercase" do

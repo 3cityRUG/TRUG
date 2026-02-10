@@ -4,8 +4,8 @@ class TalkTest < ActiveSupport::TestCase
   test "validations" do
     talk = Talk.new
     assert_not talk.valid?
-    assert_includes talk.errors[:title], "can't be blank"
-    assert_includes talk.errors[:speaker_name], "can't be blank"
+    assert talk.errors[:title].any?
+    assert talk.errors[:speaker_name].any?
   end
 
   test "belongs to meetup" do

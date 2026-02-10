@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @next_formal_meetup = Meetup.formal.upcoming.first
     @next_bar_meetup = Meetup.bar.upcoming.first
+    @upcoming_events = [@next_formal_meetup, @next_bar_meetup].compact.sort_by(&:date)
     @recent_meetups = Meetup.formal.ordered.offset(1).limit(5)
   end
 

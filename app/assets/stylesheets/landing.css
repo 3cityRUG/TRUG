@@ -482,6 +482,7 @@ h6 {
 
 .attendance-avatar {
   display: block;
+  position: relative;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -506,6 +507,31 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.attendance-avatar--yes {
+  border-color: var(--color-success, #22c55e);
+}
+
+.attendance-avatar--maybe {
+  border-color: var(--color-warning, #f59e0b);
+}
+
+.attendance-avatar__badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-warning, #f59e0b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  border: 1px solid white;
 }
 
 .attendance-count {
@@ -540,6 +566,10 @@ h6 {
 .radio-group {
   display: flex;
   gap: 1.5rem;
+}
+
+.radio-group--inline {
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 768px) {
@@ -579,6 +609,10 @@ h6 {
 
 .status-maybe {
   color: var(--color-warning);
+}
+
+.status-no {
+  color: var(--color-error, #ef4444);
 }
 
 /* Connect Section

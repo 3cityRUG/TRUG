@@ -17,6 +17,7 @@ gem "stimulus-rails"
 gem "bcrypt", "~> 3.1.7"
 
 # OAuth authentication with GitHub
+gem "omniauth", "~> 2.0"
 gem "omniauth-github", "~> 2.0"
 gem "omniauth-rails_csrf_protection", "~> 2.0"
 gem "octokit"
@@ -52,10 +53,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-end
 
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  gem "mocha"
 end
-gem "mocha"

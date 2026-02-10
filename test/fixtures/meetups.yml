@@ -1,9 +1,9 @@
 one:
   number: 115
-  date: 2025-10-23
+  date: <%= Date.today + 7.days %>
   location: "Rejak, Grunwaldzka 5, Gdańsk"
 
 two:
   number: 114
-  date: 2025-09-25
+  date: <%= Date.today + 14.days %>
   location: "Rejak, Grunwaldzka 5, Gdańsk"

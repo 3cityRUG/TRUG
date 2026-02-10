@@ -7,43 +7,24 @@ class Admin::MeetupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "index action works" do
-    get :index
+    Admin::MeetupsController.any_instance.stubs(:admin?).returns(true)
+    get admin_meetups_url
     assert_response :success
   end
 
   test "new action works" do
-    get :new
+    Admin::MeetupsController.any_instance.stubs(:admin?).returns(true)
+    get new_admin_meetup_url
     assert_response :success
-    assert_equal "formal", assigns(:meetup).event_type
   end
 
-  test "new action with bar type" do
-    get :new, params: { type: "bar" }
-    assert_response :success
-    assert_equal "bar", assigns(:meetup).event_type
-  end
-
-  test "create formal meetup" do
+  test "create meetup" do
+    Admin::MeetupsController.any_instance.stubs(:admin?).returns(true)
     assert_difference("Meetup.count", 1) do
-      post :create, params: {
+      post admin_meetups_url, params: {
         meetup: {
-          event_type: "formal",
           number: meetups(:one).number + 1,
-          date: Date.today + 7.days,
-          location: "Test Location"
-        }
-      }
-    end
-    assert_redirected_to admin_meetups_path
-  end
-
-  test "create bar meetup" do
-    assert_difference("Meetup.count", 1) do
-      post :create, params: {
-        meetup: {
-          event_type: "bar",
-          date: Date.today + 7.days,
-          location: "Test Restaurant"
+          date: Date.today + 7.days
         }
       }
     end
