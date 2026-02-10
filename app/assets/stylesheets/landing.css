@@ -519,8 +519,8 @@ h6 {
 
 .attendance-avatar__badge {
   position: absolute;
-  bottom: -2px;
-  right: -2px;
+  bottom: 4px;
+  right: 4px;
   width: 16px;
   height: 16px;
   background: var(--color-warning, #f59e0b);
