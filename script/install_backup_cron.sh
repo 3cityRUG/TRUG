@@ -12,8 +12,9 @@ set -e
 
 echo "[DB BACKUP] Installing database backup cron job on pi5..."
 
-BACKUP_SCRIPT='/home/gotar/backup_trug_db.sh'
-LOG_FILE='/var/log/trug-db-backup.log'
+BACKUP_SCRIPT='/home/gotar/backup_database.sh'
+LEGACY_BACKUP_SCRIPT='/home/gotar/backup_trug_db.sh'
+LOG_FILE='/home/gotar/trug-db-backup.log'
 
 cat > $BACKUP_SCRIPT << 'BACKUP_SCRIPT_EOF'
 #!/bin/bash
@@ -138,11 +139,13 @@ BACKUP_SCRIPT_EOF
 
 chmod +x "$BACKUP_SCRIPT"
 
+ln -sf "$BACKUP_SCRIPT" "$LEGACY_BACKUP_SCRIPT"
+
 echo "[DB BACKUP] Created backup script at $BACKUP_SCRIPT"
 
 CRON_LINE="0 3 * * * $BACKUP_SCRIPT >> $LOG_FILE 2>&1"
 
-(crontab -l 2>/dev/null | grep -v "backup_trug_db" | grep -v "trug-db-backup") | crontab -
+(crontab -l 2>/dev/null | grep -v "backup_trug_db" | grep -v "backup_database.sh" | grep -v "trug-db-backup") | crontab -
 (crontab -l 2>/dev/null; echo "$CRON_LINE") | crontab -
 
 touch $LOG_FILE

@@ -12,26 +12,34 @@ echo "Database Backup Setup Verification"
 echo "============================================"
 echo ""
 
+BACKUP_SCRIPT="/home/gotar/backup_database.sh"
+LEGACY_BACKUP_SCRIPT="/home/gotar/backup_trug_db.sh"
+LOG_FILE="/home/gotar/trug-db-backup.log"
+
 echo "1. Checking backup script..."
-if [ -f "/home/gotar/backup_trug_db.sh" ]; then
+if [ -f "$BACKUP_SCRIPT" ]; then
     echo "   ✓ Backup script exists"
-    if [ -x "/home/gotar/backup_trug_db.sh" ]; then
+    if [ -x "$BACKUP_SCRIPT" ]; then
         echo "   ✓ Script is executable"
     else
         echo "   ✗ Script is NOT executable"
         exit 1
     fi
 else
-    echo "   ✗ Backup script NOT found at /home/gotar/backup_trug_db.sh"
+    echo "   ✗ Backup script NOT found at $BACKUP_SCRIPT"
     exit 1
+fi
+
+if [ -L "$LEGACY_BACKUP_SCRIPT" ]; then
+    echo "   ✓ Legacy symlink exists: $LEGACY_BACKUP_SCRIPT"
 fi
 
 echo ""
 echo "2. Checking cron job..."
-if crontab -l 2>/dev/null | grep -q "backup_trug_db"; then
+if crontab -l 2>/dev/null | grep -Eq "backup_database.sh|backup_trug_db"; then
     echo "   ✓ Cron job is installed"
     echo "   Schedule:"
-    crontab -l | grep "backup_trug_db"
+    crontab -l | grep -E "backup_database.sh|backup_trug_db"
 else
     echo "   ✗ Cron job NOT found"
     exit 1
@@ -39,13 +47,13 @@ fi
 
 echo ""
 echo "3. Checking log file..."
-if [ -f "/var/log/trug-db-backup.log" ]; then
+if [ -f "$LOG_FILE" ]; then
     echo "   ✓ Log file exists"
-    LOG_SIZE=$(wc -c < /var/log/trug-db-backup.log)
+    LOG_SIZE=$(wc -c < "$LOG_FILE")
     echo "   Size: $LOG_SIZE bytes"
     if [ $LOG_SIZE -gt 0 ]; then
         echo "   Last 5 lines:"
-        tail -5 /var/log/trug-db-backup.log | sed 's/^/     /'
+        tail -5 "$LOG_FILE" | sed 's/^/     /'
     fi
 else
     echo "   ⚠ Log file not found (will be created on first run)"
@@ -95,7 +103,7 @@ echo "✓ Backup setup verification PASSED"
 echo "============================================"
 echo ""
 echo "You can test the backup now with:"
-echo "  /home/gotar/backup_trug_db.sh"
+echo "  $BACKUP_SCRIPT"
 echo ""
 echo "Or from local machine:"
 echo "  kamal db_backup"

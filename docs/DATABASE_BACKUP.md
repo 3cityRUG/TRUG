@@ -53,14 +53,14 @@ git config --global user.name "TRUG Backup Bot"
 Upload the backup script to pi5:
 
 ```bash
-scp -P 22 script/backup_database.sh gotar@pi5:/home/gotar/backup_trug_db.sh
-ssh gotar@pi5 'chmod +x /home/gotar/backup_trug_db.sh'
+scp -P 22 script/backup_database.sh gotar@pi5:/home/gotar/backup_database.sh
+ssh gotar@pi5 'chmod +x /home/gotar/backup_database.sh'
 ```
 
 Install the cron job to run daily at 3:00 AM:
 
 ```bash
-kamal server exec 'CRON_LINE="0 3 * * * /home/gotar/backup_trug_db.sh >> /home/gotar/trug-db-backup.log 2>&1" && (crontab -l 2>/dev/null | grep -v backup_trug; echo "$CRON_LINE") | crontab - && echo "Cron installed"'
+kamal server exec 'CRON_LINE="0 3 * * * /home/gotar/backup_database.sh >> /home/gotar/trug-db-backup.log 2>&1" && (crontab -l 2>/dev/null | grep -v backup_database.sh; echo "$CRON_LINE") | crontab - && echo "Cron installed"'
 ```
 
 ### 4. Verify Installation
@@ -72,7 +72,7 @@ Manually check the installation:
 kamal server exec "crontab -l"
 
 # Check backup script
-kamal server exec "ls -lh /home/gotar/backup_trug_db.sh"
+kamal server exec "ls -lh /home/gotar/backup_database.sh"
 
 # Check GitHub access
 kamal server exec "ssh -T git@github.com"
@@ -80,7 +80,7 @@ kamal server exec "ssh -T git@github.com"
 
 Expected cron output:
 ```
-0 3 * * * /home/gotar/backup_trug_db.sh >> /home/gotar/trug-db-backup.log 2>&1
+0 3 * * * /home/gotar/backup_database.sh >> /home/gotar/trug-db-backup.log 2>&1
 ```
 
 ### 5. Test the Backup
@@ -88,12 +88,12 @@ Expected cron output:
 Run a manual backup on the server:
 
 ```bash
-ssh gotar@pi5 '/home/gotar/backup_trug_db.sh'
+ssh gotar@pi5 '/home/gotar/backup_database.sh'
 ```
 
 Or via Kamal:
 ```bash
-kamal server exec '/home/gotar/backup_trug_db.sh'
+kamal server exec '/home/gotar/backup_database.sh'
 ```
 
 ## How It Works
@@ -203,7 +203,7 @@ kamal server exec "rm /tmp/trug_db_last_hash"
 ## Files
 
 - `script/backup_database.sh` - Host-based backup script (uses Docker directly)
-- `/home/gotar/backup_trug_db.sh` - Installed backup script on pi5
+- `/home/gotar/backup_database.sh` - Installed backup script on pi5
 - `/home/gotar/trug-db-backup.log` - Backup logs on pi5
 
 ## Architecture Changes (Feb 2026)
