@@ -1,5 +1,7 @@
 # Block bad bots and common vulnerability scanners
 class Rack::Attack
+  self.cache.store = ActiveSupport::Cache::MemoryStore.new
+
   # Safelist localhost for development
   safelist("allow localhost") do |request|
     request.ip == "127.0.0.1" || request.ip == "::1" || request.ip == "localhost"
