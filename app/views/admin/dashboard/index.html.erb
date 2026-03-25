@@ -91,6 +91,7 @@
               <time datetime="<%= @next_meetup.date.iso8601 %>">
                 <%= l @next_meetup.date, format: :long %>
               </time>
+              o <%= @next_meetup.start_time %>
             </p>
             <p class="next-meetup-talks">
               <%= @next_meetup.talks.size %> <%= polish_pluralize(@next_meetup.talks.size, "prezentacja", "prezentacje", "prezentacji") %>
@@ -126,6 +127,8 @@
                   <span class="meetup-list-title">Spotkanie #<%= meetup.number %></span>
                   <span class="meetup-list-meta">
                     <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
+                    <span aria-hidden="true">•</span>
+                    <span><%= meetup.start_time %></span>
                     <span aria-hidden="true">•</span>
                     <span><%= meetup.talks.size %> <%= polish_pluralize(meetup.talks.size, "prezentacja", "prezentacje", "prezentacji") %></span>
                   </span>

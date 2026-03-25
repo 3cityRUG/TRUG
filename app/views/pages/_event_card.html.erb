@@ -15,7 +15,7 @@
     </svg>
     <div class="info-row__content">
       <div class="info-row__label">Godzina</div>
-      <div class="info-row__value">18:00</div>
+      <div class="info-row__value"><%= meetup.start_time %></div>
     </div>
   </div>
   
@@ -30,6 +30,12 @@
       </div>
     </div>
   </div>
+
+  <% if meetup.description.present? %>
+    <div class="event-card__description">
+      <%= simple_format(meetup.description) %>
+    </div>
+  <% end %>
   
   <% if type == 'formal' && meetup.talks.any? %>
     <div class="talks-section">

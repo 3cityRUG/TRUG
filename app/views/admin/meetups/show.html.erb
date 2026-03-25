@@ -56,6 +56,12 @@
           <%= @meetup.talks.size %>
         </div>
       </div>
+      <div class="form-field" style="margin-bottom: 0;">
+        <label class="form-label">Godzina rozpoczęcia</label>
+        <div style="padding: 0.75rem; background: var(--color-surface-inset); border-radius: var(--radius-md); font-weight: 500;">
+          <%= @meetup.start_time %>
+        </div>
+      </div>
     </div>
     
     <% if @meetup.description.present? %>

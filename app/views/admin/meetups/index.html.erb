@@ -70,11 +70,13 @@
                   <span class="meetup-list-type-badge <%= "meetup-list-type--#{meetup.event_type}" %>">
                      <%= meetup.event_type == 'formal' ? 'TRUG' : 'TRUG Bar' %>
                   </span>
-                  <span class="meetup-list-meta">
-                    <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
-                    <% if meetup.date.today? %>
-                      <span class="badge badge-today">Dzisiaj</span>
-                    <% elsif meetup.date.future? %>
+                   <span class="meetup-list-meta">
+                     <time datetime="<%= meetup.date.iso8601 %>"><%= l meetup.date, format: :long %></time>
+                     <span aria-hidden="true">•</span>
+                     <span><%= meetup.start_time %></span>
+                     <% if meetup.date.today? %>
+                       <span class="badge badge-today">Dzisiaj</span>
+                     <% elsif meetup.date.future? %>
                       <span class="badge badge-upcoming">Nadchodzące</span>
                     <% else %>
                       <span class="badge badge-past">Odbyte</span>

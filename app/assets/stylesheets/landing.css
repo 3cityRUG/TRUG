@@ -221,6 +221,24 @@
   color: var(--color-gray-dark);
 }
 
+.event-card__description {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid rgba(226, 84, 84, 0.35);
+  border-radius: var(--border-radius-sm);
+  background: rgba(226, 84, 84, 0.06);
+  color: var(--color-gray-dark);
+  line-height: 1.7;
+}
+
+.event-card__description p {
+  margin: 0;
+}
+
+.event-card__description p + p {
+  margin-top: 0.75rem;
+}
+
 /* Admin Type Badges
    ========================================================================== */
 .meetup-list-type-badge {

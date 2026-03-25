@@ -24,10 +24,12 @@ class Admin::MeetupsControllerTest < ActionDispatch::IntegrationTest
       post admin_meetups_url, params: {
         meetup: {
           number: meetups(:one).number + 1,
-          date: Date.today + 7.days
+          date: Date.today + 7.days,
+          start_time: "19:30"
         }
       }
     end
     assert_redirected_to admin_meetups_path
+    assert_equal "19:30", Meetup.order(:id).last.start_time
   end
 end

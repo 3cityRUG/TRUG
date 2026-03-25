@@ -1,9 +1,12 @@
 one:
   number: 115
   date: <%= Date.today + 7.days %>
+  start_time: "18:00"
+  description: "Przynies swoje pytania i pomysly na prezentacje."
   location: "Rejak, Grunwaldzka 5, Gdańsk"
 
 two:
   number: 114
   date: <%= Date.today + 14.days %>
+  start_time: "18:00"
   location: "Rejak, Grunwaldzka 5, Gdańsk"

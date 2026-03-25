@@ -9,6 +9,12 @@ class PagesTest < ApplicationSystemTestCase
     assert_text "Użytkowników Ruby"
   end
 
+  test "homepage shows meetup description when present" do
+    visit root_url
+
+    assert_text meetups(:one).description
+  end
+
   test "archive page lists all meetups" do
     visit archive_url
     assert_selector ".archive-meetup"

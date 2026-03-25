@@ -59,6 +59,6 @@ class Admin::MeetupsController < ApplicationController
   private
 
   def meetup_params
-    params.require(:meetup).permit(:number, :date, :description, :location, :event_type)
+    params.require(:meetup).permit(:number, :date, :start_time, :description, :location, :event_type)
   end
 end

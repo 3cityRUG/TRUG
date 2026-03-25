@@ -19,6 +19,21 @@ class MeetupTest < ActiveSupport::TestCase
     assert bar.valid?
   end
 
+  test "defaults start time to 18:00" do
+    meetup = Meetup.new(event_type: "formal", number: 999, date: Date.today)
+
+    meetup.valid?
+
+    assert_equal "18:00", meetup.start_time
+  end
+
+  test "start time must be valid HH:MM" do
+    meetup = Meetup.new(event_type: "formal", number: 999, date: Date.today, start_time: "25:99")
+
+    assert_not meetup.valid?
+    assert meetup.errors[:start_time].any?
+  end
+
   test "ordered scope returns meetups ordered by event_type and date" do
     result = Meetup.ordered.to_a
     assert_instance_of Array, result

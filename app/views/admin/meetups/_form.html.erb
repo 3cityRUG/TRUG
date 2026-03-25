@@ -46,6 +46,14 @@
       <%= f.date_field :date, class: "form-input", required: true %>
       <span class="form-hint">Data, kiedy odbędzie się spotkanie</span>
     </div>
+
+    <div class="form-field">
+      <%= f.label :start_time, class: "form-label" do %>
+        Godzina rozpoczęcia <span class="required">*</span>
+      <% end %>
+      <%= f.time_field :start_time, class: "form-input", required: true %>
+      <span class="form-hint">Domyślnie 18:00, ale możesz ją zmienić dla konkretnego spotkania</span>
+    </div>
   </div>
 
   <div class="form-section">
