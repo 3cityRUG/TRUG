@@ -53,7 +53,6 @@ aliases:
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
   - "/mnt/ssd/trug:/rails/storage"
-  - "/mnt/ssd/trug/db:/rails/db"
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
